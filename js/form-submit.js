@@ -22,6 +22,15 @@
       var wrapper = form.closest(".w-form");
       if (!wrapper) return; // only handle Webflow forms
 
+      // Never hijack search forms — those navigate to the results page and are
+      // handled by the client-side search, not emailed.
+      if (
+        form.matches('[role="search"], .search-form, .ch-search__bar') ||
+        form.closest(".searchbar-wrapper")
+      ) {
+        return;
+      }
+
       event.preventDefault();
       event.stopPropagation();
 
