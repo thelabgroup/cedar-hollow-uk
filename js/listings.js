@@ -25,7 +25,14 @@
       price: 120,
       rating: 4.9,
       reviews: 58,
-      image: "images/Image-3.png",
+      featured: 3,
+      highlight: "Underfloor heating",
+      image: {
+        src: "images/Image-4.webp",
+        sizes: "(max-width: 614px) 100vw, 614px",
+        srcset:
+          "images/bab72d306a7bfab5e8b38d99e1e859dff62b9558-p-500.webp 500w, images/bab72d306a7bfab5e8b38d99e1e859dff62b9558-p-800.webp 800w, images/Image-4.webp 900w"
+      },
       description:
         "A whimsical retreat nestled among towering oaks, with cosy nooks, rustic charm and views straight into the canopy.",
       longDescription:
@@ -44,7 +51,12 @@
       price: 135,
       rating: 4.8,
       reviews: 41,
-      image: "images/Image-2.png",
+      image: {
+        src: "images/Image-3.png",
+        sizes: "(max-width: 590px) 100vw, 590px",
+        srcset:
+          "images/3803373a936f7e44b4509bbd340a982c3b29f610-p-500.png 500w, images/Image-3.png 590w"
+      },
       description:
         "A romantic bolthole tucked into the woodland edge, wrapped in birdsong and dappled afternoon light.",
       longDescription:
@@ -63,7 +75,9 @@
       price: 165,
       rating: 4.9,
       reviews: 73,
-      image: "images/image-1.png",
+      featured: 2,
+      highlight: "Wood burner",
+      image: { src: "images/Image-2.webp" },
       description:
         "A family-friendly treehouse high in the canopy, with a wood-burner and a wraparound deck above the ferns.",
       longDescription:
@@ -82,7 +96,12 @@
       price: 125,
       rating: 4.7,
       reviews: 52,
-      image: "images/Treehouse-.png",
+      image: {
+        src: "images/Treehouse-.png",
+        sizes: "(max-width: 614px) 100vw, 614px",
+        srcset:
+          "images/1bf71a064f2a62cdb8735a3409b77c0f46d5cb6c-p-500.png 500w, images/1bf71a064f2a62cdb8735a3409b77c0f46d5cb6c-p-800.png 800w, images/1bf71a064f2a62cdb8735a3409b77c0f46d5cb6c-p-1080.png 1080w, images/Treehouse-.png 1536w"
+      },
       description:
         "A snug waterside cabin on the Dorset coast, steps from riverbank walks and its own private hot tub.",
       longDescription:
@@ -101,7 +120,14 @@
       price: 155,
       rating: 4.8,
       reviews: 66,
-      image: "images/Image-4.webp",
+      featured: 1,
+      highlight: "Copper bath",
+      image: {
+        src: "images/Image-1.webp",
+        sizes: "(max-width: 614px) 100vw, 614px",
+        srcset:
+          "images/d989f17afffcc80d0d27455927c2fa709440f29b-p-500.webp 500w, images/Image-1.webp 612w"
+      },
       description:
         "A stylish woodland lodge for four, with a copper bath, log fire and skies full of stars.",
       longDescription:
@@ -120,7 +146,14 @@
       price: 210,
       rating: 5.0,
       reviews: 39,
-      image: "images/marshwood-1.png",
+      featured: 4,
+      highlight: "Hot tub",
+      image: {
+        src: "images/Image-3.webp",
+        sizes: "(max-width: 614px) 100vw, 614px",
+        srcset:
+          "images/ef5d775c3ea1e9ca8042fd468e3b60e106fd0ab9-p-500.webp 500w, images/ef5d775c3ea1e9ca8042fd468e3b60e106fd0ab9-p-800.webp 800w, images/Image-3.webp 900w"
+      },
       description:
         "Our largest retreat — a three-bedroom treehouse built for gatherings, feasts and long forest weekends.",
       longDescription:
@@ -146,6 +179,14 @@
       .replace(/>/g, "&gt;")
       .replace(/"/g, "&quot;")
       .replace(/'/g, "&#39;");
+  }
+
+  // Build <img> src/sizes/srcset attributes from an image object {src, sizes?, srcset?}.
+  function imageAttrs(image) {
+    var out = 'src="' + escapeHtml(image.src) + '"';
+    if (image.sizes) out += ' sizes="' + escapeHtml(image.sizes) + '"';
+    if (image.srcset) out += ' srcset="' + escapeHtml(image.srcset) + '"';
+    return out;
   }
 
   // Read search parameters from a query string (defaults to the current URL).
@@ -257,9 +298,9 @@
       "</div>" +
       '<div class="search-item_content-left">' +
       '<div class="search-item_content-gallery-wrap">' +
-      '<img src="' +
-      escapeHtml(item.image) +
-      '" loading="lazy" alt="' +
+      "<img " +
+      imageAttrs(item.image) +
+      ' loading="lazy" alt="' +
       escapeHtml(item.name) +
       '" class="search-item_gallery-img">' +
       "</div>" +
@@ -273,11 +314,94 @@
     );
   }
 
+  // ---- Homepage "Featured Treehouses" carousel ----------------------------
+
+  var ARROW_SVG =
+    '<svg xmlns="http://www.w3.org/2000/svg" width="100%" viewbox="0 0 17 12" fill="none" class="button_icon"><path fill-rule="evenodd" clip-rule="evenodd" d="M13.2443 5.03644L9.48927 1.21321L10.6935 0L16.5 5.91195L10.6783 11.55L9.50444 10.3067L13.17 6.75673H0V5.03644H13.2443Z" fill="currentColor"></path></svg>';
+
+  function starsFor(rating) {
+    var filled = Math.max(0, Math.min(5, Math.round(rating)));
+    var out = "";
+    for (var i = 0; i < 5; i++) out += i < filled ? "★" : "☆";
+    return out;
+  }
+
+  // Listings flagged `featured`, in ascending `featured` order.
+  function featured() {
+    return LISTINGS.filter(function (l) {
+      return typeof l.featured === "number";
+    }).sort(function (a, b) {
+      return a.featured - b.featured;
+    });
+  }
+
+  // One carousel slide (`.splide__slide`) matching the homepage cabin-card markup.
+  function featuredCardHtml(item) {
+    var href = "search-results.html?q=" + encodeURIComponent(item.name);
+    var bedrooms =
+      item.bedrooms + (item.bedrooms === 1 ? " bedroom" : " bedrooms");
+
+    return (
+      '<li class="splide__slide">' +
+      '<div class="cabin-item">' +
+      '<a href="' +
+      href +
+      '" class="cabin-item_img-wrap w-inline-block"><img ' +
+      imageAttrs(item.image) +
+      ' loading="lazy" alt="' +
+      escapeHtml(item.name) +
+      '" class="cabin-item_img"></a>' +
+      '<div class="cabin-item_body">' +
+      '<div class="max-width-xlarge align-center">' +
+      '<div class="margin-bottom margin-xxsmall">' +
+      '<h3 class="heading-style-h4">' +
+      escapeHtml(item.name) +
+      "</h3>" +
+      "</div>" +
+      "</div>" +
+      '<div class="margin-bottom margin-small">' +
+      '<div class="cabin-item_feature-wrapper">' +
+      '<div class="cabin-item_features">' +
+      "<p>Sleeps " +
+      item.sleeps +
+      '</p><span class="seperator-dot">•</span>' +
+      "<p>" +
+      escapeHtml(bedrooms) +
+      '</p><span class="seperator-dot">•</span>' +
+      "<p>" +
+      escapeHtml(item.highlight || "") +
+      "</p>" +
+      "</div>" +
+      "<p>" +
+      starsFor(item.rating) +
+      " " +
+      item.rating.toFixed(1) +
+      " (" +
+      item.reviews +
+      " reviews)</p>" +
+      '<div class="cabin-item_cost"><span>From</span><span>£' +
+      item.price +
+      "</span><span>per night</span></div>" +
+      "</div>" +
+      "</div>" +
+      '<a data-wf--button--variant="base" href="' +
+      href +
+      '" class="button w-inline-block"><span>View Treehouse</span>' +
+      ARROW_SVG +
+      "</a>" +
+      "</div>" +
+      "</div>" +
+      "</li>"
+    );
+  }
+
   window.CedarHollowSearch = {
     listings: LISTINGS,
     parseParams: parseParams,
     filter: filterListings,
     cardHtml: cardHtml,
+    featured: featured,
+    featuredCardHtml: featuredCardHtml,
     escapeHtml: escapeHtml
   };
 })();
