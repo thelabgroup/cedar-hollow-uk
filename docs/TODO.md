@@ -15,6 +15,69 @@ may shift as files change.
 
 ---
 
+## Handoff — open items (as of 2026-07-26)
+
+Current outstanding items. All are waiting on the owner (DNS access, content
+review, or a decision) — none are blocked on further build work.
+
+- [ ] **Connect the custom domain.** `cedarhollow.uk` + `www.cedarhollow.uk` are
+  scaffolded on the Railway static-site service but unverified. Add the CNAME/TXT
+  records in [`DNS_SETUP.md`](../DNS_SETUP.md) once DNS access is available. Then:
+  - [ ] Add the new origins to the form-handler service, or the contact form
+    breaks on CORS:
+    `ALLOWED_ORIGINS=https://cedar-hollow-uk-production.up.railway.app,https://cedarhollow.uk,https://www.cedarhollow.uk`
+  - [ ] Pick one canonical host (root or `www`) and redirect the other.
+  - [ ] Confirm `hello@cedarhollow.uk` actually receives mail (add MX records —
+    separate from the domain-verification records).
+- [ ] **Review the legal copy before relying on it.** `privacy-policy.html`,
+  `terms-of-service.html`, `cookies.html` are real drafts, publicly live, dated
+  23 Jul 2026. Accurate about how the site behaves, but not a lawyer's review.
+- [ ] **Check the Sustainability copy for overclaims.** `sustainability.html`
+  deliberately states no certifications or figures; confirm every claim is true
+  of the actual operation.
+- [ ] **Turn on analytics when ready.** `js/analytics.js` is disabled by default
+  (`PROVIDER = "none"`, honours Do Not Track). Flip to `"plausible"` or `"ga4"`;
+  **update `cookies.html` first** (and add a consent banner if using GA4).
+
+### Resolved since the audit below (2026-07-22 → 26)
+
+Much of the historical audit is now done — kept below for reference, but these are
+complete and verified live:
+
+- [x] Railway hosting + GitHub auto-deploy (static site + `form-handler` service).
+- [x] Working contact form on the homepage (`#contact`) → emails via the
+  self-hosted form-handler over SMTP (live); honeypot + submission logging.
+- [x] Client-side search built (`js/listings.js` + `search-results.html`); homepage
+  hero search and featured cards deep-link into it.
+- [x] Featured Treehouses carousel made data-driven; card images/specs reconciled.
+- [x] All footer links wired — phone→`tel:`, email→`mailto:`, legal + content pages,
+  Contact→`#contact`. **Zero `href="#"` remain on any live page.**
+- [x] Footer social icons rebuilt to the correct platforms (Instagram, TikTok,
+  YouTube, Tripadvisor, Facebook) and wired to real profiles.
+- [x] Legal pages authored (Privacy, Terms, Cookies) with real draft copy.
+- [x] Sustainability + Experiences pages created in the site's style.
+- [x] Orphaned `home-copy.html` duplicate removed.
+- [x] Analytics scaffold added (off by default).
+
+### Still open from the audit (not yet started)
+
+- [ ] `detail_properties.html` is still an empty shell; no internal property-detail
+  page. (Bookings intentionally hand off to partner sites — see
+  [[site-search-and-booking-ctas]] — but a detail page + real booking engine remain.)
+- [ ] SEO gaps remain on the original pages: no Open Graph / Twitter / JSON-LD /
+  canonical, no `sitemap.xml` or `robots.txt`; `style-guide.html` still indexable
+  and shipped to production. (New content/legal pages are `noindex` with meta
+  descriptions.)
+- [ ] No cookie-consent banner (fine while analytics is off; required if GA4 is enabled).
+- [ ] No custom 404 page.
+- [ ] Fonts shipped as raw TTF only (no WOFF2); each `@font-face` declared twice.
+- [ ] Accessibility polish: skip-to-content link, stronger landmarks,
+  `prefers-reduced-motion` on the auto-scrolling carousels.
+- [ ] `README.md` still largely boilerplate.
+- [ ] No physical address / map / directions for a location-based business.
+
+---
+
 ## Blockers — the site is broken for a real visitor
 
 - [ ] **Booking / conversion path is fake.** Each listing's booking area is the
