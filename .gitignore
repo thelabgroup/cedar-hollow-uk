@@ -1,0 +1,9 @@
+# Per-developer Claude Code settings
+.claude/settings.local.json
+
+# Node
+node_modules/
+npm-debug.log*
+
+# macOS
+.DS_Store
