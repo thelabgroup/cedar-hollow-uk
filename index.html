@@ -101,16 +101,16 @@ animation:marquee-scroll 70s linear infinite;
             .section-hero .hero_contents{padding-top:0;}
             /* Vertical rhythm measured off the 1440x810 hero export. The hero scales
                with viewport, so these track it: 10vw = 145px and 5vw = 72px at 1440. */
-            .section-hero .hero_content{padding-top:clamp(2rem,10.42vw,10.5rem);}
+            .section-hero .hero_content{padding-top:clamp(2rem,9.51vw,9.6rem);}
             .section-hero .button-group{padding-top:.7vw;}
             /* Figma breaks the heading after "Award-Winning" and "Retreats in";
                let it wrap naturally on narrow screens instead. */
             @media screen and (max-width:767px){.hero-br{display:none;}}
             .section-hero .heading-style-h1{font-size:clamp(2.25rem,5vw,5rem);}
             .ch-nav__bar{display:flex;align-items:center;justify-content:space-between;gap:1rem;width:100%;padding:20px 32px 20px 24px;}
-            .ch-nav__logo{display:inline-flex;align-items:center;gap:.5rem;text-decoration:none;color:var(--brand,#efeed5);}
-            .ch-nav__owl{width:1.75rem;height:auto;flex:none;}
-            .ch-nav__wordmark{font-family:var(--font-family--heading,Crimsonpro),serif;font-size:1.5rem;font-weight:400;line-height:1;letter-spacing:.01em;}
+            .ch-nav__logo{display:inline-flex;align-items:center;gap:clamp(.5rem,.7vw,.625rem);text-decoration:none;color:var(--brand,#efeed5);}
+            .ch-nav__owl{width:clamp(1.75rem,2.64vw,2.375rem);height:auto;flex:none;}
+            .ch-nav__wordmark{font-family:var(--font-family--heading,Crimsonpro),serif;font-size:clamp(1.5rem,2.92vw,2.625rem);font-weight:400;line-height:1;letter-spacing:.01em;}
             .ch-nav__toggle{display:flex;flex-direction:column;justify-content:center;gap:.3rem;width:2rem;height:2rem;padding:0;background:none;border:0;cursor:pointer;}
             .ch-nav__toggle span[aria-hidden]{display:block;width:100%;height:2px;background-color:var(--brand,#efeed5);border-radius:2px;}
             .ch-nav__toggle:focus-visible{outline:2px solid var(--brand,#efeed5);outline-offset:4px;}
