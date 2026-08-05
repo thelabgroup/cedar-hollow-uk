@@ -53,7 +53,7 @@
           button.value = button.getAttribute("data-wait") || "Please wait...";
         } else {
           original = button.innerHTML;
-          button.innerHTML = "Please wait...";
+          button.textContent = button.getAttribute("data-wait") || "Please wait...";
         }
         button.disabled = true;
       }
