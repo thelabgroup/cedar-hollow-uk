@@ -101,12 +101,13 @@ animation:marquee-scroll 70s linear infinite;
             .section-hero .hero_contents{padding-top:0;}
             /* Vertical rhythm measured off the 1440x810 hero export. The hero scales
                with viewport, so these track it: 10vw = 145px and 5vw = 72px at 1440. */
-            .section-hero .hero_content{padding-top:clamp(2rem,9.51vw,9.6rem);}
-            .section-hero .button-group{padding-top:.7vw;}
+            .section-hero .hero_content{padding-top:clamp(2rem,9.72vw,9.8rem);}
+            .section-hero .button-group{padding-top:0;}
+            .section-hero .hero_content .margin-bottom{margin-bottom:28px;}
             /* Figma breaks the heading after "Award-Winning" and "Retreats in";
                let it wrap naturally on narrow screens instead. */
             @media screen and (max-width:767px){.hero-br{display:none;}}
-            .section-hero .heading-style-h1{font-size:clamp(2.25rem,5vw,4.5rem);}
+            .section-hero .heading-style-h1{font-size:clamp(2.25rem,5.56vw,5rem);letter-spacing:-.035em;line-height:100%;color:#EFEED5;}
             /* Self-hosted alongside Crimson Pro and Inter. OFL; licence in fonts/. */
             @font-face{font-family:"Hedvig Letters Serif";src:url("fonts/HedvigLettersSerif_18pt-Regular.ttf") format("truetype");font-weight:400;font-style:normal;font-display:swap;}
             .ch-nav__bar{display:flex;align-items:center;justify-content:space-between;gap:1rem;width:100%;padding:20px 32px 20px 24px;}
@@ -155,7 +156,7 @@ animation:marquee-scroll 70s linear infinite;
             <div>
               <div class="hero_content">
                 <div class="margin-bottom margin-large">
-                  <h1 class="heading-style-h1"><span class="text-style-italic">Award-Winning</span><br class="hero-br">Woodland Retreats in<br class="hero-br">Oxfordshire and Dorset</h1>
+                  <h1 class="heading-style-h1"><span class="text-style-italic text-weight-normal">Award-Winning</span><br class="hero-br">Woodland Retreats in<br class="hero-br">Oxfordshire and Dorset</h1>
                 </div>
               </div>
               <div class="button-group align-center">
