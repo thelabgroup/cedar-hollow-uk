@@ -2102,7 +2102,9 @@ img {
 }
 
 .button_icon {
+  width: 1.03125rem;
   max-width: 1.03125rem;
+  flex: none;
   transition: transform .4s;
 }
 
