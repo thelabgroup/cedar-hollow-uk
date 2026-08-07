@@ -99,6 +99,11 @@ animation:marquee-scroll 70s linear infinite;
             .ch-nav{width:100%;}
             /* Figma: nav is the hero flex column's first child, flush to the top edge. */
             .section-hero .hero_contents{padding-top:0;}
+            /* Figma hero frame is 1440x810 with a 720px floor. Ours tracked 100vh, so on
+               any window not 16:9 the width-derived offsets drifted against a height-derived
+               box. Tie height to width instead: 56.25vw = 810/1440, floored at the spec's
+               720px and capped at 810 to match the content caps above 1440. */
+            .section-hero .hero_contents{min-height:clamp(720px,56.25vw,810px);}
             /* Vertical rhythm measured off the 1440x810 hero export. The hero scales
                with viewport, so these track it: 10vw = 145px and 5vw = 72px at 1440. */
             .section-hero .hero_content{padding-top:clamp(2rem,9.72vw,9.8rem);}
