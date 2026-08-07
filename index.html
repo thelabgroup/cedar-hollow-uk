@@ -103,12 +103,12 @@ animation:marquee-scroll 70s linear infinite;
                any window not 16:9 the width-derived offsets drifted against a height-derived
                box. Tie height to width instead: 56.25vw = 810/1440, floored at the spec's
                720px and capped at 810 to match the content caps above 1440. */
-            .section-hero .hero_contents{min-height:clamp(720px,56.25vw,810px);}
+            .section-hero .hero_contents{min-height:100vh;}
             /* Vertical rhythm measured off the 1440x810 hero export. The hero scales
                with viewport, so these track it: 10vw = 145px and 5vw = 72px at 1440. */
-            .section-hero .hero_content{padding-top:clamp(2rem,9.72vw,9.8rem);}
+            .section-hero .hero_content{padding-top:clamp(1.5rem,calc(27.8vh - 98px),9rem);}
             .section-hero .button-group{padding-top:0;}
-            .section-hero .hero_content .margin-bottom{margin-bottom:28px;}
+            .section-hero .hero_content .margin-bottom{margin-bottom:clamp(.5rem,calc(33.1vh - 227px),5rem);}
             /* Figma breaks the heading after "Award-Winning" and "Retreats in";
                let it wrap naturally on narrow screens instead. */
             @media screen and (max-width:767px){.hero-br{display:none;}}
