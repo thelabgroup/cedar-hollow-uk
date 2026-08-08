@@ -677,10 +677,15 @@ img {
 
 .heading-style-h3 {
   font-family: var(--font-family--heading);
-  font-size: 3.125rem;
-  font-weight: 400;
+  font-size: 3rem;
+  font-weight: 300;
   letter-spacing: -.035em;
   line-height: 1.1;
+}
+
+.property-item_body .heading-style-h3 {
+  font-size: 3.125rem;
+  font-weight: 400;
 }
 
 .text-size-medium {
@@ -1745,8 +1750,13 @@ img {
 }
 
 .bg-light {
-  background-color: #f7f5e1;
+  background-color: var(--brand);
   color: var(--accent);
+}
+
+/* Figma 55:684 grounds this one section on #f7f5e1; the others stay brand cream. */
+.section-retreat.bg-light {
+  background-color: #f7f5e1;
 }
 
 .property-item {
