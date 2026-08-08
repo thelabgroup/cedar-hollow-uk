@@ -546,7 +546,8 @@ img {
   font-family: var(--font-family--heading);
   font-size: 5rem;
   font-weight: 300;
-  line-height: 1;
+  letter-spacing: -.035em;
+  line-height: 1.1;
 }
 
 .form_field-label {
@@ -676,13 +677,15 @@ img {
 
 .heading-style-h3 {
   font-family: var(--font-family--heading);
-  font-size: 3rem;
-  font-weight: 300;
-  line-height: 1;
+  font-size: 3.125rem;
+  font-weight: 400;
+  letter-spacing: -.035em;
+  line-height: 1.1;
 }
 
 .text-size-medium {
   font-size: 1.125rem;
+  line-height: 1.6;
 }
 
 .rl-styleguide_nav {
@@ -1051,6 +1054,7 @@ img {
 
 .text-size-large {
   font-size: 1.25rem;
+  line-height: 1.6;
 }
 
 .form_checkbox-label {
@@ -1426,6 +1430,7 @@ img {
 .button {
   grid-column-gap: .75rem;
   grid-row-gap: .75rem;
+  line-height: 1.6;
   border: 1px solid var(--color-text);
   background-color: var(--accent);
   color: var(--brand);
@@ -1433,7 +1438,7 @@ img {
   border-radius: 50em;
   justify-content: center;
   align-items: center;
-  padding: .75rem 1.5rem;
+  padding: .625rem 1.25rem;
   font-size: 1.125rem;
   text-decoration: none;
   display: inline-flex;
@@ -1740,7 +1745,7 @@ img {
 }
 
 .bg-light {
-  background-color: var(--brand);
+  background-color: #f7f5e1;
   color: var(--accent);
 }
 
@@ -1753,8 +1758,19 @@ img {
 }
 
 .property-item_img-wrap {
+  position: relative;
+  background-color: var(--accent);
   border-radius: var(--radius--16);
   overflow: hidden;
+}
+
+.property-item_img-wrap:after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-color: #f5f4e6;
+  mix-blend-mode: color-burn;
+  pointer-events: none;
 }
 
 .property-item_img {
