@@ -19,13 +19,11 @@
       nameHtml: '<span class="text-weight-normal text-style-italic">Cedar Hollow</span> Treehouse',
       destination: "Oxford",
       region: "Oxfordshire",
-      sleeps: 2,
+      sleeps: 6,
       bedrooms: 1,
       bathrooms: 1,
-      price: 120,
-      rating: 4.9,
-      reviews: 58,
-      featured: 3,
+      price: 350,
+      featured: 1,
       highlight: "Underfloor heating",
       image: {
         src: "images/Image-4.webp",
@@ -34,10 +32,10 @@
           "images/bab72d306a7bfab5e8b38d99e1e859dff62b9558-p-500.webp 500w, images/bab72d306a7bfab5e8b38d99e1e859dff62b9558-p-800.webp 800w, images/Image-4.webp 900w"
       },
       description:
-        "A whimsical retreat nestled among towering oaks, with cosy nooks, rustic charm and views straight into the canopy.",
+        "A 750 sq ft luxury treehouse set among the oaks, with underfloor heating, a full kitchen and a gas BBQ on the balcony.",
       longDescription:
-        "No expense was spared in making the treehouse a 5★ facility. Underfloor heating, a fully equipped kitchen (oven, microwave, dishwasher, hob plus a top-of-the-line gas BBQ on the balcony), en-suite facilities and super comfy bedding — you will never want to leave.",
-      bookingUrl: "https://theoaks.uk/availability"
+        "Sleeps two adults and up to four children across an open-plan layout with en-suite facilities. Underfloor heating, a fully equipped kitchen and a top-of-the-line gas BBQ on the balcony.",
+      bookingUrl: "https://www.theoaks.uk/availability"
     },
     {
       id: "fauns-hideaway",
@@ -48,117 +46,109 @@
       sleeps: 2,
       bedrooms: 1,
       bathrooms: 1,
-      price: 135,
-      rating: 4.8,
-      reviews: 41,
+      price: 175,
+      featured: 4,
+      highlight: "Narnia-inspired cave",
       image: {
-        src: "images/Image-3.png",
-        sizes: "(max-width: 590px) 100vw, 590px",
-        srcset:
-          "images/3803373a936f7e44b4509bbd340a982c3b29f610-p-500.png 500w, images/Image-3.png 590w"
+        src: "images/Image-5.webp",
+        sizes: "(max-width: 614px) 100vw, 614px",
+        srcset: "images/Image-5.webp 900w"
       },
       description:
-        "A romantic bolthole tucked into the woodland edge, wrapped in birdsong and dappled afternoon light.",
+        "A Narnia-inspired cave hideaway lit by warm lantern light, with underfloor heating, air conditioning and a full kitchen.",
       longDescription:
-        "Designed for two, Faun's Hideaway pairs a king-size bed with a wood-fired hot tub on a private deck. Slow mornings, forest bathing and a bottle of something local by the fire pit.",
-      bookingUrl: "https://theoaks.uk/availability"
-    },
-    {
-      id: "owls-nest",
-      name: "Owl's Nest",
-      nameHtml: '<span class="text-weight-normal text-style-italic">Owl’s </span>Nest',
-      destination: "Oxford",
-      region: "Oxfordshire",
-      sleeps: 4,
-      bedrooms: 2,
-      bathrooms: 1,
-      price: 165,
-      rating: 4.9,
-      reviews: 73,
-      featured: 2,
-      highlight: "Wood burner",
-      image: { src: "images/Image-2.webp" },
-      description:
-        "A family-friendly treehouse high in the canopy, with a wood-burner and a wraparound deck above the ferns.",
-      longDescription:
-        "Two bedrooms, an open-plan living space and a generous deck make Owl's Nest ideal for families or two couples. Bring the kids, bring the dog — there is room to roam.",
-      bookingUrl: "https://theoaks.uk/availability"
+        "One bedroom with en-suite, underfloor heating and air conditioning throughout, and a full kitchen — an enchanting realm tucked into the woodland.",
+      bookingUrl: "https://www.theoaks.uk/availability"
     },
     {
       id: "beavers-den",
       name: "Beaver's Den",
       nameHtml: '<span class="text-weight-normal text-style-italic">Beaver’s </span>Den',
+      destination: "Oxford",
+      region: "Oxfordshire",
+      sleeps: 2,
+      bedrooms: 1,
+      bathrooms: 0,
+      price: 110,
+      highlight: "Wood-fired hot tub",
+      image: {
+        src: "images/Image-6.webp",
+        sizes: "(max-width: 614px) 100vw, 614px",
+        srcset: "images/Image-6.webp 900w"
+      },
+      description:
+        "An uninsulated woodland glamping pod with a private BBQ, firepit, wood-fired hot tub and an escape room challenge.",
+      longDescription:
+        "A simpler, wilder stay. Uninsulated pod with shared bathroom facilities in the nearby pool room, plus a private BBQ, firepit and wood-fired hot tub.",
+      bookingUrl: "https://www.theoaks.uk/availability"
+    },
+    {
+      id: "woodsmans-treehouse",
+      name: "The Woodsman's Treehouse",
+      nameHtml: 'The <span class="text-weight-normal text-style-italic">Woodsman’s </span>Treehouse',
       destination: "Dorset",
-      region: "Dorset — Jurassic Coast",
+      region: "Dorset",
       sleeps: 2,
       bedrooms: 1,
       bathrooms: 1,
-      price: 125,
-      rating: 4.7,
-      reviews: 52,
+      price: 495,
+      featured: 2,
+      highlight: "Rooftop sauna",
       image: {
-        src: "images/Treehouse-.png",
+        src: "images/Image-7.webp",
         sizes: "(max-width: 614px) 100vw, 614px",
-        srcset:
-          "images/1bf71a064f2a62cdb8735a3409b77c0f46d5cb6c-p-500.png 500w, images/1bf71a064f2a62cdb8735a3409b77c0f46d5cb6c-p-800.png 800w, images/1bf71a064f2a62cdb8735a3409b77c0f46d5cb6c-p-1080.png 1080w, images/Treehouse-.png 1536w"
+        srcset: "images/Image-7.webp 900w"
       },
       description:
-        "A snug waterside cabin on the Dorset coast, steps from riverbank walks and its own private hot tub.",
+        "Perched in an ancient oak and reached by rope bridge, with a rotating wood burner, roll-top bath and rooftop sauna.",
       longDescription:
-        "Beaver's Den sits low by the water, with a hot tub on the deck and the sound of the stream to send you to sleep. A short drive from the beaches of the Jurassic Coast.",
-      bookingUrl: "https://mallinson.co.uk"
+        "RIBA South West award winner, 2016. A circular central room with a rotating wood burner, king bed, full kitchen and roll-top bath; upper deck with sauna and hot tub, plus a wood-fired pizza oven and an outdoor tree shower.",
+      bookingUrl: "https://mallinson.co.uk/the-woodsmans-treehouse/"
     },
     {
-      id: "the-fox-den",
-      name: "The Fox Den",
-      nameHtml: 'The <span class="text-weight-normal text-style-italic">Fox</span> Den',
+      id: "dazzle-treehouse",
+      name: "Dazzle Treehouse",
+      nameHtml: '<span class="text-weight-normal text-style-italic">Dazzle </span>Treehouse',
       destination: "Dorset",
-      region: "Dorset — Jurassic Coast",
-      sleeps: 4,
-      bedrooms: 2,
-      bathrooms: 2,
-      price: 155,
-      rating: 4.8,
-      reviews: 66,
-      featured: 1,
-      highlight: "Copper bath",
+      region: "Dorset",
+      sleeps: 2,
+      bedrooms: 1,
+      bathrooms: 1,
+      price: 295,
+      featured: 3,
+      highlight: "Wood-fired hot tub",
       image: {
-        src: "images/Image-1.webp",
+        src: "images/Image-8.webp",
         sizes: "(max-width: 614px) 100vw, 614px",
-        srcset:
-          "images/d989f17afffcc80d0d27455927c2fa709440f29b-p-500.webp 500w, images/Image-1.webp 612w"
+        srcset: "images/Image-8.webp 900w"
       },
       description:
-        "A stylish woodland lodge for four, with a copper bath, log fire and skies full of stars.",
+        "A contemporary canopy retreat wearing WW1 ship-inspired dazzle camouflage, adults only, deep in Dorset woodland.",
       longDescription:
-        "Two en-suite bedrooms, a double-height living room and a freestanding copper bath with a forest view. The Fox Den is our design-lover's retreat.",
-      bookingUrl: "https://mallinson.co.uk"
+        "RIBA South West award winner, 2023. Ship-themed throughout — gangplank entry, glass spine and yacht-deck floors — with a wood-fired hot tub, pizza oven, ceramic wood-burning stove and a cargo-net day bed suspended above the stream.",
+      bookingUrl: "https://mallinson.co.uk/dazzle-treehouse/"
     },
     {
-      id: "bear-lodge",
-      name: "Bear Lodge",
-      nameHtml: '<span class="text-weight-normal text-style-italic">Bear</span> Lodge',
+      id: "pinwheel-treehouse",
+      name: "Pinwheel Treehouse",
+      nameHtml: '<span class="text-weight-normal text-style-italic">Pinwheel </span>Treehouse',
       destination: "Dorset",
-      region: "Dorset — Jurassic Coast",
-      sleeps: 6,
-      bedrooms: 3,
-      bathrooms: 2,
-      price: 210,
-      rating: 5.0,
-      reviews: 39,
-      featured: 4,
-      highlight: "Hot tub",
+      region: "Dorset",
+      sleeps: 2,
+      bedrooms: 1,
+      bathrooms: 1,
+      price: 295,
+      highlight: "Two-person swing",
       image: {
-        src: "images/Image-3.webp",
+        src: "images/Image-9.webp",
         sizes: "(max-width: 614px) 100vw, 614px",
-        srcset:
-          "images/ef5d775c3ea1e9ca8042fd468e3b60e106fd0ab9-p-500.webp 500w, images/ef5d775c3ea1e9ca8042fd468e3b60e106fd0ab9-p-800.webp 800w, images/Image-3.webp 900w"
+        srcset: "images/Image-9.webp 900w"
       },
       description:
-        "Our largest retreat — a three-bedroom treehouse built for gatherings, feasts and long forest weekends.",
+        "Inspired by a child’s pinwheel, set in a clearing of mature oaks with a glass-topped living space and one-way windows.",
       longDescription:
-        "Three bedrooms, two bathrooms and a huge open kitchen-diner that spills onto a deck with a hot tub and a pizza oven. Bear Lodge is made for celebrations.",
-      bookingUrl: "https://mallinson.co.uk"
+        "RIBA South West award-winning architecture by Guy Mallinson and Keith Brownlie. Ceramic wood-burning stove, wood-fired pizza oven, outdoor hot tub and a two-person swing. Featured in The World’s Most Secret Hotels.",
+      bookingUrl: "https://mallinson.co.uk/pinwheel-treehouse/"
     }
   ];
 
@@ -284,11 +274,6 @@
       "</div>" +
       '<div class="search-item_widget-wrap">' +
       '<div class="cabin-item_body">' +
-      '<div class="margin-bottom margin-xsmall"><p class="text-size-small">★ ' +
-      item.rating.toFixed(1) +
-      " (" +
-      item.reviews +
-      " reviews)</p></div>" +
       '<a href="' +
       escapeHtml(item.bookingUrl) +
       '" target="_blank" rel="noopener" class="button w-inline-block">' +
@@ -318,13 +303,6 @@
 
   var ARROW_SVG =
     '<svg xmlns="http://www.w3.org/2000/svg" width="100%" viewbox="0 0 17 12" fill="none" class="button_icon"><path fill-rule="evenodd" clip-rule="evenodd" d="M13.2443 5.03644L9.48927 1.21321L10.6935 0L16.5 5.91195L10.6783 11.55L9.50444 10.3067L13.17 6.75673H0V5.03644H13.2443Z" fill="currentColor"></path></svg>';
-
-  function starsFor(rating) {
-    var filled = Math.max(0, Math.min(5, Math.round(rating)));
-    var out = "";
-    for (var i = 0; i < 5; i++) out += i < filled ? "★" : "☆";
-    return out;
-  }
 
   // Listings flagged `featured`, in ascending `featured` order.
   function featured() {
@@ -372,13 +350,6 @@
       escapeHtml(item.highlight || "") +
       "</p>" +
       "</div>" +
-      "<p>" +
-      starsFor(item.rating) +
-      " " +
-      item.rating.toFixed(1) +
-      " (" +
-      item.reviews +
-      " reviews)</p>" +
       '<div class="cabin-item_cost"><span>From</span><span>£' +
       item.price +
       "</span><span>per night</span></div>" +
