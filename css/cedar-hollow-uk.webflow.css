@@ -942,6 +942,7 @@ img {
   font-family: var(--font-family--heading);
   font-size: 2.25rem;
   font-weight: 500;
+  letter-spacing: -.035em;
   line-height: 1.1;
 }
 
@@ -1840,8 +1841,29 @@ img {
 }
 
 .cabin-item_img-wrap {
+  position: relative;
+  background-color: var(--accent);
+  border: 1px solid rgba(59, 65, 38, .4);
   border-radius: var(--radius--16);
   overflow: hidden;
+}
+
+.cabin-item_img-wrap:after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-color: #f5f4e6;
+  mix-blend-mode: color-burn;
+  pointer-events: none;
+}
+
+/* Figma I55:1002;55:1039 - details are 16px at 1.6, specs Regular, rating and price Medium. */
+.cabin-item_body p {
+  line-height: 1.6;
+}
+
+.cabin-item_features p {
+  font-weight: 400;
 }
 
 .cabin-item_img {
