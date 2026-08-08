@@ -1763,6 +1763,24 @@ img {
   background-color: #f7f5e1;
 }
 
+/* Figma 55:774 - this CTA runs pt100 pb112, its heading is 1.0 leading
+   (not the 1.1 the other section headings use) and capped at 570px. */
+.section-cta .padding-section-medium {
+  padding-top: 6.25rem;
+  padding-bottom: 7rem;
+}
+
+.section-cta .heading-style-h1 {
+  max-width: 570px;
+  margin-left: auto;
+  margin-right: auto;
+  line-height: 1;
+}
+
+.section-cta .section-title-block .max-width-medium {
+  max-width: 531px;
+}
+
 .property-item {
   grid-column-gap: 1.5rem;
   grid-row-gap: 1.5rem;
