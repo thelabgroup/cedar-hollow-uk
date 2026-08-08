@@ -693,6 +693,32 @@ animation:marquee-scroll 70s linear infinite;
         </div>
       </div>
     </section>
+    <section class="ch-map w-embed">
+      <style>
+        /* Figma node 357:1040 - 1437x542 at a 1440 frame, so the band keeps that ratio. */
+        .ch-map{position:relative;display:block;width:100%;aspect-ratio:1440/542;overflow:hidden;background-color:#aadaff;}
+        .ch-map__img{position:absolute;top:calc(50% - 4.98%);left:50%;transform:translate(-50%,-50%);width:114%;height:auto;min-height:100%;max-width:none;object-fit:cover;pointer-events:none;}
+        /* Pin boxes are 72x86 at (660,243.83) and (833,94.83) inside the 1437x542 frame. */
+        .ch-map__pin{position:absolute;width:5.01%;height:auto;pointer-events:none;}
+        .ch-map__pin--oxford{left:57.97%;top:17.5%;}
+        .ch-map__pin--dorset{left:45.93%;top:44.99%;}
+        .ch-map__cta{position:absolute;left:50%;bottom:2.21%;transform:translateX(-50%);display:inline-flex;align-items:center;justify-content:center;gap:.5rem;padding:12px 24px;border-radius:40px;background-color:var(--accent,#3b4126);color:#efeed5;font-size:1.125rem;font-weight:500;line-height:1.6;text-decoration:none;white-space:nowrap;}
+        .ch-map__cta img{width:18px;height:20px;flex:none;}
+        .ch-map__cta:hover,.ch-map__cta:focus-visible{text-decoration:underline;}
+        @media screen and (max-width:767px){
+          .ch-map{aspect-ratio:3/4;}
+          .ch-map__img{width:auto;height:100%;min-width:100%;}
+          .ch-map__cta{font-size:1rem;padding:10px 18px;}
+        }
+      </style>
+      <img src="images/map-locations.jpg" srcset="images/map-locations.jpg 1440w, images/map-locations@2x.jpg 2880w" sizes="114vw" loading="lazy" alt="Map of southern England showing Cedar Hollow's Oxfordshire and Dorset locations" class="ch-map__img">
+      <img src="images/map-pin.png" loading="lazy" alt="" aria-hidden="true" class="ch-map__pin ch-map__pin--oxford">
+      <img src="images/map-pin.png" loading="lazy" alt="" aria-hidden="true" class="ch-map__pin ch-map__pin--dorset">
+      <a class="ch-map__cta" href="https://www.google.com/maps/search/?api=1&amp;query=Cedar+Hollow+treehouses+Oxfordshire+Dorset" target="_blank" rel="noopener">
+        <span>Open in Google Maps</span>
+        <img src="images/icon-external-link.svg" alt="" aria-hidden="true">
+      </a>
+    </section>
     <section class="bg-light">
       <div class="padding-section-medium">
         <div class="padding-global">
