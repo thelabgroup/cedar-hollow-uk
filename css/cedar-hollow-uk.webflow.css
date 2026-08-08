@@ -71,6 +71,10 @@
 }
 
 :root {
+  /* Strength of the Figma colour-burn over photography. 1 matches the design
+     exactly; lower suits real photographs, which carry far more saturation
+     than the placeholders the treatment was drawn against. */
+  --image-burn-strength: .35;
   --font-family--body: Inter, Arial, sans-serif;
   --accent: #3b4126;
   --font-family--heading: Crimsonpro, Arial, sans-serif;
@@ -1802,6 +1806,7 @@ img {
   inset: 0;
   background-color: #f5f4e6;
   mix-blend-mode: color-burn;
+  opacity: var(--image-burn-strength, 1);
   pointer-events: none;
 }
 
@@ -1885,6 +1890,7 @@ img {
   inset: 0;
   background-color: #f5f4e6;
   mix-blend-mode: color-burn;
+  opacity: var(--image-burn-strength, 1);
   pointer-events: none;
 }
 
@@ -1963,6 +1969,7 @@ img {
   inset: 0;
   background-color: #f5f4e6;
   mix-blend-mode: color-burn;
+  opacity: var(--image-burn-strength, 1);
   pointer-events: none;
 }
 
