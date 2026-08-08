@@ -26,10 +26,9 @@
       featured: 1,
       highlight: "Underfloor heating",
       image: {
-        src: "images/Image-4.webp",
-        sizes: "(max-width: 614px) 100vw, 614px",
-        srcset:
-          "images/bab72d306a7bfab5e8b38d99e1e859dff62b9558-p-500.webp 500w, images/bab72d306a7bfab5e8b38d99e1e859dff62b9558-p-800.webp 800w, images/Image-4.webp 900w"
+        src: "images/property-cedar-hollow-treehouse.jpg",
+        sizes: "(max-width: 420px) 100vw, 420px",
+        srcset: "images/property-cedar-hollow-treehouse.jpg 840w"
       },
       description:
         "A 750 sq ft luxury treehouse set among the oaks, with underfloor heating, a full kitchen and a gas BBQ on the balcony.",
@@ -50,9 +49,9 @@
       featured: 4,
       highlight: "Narnia-inspired cave",
       image: {
-        src: "images/Image-1.webp",
-        sizes: "(max-width: 614px) 100vw, 614px",
-        srcset: "images/Image-1.webp 900w"
+        src: "images/property-fauns-hideaway.jpg",
+        sizes: "(max-width: 420px) 100vw, 420px",
+        srcset: "images/property-fauns-hideaway.jpg 840w"
       },
       description:
         "A Narnia-inspired cave hideaway lit by warm lantern light, with underfloor heating, air conditioning and a full kitchen.",
@@ -72,9 +71,9 @@
       price: 110,
       highlight: "Wood-fired hot tub",
       image: {
-        src: "images/Image-2.webp",
-        sizes: "(max-width: 614px) 100vw, 614px",
-        srcset: "images/Image-2.webp 900w"
+        src: "images/property-beavers-den.jpg",
+        sizes: "(max-width: 420px) 100vw, 420px",
+        srcset: "images/property-beavers-den.jpg 840w"
       },
       description:
         "An uninsulated woodland glamping pod with a private BBQ, firepit, wood-fired hot tub and an escape room challenge.",
@@ -95,9 +94,9 @@
       featured: 2,
       highlight: "Rooftop sauna",
       image: {
-        src: "images/Image-3.webp",
-        sizes: "(max-width: 614px) 100vw, 614px",
-        srcset: "images/Image-3.webp 900w"
+        src: "images/property-woodsmans-treehouse.jpg",
+        sizes: "(max-width: 420px) 100vw, 420px",
+        srcset: "images/property-woodsmans-treehouse.jpg 840w"
       },
       description:
         "Perched in an ancient oak and reached by rope bridge, with a rotating wood burner, roll-top bath and rooftop sauna.",
@@ -118,9 +117,9 @@
       featured: 3,
       highlight: "Wood-fired hot tub",
       image: {
-        src: "images/property-1.webp",
-        sizes: "(max-width: 614px) 100vw, 614px",
-        srcset: "images/property-1.webp 900w"
+        src: "images/property-dazzle-treehouse.jpg",
+        sizes: "(max-width: 420px) 100vw, 420px",
+        srcset: "images/property-dazzle-treehouse.jpg 840w"
       },
       description:
         "A contemporary canopy retreat wearing WW1 ship-inspired dazzle camouflage, adults only, deep in Dorset woodland.",
@@ -140,9 +139,9 @@
       price: 295,
       highlight: "Two-person swing",
       image: {
-        src: "images/property-2.webp",
-        sizes: "(max-width: 614px) 100vw, 614px",
-        srcset: "images/property-2.webp 900w"
+        src: "images/property-pinwheel-treehouse.jpg",
+        sizes: "(max-width: 420px) 100vw, 420px",
+        srcset: "images/property-pinwheel-treehouse.jpg 840w"
       },
       description:
         "Inspired by a child’s pinwheel, set in a clearing of mature oaks with a glass-topped living space and one-way windows.",
