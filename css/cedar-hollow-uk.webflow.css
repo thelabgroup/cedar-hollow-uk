@@ -1931,6 +1931,23 @@ img {
   width: 100%;
 }
 
+.section-full-bleed-img {
+  background-color: var(--accent);
+}
+
+.full-bleed-img-wrap {
+  position: relative;
+}
+
+.full-bleed-img-wrap:after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-color: #f5f4e6;
+  mix-blend-mode: color-burn;
+  pointer-events: none;
+}
+
 .full-bleed-img {
   aspect-ratio: 16 / 9;
   width: 100%;
@@ -1952,6 +1969,8 @@ img {
 
 .footer_link {
   color: var(--color-text);
+  font-weight: 400;
+  line-height: 1.6;
   text-decoration: underline;
   display: inline-block;
   position: relative;
@@ -4775,4 +4794,13 @@ img {
   font-weight: 500;
   font-style: normal;
   font-display: swap;
+}
+.footer_link.is-large {
+  font-weight: 500;
+}
+
+/* Figma 351:1193 - the credit line is Regular, not Medium. */
+.legal-text {
+  font-weight: 400;
+  line-height: 1.6;
 }
