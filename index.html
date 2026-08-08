@@ -76,8 +76,11 @@ animation:marquee-scroll 70s linear infinite;
   from {
     transform: translateX(0);
   }
+  /* Must travel exactly one copy plus the 2.5rem gap .logo-marquee puts between
+     the two copies. At 2.3rem it fell 3.2px short each cycle, and that shortfall
+     showed as a gap at the loop point. */
   to {
-    transform: translateX(calc(-100% - 2.3rem));
+    transform: translateX(calc(-100% - 2.5rem));
   }
 }
 .marquee-component{
