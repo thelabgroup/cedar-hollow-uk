@@ -50,9 +50,9 @@
       featured: 4,
       highlight: "Narnia-inspired cave",
       image: {
-        src: "images/Image-5.webp",
+        src: "images/Image-1.webp",
         sizes: "(max-width: 614px) 100vw, 614px",
-        srcset: "images/Image-5.webp 900w"
+        srcset: "images/Image-1.webp 900w"
       },
       description:
         "A Narnia-inspired cave hideaway lit by warm lantern light, with underfloor heating, air conditioning and a full kitchen.",
@@ -72,9 +72,9 @@
       price: 110,
       highlight: "Wood-fired hot tub",
       image: {
-        src: "images/Image-6.webp",
+        src: "images/Image-2.webp",
         sizes: "(max-width: 614px) 100vw, 614px",
-        srcset: "images/Image-6.webp 900w"
+        srcset: "images/Image-2.webp 900w"
       },
       description:
         "An uninsulated woodland glamping pod with a private BBQ, firepit, wood-fired hot tub and an escape room challenge.",
@@ -95,9 +95,9 @@
       featured: 2,
       highlight: "Rooftop sauna",
       image: {
-        src: "images/Image-7.webp",
+        src: "images/Image-3.webp",
         sizes: "(max-width: 614px) 100vw, 614px",
-        srcset: "images/Image-7.webp 900w"
+        srcset: "images/Image-3.webp 900w"
       },
       description:
         "Perched in an ancient oak and reached by rope bridge, with a rotating wood burner, roll-top bath and rooftop sauna.",
@@ -118,9 +118,9 @@
       featured: 3,
       highlight: "Wood-fired hot tub",
       image: {
-        src: "images/Image-8.webp",
+        src: "images/property-1.webp",
         sizes: "(max-width: 614px) 100vw, 614px",
-        srcset: "images/Image-8.webp 900w"
+        srcset: "images/property-1.webp 900w"
       },
       description:
         "A contemporary canopy retreat wearing WW1 ship-inspired dazzle camouflage, adults only, deep in Dorset woodland.",
@@ -140,9 +140,9 @@
       price: 295,
       highlight: "Two-person swing",
       image: {
-        src: "images/Image-9.webp",
+        src: "images/property-2.webp",
         sizes: "(max-width: 614px) 100vw, 614px",
-        srcset: "images/Image-9.webp 900w"
+        srcset: "images/property-2.webp 900w"
       },
       description:
         "Inspired by a child’s pinwheel, set in a clearing of mature oaks with a glass-topped living space and one-way windows.",
