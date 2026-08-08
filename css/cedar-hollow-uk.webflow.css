@@ -2206,8 +2206,8 @@ img {
 
 .splide__slide {
   flex: none;
-  padding-left: 1.5vh;
-  padding-right: 1.5vh;
+  padding-left: 0;
+  padding-right: 0;
   transition: transform .3s, filter .3s, opacity .3s;
 }
 
@@ -3061,8 +3061,8 @@ img {
 
   .splide__slide {
     width: 100%;
-    padding-left: 4vw;
-    padding-right: 4vw;
+    padding-left: 0;
+    padding-right: 0;
   }
 
   .awards-logo_svg {
@@ -3321,8 +3321,8 @@ img {
   }
 
   .splide__slide {
-    padding-left: 4vw;
-    padding-right: 4vw;
+    padding-left: 0;
+    padding-right: 0;
   }
 
   .legal-text {

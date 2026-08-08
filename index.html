@@ -1002,7 +1002,8 @@ function initMarquee(marquee) {
     // ✅ Mobile: standard snap slider
     const splide = new Splide(marquee, {
       type: 'loop',
-      autoWidth: true,
+      // Figma 55:962 - every card is the same 420px wide, not content-sized.
+      fixedWidth: 'min(420px, 82vw)',
       focus: 'center',
       pagination: true,
       arrows: false,
@@ -1016,7 +1017,8 @@ function initMarquee(marquee) {
     // ✅ Desktop: auto-scrolling marquee
     const splide = new Splide(marquee, {
       type: 'loop',
-      autoWidth: true,
+      fixedWidth: 'min(420px, 82vw)',
+      gap: '16px',
       focus: 'center',
       pagination: false,
       arrows: false,
