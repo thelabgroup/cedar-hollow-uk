@@ -1069,6 +1069,9 @@ img {
 
 .text-style-allcaps {
   text-transform: uppercase;
+  font-weight: 600;
+  letter-spacing: .01em;
+  line-height: 1.1;
 }
 
 .rl-styleguide_scheme-wrapper {
@@ -2227,6 +2230,10 @@ img {
   justify-content: center;
   align-items: center;
   display: flex;
+}
+
+.section-awards .padding-section-medium {
+  padding-bottom: 6.25rem;
 }
 
 .section-awards {
