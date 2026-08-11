@@ -116,7 +116,9 @@ animation:marquee-scroll 70s linear infinite;
             .section-hero .hero_contents{padding-bottom:0;}
             .section-hero .hero_logos-wrapper{margin-top:0;padding-top:min(24px,2.96vh);padding-bottom:0;}
             .section-hero .logo-marquee{padding-top:min(24px,2.96vh);padding-bottom:min(36px,4.44vh);}
-            .section-hero .hero_content .margin-bottom{margin-bottom:min(42px,5.19vh);}
+            /* 42px suited the 750px search bar; a 208px button groups better with the
+               heading at a tighter gap. */
+            .section-hero .hero_content .margin-bottom{margin-bottom:min(32px,3.95vh);}
             /* Figma breaks the heading after "Award-Winning" and "Retreats in";
                let it wrap naturally on narrow screens instead. */
             @media screen and (max-width:767px){.hero-br{display:none;}}
@@ -182,37 +184,9 @@ animation:marquee-scroll 70s linear infinite;
                 </div>
               </div>
               <div class="button-group align-center">
-                <div class="ch-hero-search w-embed">
-                  <style>
-                    .ch-hero-search{display:block;width:100%;}
-                    .ch-hero-search__bar{display:flex;align-items:center;justify-content:space-between;gap:.25rem;width:100%;max-width:750px;margin:0 auto;padding:5.6px 6.4px 5.6px 44.8px;background-color:var(--cream,#f1ecdb);border-radius:75.56px;text-decoration:none;filter:drop-shadow(0 13.993px 11.194px rgba(0,0,0,.03));}
-                    .ch-hero-search__field{flex:1 1 0;display:flex;flex-direction:column;justify-content:center;gap:2px;min-width:0;padding:.5rem 1.5rem .5rem 0;text-align:left;}
-                    .ch-hero-search__label{color:#3b4126;opacity:.7;text-transform:uppercase;letter-spacing:-.084px;font-size:16.791px;font-weight:600;line-height:1.05;}
-                    .ch-hero-search__value{color:#3b4126;font-size:20.989px;font-weight:400;letter-spacing:-.4198px;line-height:1.35;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
-                    .ch-hero-search__divider{flex:0 0 1px;align-self:center;width:1px;height:46px;margin-right:22.388px;background-color:rgba(0,0,0,.15);}
-                    .ch-hero-search__submit{flex:0 0 auto;display:flex;align-items:center;justify-content:center;width:70.953px;height:70.953px;border-radius:50%;background-color:var(--accent,#3b4126);color:var(--brand,#efeed5);}
-                    .ch-hero-search__submit svg{width:1.25rem;height:1.25rem;}
-                    @media screen and (max-width:479px){
-                      .ch-hero-search__field{padding:.5rem .75rem .5rem 0;}
-                      .ch-hero-search__value{font-size:1rem;}
-                      .ch-hero-search__submit{width:3rem;height:3rem;}
-                    }
-                  </style>
-                  <a class="ch-hero-search__bar" href="search-results.html" aria-label="Search treehouses — May 12 to 19, 2 adults">
-                    <span class="ch-hero-search__field">
-                      <span class="ch-hero-search__label">When</span>
-                      <span class="ch-hero-search__value">May 12 – 19</span>
-                    </span>
-                    <span class="ch-hero-search__divider" aria-hidden="true"></span>
-                    <span class="ch-hero-search__field">
-                      <span class="ch-hero-search__label">Who</span>
-                      <span class="ch-hero-search__value">2 adults</span>
-                    </span>
-                    <span class="ch-hero-search__submit" aria-hidden="true">
-                      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 27 27" fill="none"><path d="M11.194 22.3881C13.6777 22.3876 16.0897 21.5561 18.0462 20.0261L24.1973 26.1772L26.1758 24.1987L20.0247 18.0476C21.5555 16.0909 22.3875 13.6783 22.3881 11.194C22.3881 5.02192 17.3661 0 11.194 0C5.02192 0 0 5.02192 0 11.194C0 17.3661 5.02192 22.3881 11.194 22.3881ZM11.194 2.79851C15.8242 2.79851 19.5896 6.5639 19.5896 11.194C19.5896 15.8242 15.8242 19.5896 11.194 19.5896C6.5639 19.5896 2.79851 15.8242 2.79851 11.194C2.79851 6.5639 6.5639 2.79851 11.194 2.79851Z" fill="currentColor"></path></svg>
-                    </span>
-                  </a>
-                </div>
+                <a data-wf--button--variant="secondary" href="search-results.html" class="button w-variant-a908aaae-34d6-e728-4d69-09b57268ca2e w-inline-block"><span>Explore Retreats</span><svg xmlns="http://www.w3.org/2000/svg" width="100%" viewbox="0 0 17 12" fill="none" class="button_icon">
+                    <path fill-rule="evenodd" clip-rule="evenodd" d="M13.2443 5.03644L9.48927 1.21321L10.6935 0L16.5 5.91195L10.6783 11.55L9.50444 10.3067L13.17 6.75673H0V5.03644H13.2443Z" fill="currentColor"></path>
+                  </svg></a>
               </div>
             </div>
           </div>
