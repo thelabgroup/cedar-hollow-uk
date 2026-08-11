@@ -385,8 +385,8 @@ animation:marquee-scroll 70s linear infinite;
            overlay goes from .4 to .55. Measured against the brightest area behind
            the heading, that lifts contrast with the cream type from 4.49 to 6.78. */
         .section-hero .overlay{background-color:rgba(0,0,0,.55);}
-        .ch-hero-video{opacity:0;transition:opacity .8s ease;pointer-events:none;}
-        .ch-hero-video[data-playing="true"]{opacity:1;}
+        .ch-hero-video{opacity:0;pointer-events:none;}
+        .ch-hero-video[data-active="true"]{opacity:1;}
         @media (prefers-reduced-motion: reduce){.ch-hero-video{display:none;}}
       </style>
       <script>
@@ -400,7 +400,10 @@ animation:marquee-scroll 70s linear infinite;
           var conn = navigator.connection || {};
           var cheapData = !conn.saveData && !/2g/.test(conn.effectiveType || "");
           if (!motionOk || !wideEnough || !cheapData) return;
-          v.addEventListener("playing", function () { v.setAttribute("data-playing", "true"); }, { once: true });
+          // Show the video element straight away. Its poster is the loop's own first
+          // frame, so the hero starts on the right scene and the footage simply begins
+          // moving -- rather than swapping from the old photograph once it buffers.
+          v.setAttribute("data-active", "true");
           // Setting src is enough; calling load() here aborts the play() promise.
           v.src = v.getAttribute("data-src");
           function attempt() {
