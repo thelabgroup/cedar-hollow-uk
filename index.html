@@ -374,9 +374,43 @@ animation:marquee-scroll 70s linear infinite;
         </div>
       </div>
       <div class="hero_bg-wrapper"><img src="images/Treehouse-.png" loading="eager" data-w-id="9ab977c5-77cc-4d93-1e83-6c0b7e58a0bc" sizes="(max-width: 1536px) 100vw, 1536px" alt="" srcset="images/1bf71a064f2a62cdb8735a3409b77c0f46d5cb6c-p-500.png 500w, images/1bf71a064f2a62cdb8735a3409b77c0f46d5cb6c-p-800.png 800w, images/1bf71a064f2a62cdb8735a3409b77c0f46d5cb6c-p-1080.png 1080w, images/Treehouse-.png 1536w" class="section-bg-cover">
+        <video class="section-bg-cover ch-hero-video" data-src="images/hero-loop.mp4" poster="images/hero-poster.jpg" muted loop playsinline preload="none" aria-hidden="true" tabindex="-1"></video>
         <div class="overlay"></div>
       </div>
     </section>
+    <div class="ch-hero-video-setup w-embed">
+      <style>
+        /* Sits over the still, under the existing overlay, so the grade is unchanged. */
+        .ch-hero-video{opacity:0;transition:opacity .8s ease;pointer-events:none;}
+        .ch-hero-video[data-playing="true"]{opacity:1;}
+        @media (prefers-reduced-motion: reduce){.ch-hero-video{display:none;}}
+      </style>
+      <script>
+        (function () {
+          var v = document.querySelector(".ch-hero-video");
+          if (!v) return;
+          // Only fetch the loop where it earns its weight: wide screens, motion allowed,
+          // and not on a metered connection. Everyone else keeps the still.
+          var motionOk = !window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+          var wideEnough = window.matchMedia("(min-width: 768px)").matches;
+          var conn = navigator.connection || {};
+          var cheapData = !conn.saveData && !/2g/.test(conn.effectiveType || "");
+          if (!motionOk || !wideEnough || !cheapData) return;
+          v.addEventListener("playing", function () { v.setAttribute("data-playing", "true"); }, { once: true });
+          // Setting src is enough; calling load() here aborts the play() promise.
+          v.src = v.getAttribute("data-src");
+          function attempt() {
+            var p = v.play();
+            if (p && p.catch) p.catch(function () { /* refused or deferred - the still stays */ });
+          }
+          attempt();
+          // A tab opened in the background defers autoplay, so try again when it is seen.
+          document.addEventListener("visibilitychange", function () {
+            if (!document.hidden && v.paused) attempt();
+          });
+        })();
+      </script>
+    </div>
     <section class="section-retreat bg-light">
       <div class="padding-section-medium">
         <div class="padding-global">
