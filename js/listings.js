@@ -313,10 +313,13 @@
   }
 
   // One carousel slide (`.splide__slide`) matching the homepage cabin-card markup.
+  // The meta line leads with the region rather than the bedroom count: every
+  // featured property has one bedroom, so that number told you nothing, while
+  // which of the two sites a property sits on is the thing this section exists
+  // to answer. `bedrooms` is still shown on the search-results cards, where
+  // listings appear alongside the larger properties and the count does vary.
   function featuredCardHtml(item) {
     var href = "search-results.html?q=" + encodeURIComponent(item.name);
-    var bedrooms =
-      item.bedrooms + (item.bedrooms === 1 ? " bedroom" : " bedrooms");
 
     return (
       '<li class="splide__slide">' +
@@ -339,11 +342,11 @@
       '<div class="margin-bottom margin-small">' +
       '<div class="cabin-item_feature-wrapper">' +
       '<div class="cabin-item_features">' +
+      "<p>" +
+      escapeHtml(item.region) +
+      '</p><span class="seperator-dot">•</span>' +
       "<p>Sleeps " +
       item.sleeps +
-      '</p><span class="seperator-dot">•</span>' +
-      "<p>" +
-      escapeHtml(bedrooms) +
       '</p><span class="seperator-dot">•</span>' +
       "<p>" +
       escapeHtml(item.highlight || "") +
