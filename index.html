@@ -111,6 +111,10 @@ animation:marquee-scroll 70s linear infinite;
                with viewport, so these track it: 10vw = 145px and 5vw = 72px at 1440. */
             .section-hero .hero_contents > .padding-global{flex:1 1 auto;min-height:0;display:flex;flex-direction:column;justify-content:center;padding-top:min(110px,13.58vh);padding-bottom:min(50px,6.17vh);}
             .section-hero .button-group{padding-top:0;}
+            /* Taller hero CTA - the 750px search bar it replaced carried more
+               presence than a standard 51px button. Scoped to the hero so every
+               other button keeps the design system 10/20 padding. */
+            .section-hero .button-group .button{padding:2.22rem 2.75rem;}
             /* Figma bottom block: pt24, rating, 24 gap, logos, pb36 - one stack. The export
                carried an extra 36px on .hero_contents and doubled the internal gap. */
             .section-hero .hero_contents{padding-bottom:0;}
