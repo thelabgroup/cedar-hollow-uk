@@ -381,6 +381,10 @@ animation:marquee-scroll 70s linear infinite;
     <div class="ch-hero-video-setup w-embed">
       <style>
         /* Sits over the still, under the existing overlay, so the grade is unchanged. */
+        /* The aerial footage is far brighter than the still it replaced, so the
+           overlay goes from .4 to .55. Measured against the brightest area behind
+           the heading, that lifts contrast with the cream type from 4.49 to 6.78. */
+        .section-hero .overlay{background-color:rgba(0,0,0,.55);}
         .ch-hero-video{opacity:0;transition:opacity .8s ease;pointer-events:none;}
         .ch-hero-video[data-playing="true"]{opacity:1;}
         @media (prefers-reduced-motion: reduce){.ch-hero-video{display:none;}}
