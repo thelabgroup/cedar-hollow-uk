@@ -128,11 +128,18 @@ animation:marquee-scroll 70s linear infinite;
                phones pulled "Award-Winning" up onto line one and left "Dorset"
                alone on line three. At 9vw the longest designed line measures
                284px against a 338px column, so all three fit with room spare. */
-            .section-hero .heading-style-h1{font-size:min(clamp(2.25rem,5.56vw,5rem),9.88vh);letter-spacing:-.035em;line-height:100%;color:#EFEED5;}
+            .section-hero .heading-style-h1{font-size:min(clamp(2.25rem,5.56vw,7rem),9.88vh);letter-spacing:-.035em;line-height:100%;color:#EFEED5;}
             /* The clamp's 2.25rem floor pushes "Oxfordshire and Dorset" onto a fourth
                line on phones. 9vw holds the three-line shape from 479px down to 320px
                (34px -> 29px), measured rather than guessed. */
             @media (max-width:479px){.section-hero .heading-style-h1{font-size:9vw;}}
+            /* Above the 1440 design width the heading keeps growing with the
+               viewport, so the 820px box it was drawn in has to grow too --
+               otherwise the forced line breaks overflow it and the heading
+               wraps to five lines. 56.94vw is the design's own 820/1440 ratio,
+               capped at the container. Scoped above 1440 so nothing below the
+               design width moves. */
+            @media (min-width:1441px){.section-hero .hero_content{max-width:min(56.94vw,1280px);}}
             /* Self-hosted alongside Crimson Pro and Inter. OFL; licence in fonts/. */
             @font-face{font-family:"Hedvig Letters Serif";src:url("fonts/HedvigLettersSerif_18pt-Regular.ttf") format("truetype");font-weight:400;font-style:normal;font-display:swap;}
             .ch-nav__bar{display:flex;align-items:center;justify-content:space-between;gap:1rem;width:100%;padding:20px 32px 20px 24px;position:relative;z-index:30;}
