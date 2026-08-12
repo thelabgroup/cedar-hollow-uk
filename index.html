@@ -744,29 +744,110 @@ animation:marquee-scroll 70s linear infinite;
     </section>
     <section class="ch-map w-embed">
       <style>
-        /* Figma node 357:1040 - 1437x542 at a 1440 frame, so the band keeps that ratio. */
-        .ch-map{position:relative;display:block;width:100%;aspect-ratio:1440/542;overflow:hidden;background-color:#aadaff;}
-        .ch-map__img{position:absolute;top:calc(50% - 4.98%);left:50%;transform:translate(-50%,-50%);width:114%;height:auto;min-height:100%;max-width:none;object-fit:cover;pointer-events:none;}
-        /* Pin boxes are 72x86 at (660,243.83) and (833,94.83) inside the 1437x542 frame. */
-        .ch-map__pin{position:absolute;width:5.01%;height:auto;pointer-events:none;}
+        /* Band ratio from Figma node 357:1040; the live map fills it, with the
+           static export underneath as the no-JS / slow-network fallback. */
+        .ch-map{position:relative;display:block;width:100%;aspect-ratio:1440/542;overflow:hidden;background-color:#e7e5c7;}
+        .ch-map__img{position:absolute;top:calc(50% - 4.98%);left:50%;transform:translate(-50%,-50%);width:114%;height:auto;min-height:100%;max-width:none;object-fit:cover;pointer-events:none;z-index:1;}
+        .ch-map__pin{position:absolute;width:5.01%;height:auto;pointer-events:none;z-index:1;}
         .ch-map__pin--oxford{left:57.97%;top:17.5%;}
         .ch-map__pin--dorset{left:45.93%;top:44.99%;}
-        .ch-map__cta{position:absolute;left:50%;bottom:2.21%;transform:translateX(-50%);display:inline-flex;align-items:center;justify-content:center;gap:.5rem;padding:12px 24px;border-radius:40px;background-color:var(--accent,#3b4126);color:#efeed5;font-size:1.125rem;font-weight:500;line-height:1.6;text-decoration:none;white-space:nowrap;}
-        .ch-map__cta img{width:18px;height:20px;flex:none;}
-        .ch-map__cta:hover,.ch-map__cta:focus-visible{text-decoration:underline;}
+        .ch-map__canvas{position:absolute;inset:0;z-index:2;}
+        .ch-map .leaflet-container{background:transparent;font-family:inherit;}
+        /* Nudge the neutral grey tiles toward the site's warm palette. */
+        .ch-map .leaflet-tile-pane{filter:sepia(.16) saturate(.92);}
+        .ch-map .ch-map__marker{background:none;border:none;}
+        .ch-map .leaflet-tooltip.ch-map__label{background:#3b4126;color:#efeed5;border:none;border-radius:20px;padding:4px 14px;font-size:.9375rem;font-weight:500;box-shadow:0 2px 8px rgba(59,65,38,.28);}
+        .ch-map .leaflet-tooltip-top.ch-map__label:before{border-top-color:#3b4126;}
+        .ch-map .leaflet-popup-content-wrapper{background:#f7f5e1;color:#3b4126;border-radius:12px;box-shadow:0 4px 16px rgba(59,65,38,.3);}
+        .ch-map .leaflet-popup-tip{background:#f7f5e1;}
+        .ch-map .leaflet-popup-content{margin:14px 18px;font-size:.9375rem;line-height:1.5;}
+        .ch-map .leaflet-popup-content a{color:#3b4126;font-weight:600;text-decoration:underline;}
+        .ch-map .leaflet-popup-content a + a{margin-left:.9em;}
         @media screen and (max-width:767px){
           .ch-map{aspect-ratio:3/4;}
           .ch-map__img{width:auto;height:100%;min-width:100%;}
-          .ch-map__cta{font-size:1rem;padding:10px 18px;}
         }
       </style>
       <img src="images/map-locations.jpg" srcset="images/map-locations.jpg 1440w, images/map-locations@2x.jpg 2880w" sizes="114vw" loading="lazy" alt="Map of southern England showing Cedar Hollow's Oxfordshire and Dorset locations" class="ch-map__img">
       <img src="images/map-pin.png" loading="lazy" alt="" aria-hidden="true" class="ch-map__pin ch-map__pin--oxford">
       <img src="images/map-pin.png" loading="lazy" alt="" aria-hidden="true" class="ch-map__pin ch-map__pin--dorset">
-      <a class="ch-map__cta" href="https://www.google.com/maps/search/?api=1&amp;query=Cedar+Hollow+treehouses+Oxfordshire+Dorset" target="_blank" rel="noopener">
-        <span>Open in Google Maps</span>
-        <img src="images/icon-external-link.svg" alt="" aria-hidden="true">
-      </a>
+      <div id="ch-map-canvas" class="ch-map__canvas" role="region" aria-label="Interactive map of Cedar Hollow's Oxford and Dorset locations"></div>
+      <script>
+        (function () {
+          var LOCATIONS = [
+            { name: "Cedar Hollow Oxford", place: "Headington, Oxfordshire",
+              lat: 51.753457, lng: -1.186921, site: "https://theoaks.uk" },
+            { name: "Cedar Hollow Dorset", place: "Holditch, Dorset",
+              lat: 50.82062, lng: -2.929622, site: "https://mallinson.co.uk" }
+          ];
+          var booted = false;
+
+          function init() {
+            var map = L.map("ch-map-canvas", {
+              scrollWheelZoom: false,      /* never hijack page scroll */
+              dragging: !L.Browser.mobile, /* one-finger drag must keep scrolling the page */
+              tap: false,
+              minZoom: 6, maxZoom: 17
+            });
+            L.tileLayer("https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png", {
+              attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="https://carto.com/attributions">CARTO</a>',
+              subdomains: "abcd"
+            }).addTo(map);
+
+            var pinSvg =
+              '<svg xmlns="http://www.w3.org/2000/svg" width="38" height="50" viewBox="0 0 38 50">' +
+              '<path d="M19 0C8.5 0 0 8.4 0 18.8 0 32.9 19 50 19 50s19-17.1 19-31.2C38 8.4 29.5 0 19 0Z" fill="#3b4126"/>' +
+              '<circle cx="19" cy="18.5" r="7" fill="#efeed5"/></svg>';
+            var icon = L.divIcon({ className: "ch-map__marker", html: pinSvg,
+              iconSize: [38, 50], iconAnchor: [19, 50], popupAnchor: [0, -46], tooltipAnchor: [0, -52] });
+
+            var bounds = [];
+            LOCATIONS.forEach(function (loc) {
+              var dir = "https://www.google.com/maps/dir/?api=1&destination=" + loc.lat + "," + loc.lng;
+              L.marker([loc.lat, loc.lng], { icon: icon, alt: loc.name })
+                .addTo(map)
+                .bindTooltip(loc.name.replace("Cedar Hollow ", ""), { permanent: true, direction: "top", className: "ch-map__label" })
+                .bindPopup("<strong>" + loc.name + "</strong><br>" + loc.place + "<br>" +
+                  '<a href="' + loc.site + '" target="_blank" rel="noopener">Visit site</a>' +
+                  '<a href="' + dir + '" target="_blank" rel="noopener">Directions</a>');
+              bounds.push([loc.lat, loc.lng]);
+            });
+            map.fitBounds(bounds, { padding: [64, 64] });
+
+            var t;
+            window.addEventListener("resize", function () {
+              clearTimeout(t);
+              t = setTimeout(function () { map.invalidateSize(); map.fitBounds(bounds, { padding: [64, 64] }); }, 180);
+            });
+          }
+
+          function boot() {
+            if (booted) return;
+            booted = true;
+            var css = document.createElement("link");
+            css.rel = "stylesheet";
+            css.href = "https://unpkg.com/leaflet@1.9.4/dist/leaflet.css";
+            css.integrity = "sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=";
+            css.crossOrigin = "";
+            document.head.appendChild(css);
+            var s = document.createElement("script");
+            s.src = "https://unpkg.com/leaflet@1.9.4/dist/leaflet.js";
+            s.integrity = "sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=";
+            s.crossOrigin = "";
+            s.onload = init;
+            document.head.appendChild(s);
+          }
+
+          /* Load Leaflet only as the band approaches the viewport; without
+             IntersectionObserver the static fallback simply remains. */
+          if ("IntersectionObserver" in window) {
+            var io = new IntersectionObserver(function (entries) {
+              entries.forEach(function (e) { if (e.isIntersecting) { io.disconnect(); boot(); } });
+            }, { rootMargin: "400px 0px" });
+            io.observe(document.querySelector(".ch-map"));
+          }
+        })();
+      </script>
     </section>
     <section class="section-cta bg-light">
       <div class="padding-section-medium">
