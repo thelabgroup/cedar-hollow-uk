@@ -25,6 +25,11 @@
       price: 350,
       featured: 1,
       highlight: "Underfloor heating",
+      photos: [
+        { src: "images/gallery/cedar-hollow-treehouse-1-1060.webp", srcset: "images/gallery/cedar-hollow-treehouse-1-530.webp 530w, images/gallery/cedar-hollow-treehouse-1-1060.webp 1060w" },
+        { src: "images/gallery/cedar-hollow-treehouse-2-1060.webp", srcset: "images/gallery/cedar-hollow-treehouse-2-530.webp 530w, images/gallery/cedar-hollow-treehouse-2-1060.webp 1060w" },
+        { src: "images/gallery/cedar-hollow-treehouse-3-1060.webp", srcset: "images/gallery/cedar-hollow-treehouse-3-530.webp 530w, images/gallery/cedar-hollow-treehouse-3-1060.webp 1060w" }
+      ],
       image: {
         src: "images/property-cedar-hollow-treehouse.jpg",
         sizes: "(max-width: 420px) 100vw, 420px",
@@ -48,6 +53,13 @@
       price: 175,
       featured: 4,
       highlight: "Narnia-inspired cave",
+      photos: [
+        { src: "images/gallery/fauns-hideaway-1-1060.webp", srcset: "images/gallery/fauns-hideaway-1-530.webp 530w, images/gallery/fauns-hideaway-1-1060.webp 1060w" },
+        { src: "images/gallery/fauns-hideaway-2-1060.webp", srcset: "images/gallery/fauns-hideaway-2-530.webp 530w, images/gallery/fauns-hideaway-2-1060.webp 1060w" },
+        { src: "images/gallery/fauns-hideaway-3-1060.webp", srcset: "images/gallery/fauns-hideaway-3-530.webp 530w, images/gallery/fauns-hideaway-3-1060.webp 1060w" },
+        { src: "images/gallery/fauns-hideaway-4-1060.webp", srcset: "images/gallery/fauns-hideaway-4-530.webp 530w, images/gallery/fauns-hideaway-4-1060.webp 1060w" },
+        { src: "images/gallery/fauns-hideaway-5-1060.webp", srcset: "images/gallery/fauns-hideaway-5-530.webp 530w, images/gallery/fauns-hideaway-5-1060.webp 1060w" }
+      ],
       image: {
         src: "images/property-fauns-hideaway.jpg",
         sizes: "(max-width: 420px) 100vw, 420px",
@@ -70,6 +82,10 @@
       bathrooms: 0,
       price: 110,
       highlight: "Wood-fired hot tub",
+      photos: [
+        { src: "images/gallery/beavers-den-1-1060.webp", srcset: "images/gallery/beavers-den-1-530.webp 530w, images/gallery/beavers-den-1-1060.webp 1060w" },
+        { src: "images/gallery/beavers-den-2-1060.webp", srcset: "images/gallery/beavers-den-2-530.webp 530w, images/gallery/beavers-den-2-1060.webp 1060w" }
+      ],
       image: {
         src: "images/property-beavers-den.jpg",
         sizes: "(max-width: 420px) 100vw, 420px",
@@ -93,6 +109,13 @@
       price: 495,
       featured: 2,
       highlight: "Rooftop sauna",
+      photos: [
+        { src: "images/gallery/woodsmans-treehouse-1-1060.webp", srcset: "images/gallery/woodsmans-treehouse-1-530.webp 530w, images/gallery/woodsmans-treehouse-1-1060.webp 1060w" },
+        { src: "images/gallery/woodsmans-treehouse-2-1060.webp", srcset: "images/gallery/woodsmans-treehouse-2-530.webp 530w, images/gallery/woodsmans-treehouse-2-1060.webp 1060w" },
+        { src: "images/gallery/woodsmans-treehouse-3-1060.webp", srcset: "images/gallery/woodsmans-treehouse-3-530.webp 530w, images/gallery/woodsmans-treehouse-3-1060.webp 1060w" },
+        { src: "images/gallery/woodsmans-treehouse-4-1060.webp", srcset: "images/gallery/woodsmans-treehouse-4-530.webp 530w, images/gallery/woodsmans-treehouse-4-1060.webp 1060w" },
+        { src: "images/gallery/woodsmans-treehouse-5-1060.webp", srcset: "images/gallery/woodsmans-treehouse-5-530.webp 530w, images/gallery/woodsmans-treehouse-5-1060.webp 1060w" }
+      ],
       image: {
         src: "images/property-woodsmans-treehouse.jpg",
         sizes: "(max-width: 420px) 100vw, 420px",
@@ -116,6 +139,13 @@
       price: 295,
       featured: 3,
       highlight: "Wood-fired hot tub",
+      photos: [
+        { src: "images/gallery/dazzle-treehouse-1-1060.webp", srcset: "images/gallery/dazzle-treehouse-1-530.webp 530w, images/gallery/dazzle-treehouse-1-1060.webp 1060w" },
+        { src: "images/gallery/dazzle-treehouse-2-1060.webp", srcset: "images/gallery/dazzle-treehouse-2-530.webp 530w, images/gallery/dazzle-treehouse-2-1060.webp 1060w" },
+        { src: "images/gallery/dazzle-treehouse-3-1060.webp", srcset: "images/gallery/dazzle-treehouse-3-530.webp 530w, images/gallery/dazzle-treehouse-3-1060.webp 1060w" },
+        { src: "images/gallery/dazzle-treehouse-4-1060.webp", srcset: "images/gallery/dazzle-treehouse-4-530.webp 530w, images/gallery/dazzle-treehouse-4-1060.webp 1060w" },
+        { src: "images/gallery/dazzle-treehouse-5-1060.webp", srcset: "images/gallery/dazzle-treehouse-5-530.webp 530w, images/gallery/dazzle-treehouse-5-1060.webp 1060w" }
+      ],
       image: {
         src: "images/property-dazzle-treehouse.jpg",
         sizes: "(max-width: 420px) 100vw, 420px",
@@ -138,6 +168,13 @@
       bathrooms: 1,
       price: 295,
       highlight: "Two-person swing",
+      photos: [
+        { src: "images/gallery/pinwheel-treehouse-1-1060.webp", srcset: "images/gallery/pinwheel-treehouse-1-530.webp 530w, images/gallery/pinwheel-treehouse-1-1060.webp 1060w" },
+        { src: "images/gallery/pinwheel-treehouse-2-1060.webp", srcset: "images/gallery/pinwheel-treehouse-2-530.webp 530w, images/gallery/pinwheel-treehouse-2-1060.webp 1060w" },
+        { src: "images/gallery/pinwheel-treehouse-3-1060.webp", srcset: "images/gallery/pinwheel-treehouse-3-530.webp 530w, images/gallery/pinwheel-treehouse-3-1060.webp 1060w" },
+        { src: "images/gallery/pinwheel-treehouse-4-1060.webp", srcset: "images/gallery/pinwheel-treehouse-4-530.webp 530w, images/gallery/pinwheel-treehouse-4-1060.webp 1060w" },
+        { src: "images/gallery/pinwheel-treehouse-5-1060.webp", srcset: "images/gallery/pinwheel-treehouse-5-530.webp 530w, images/gallery/pinwheel-treehouse-5-1060.webp 1060w" }
+      ],
       image: {
         src: "images/property-pinwheel-treehouse.jpg",
         sizes: "(max-width: 420px) 100vw, 420px",
