@@ -1,5 +1,5 @@
 /*
- * Cedar Hollow — treehouse catalogue + client-side search.
+ * Cedar Hollow — property catalogue + client-side search.
  *
  * This is the single source of truth for the properties shown on the site.
  * It powers the search box on the homepage and the results rendered on
@@ -298,7 +298,7 @@
     );
   }
 
-  // ---- Homepage "Featured Treehouses" carousel ----------------------------
+  // ---- Homepage "Featured Properties" carousel ----------------------------
 
   var ARROW_SVG =
     '<svg xmlns="http://www.w3.org/2000/svg" width="100%" viewbox="0 0 17 12" fill="none" class="button_icon"><path fill-rule="evenodd" clip-rule="evenodd" d="M13.2443 5.03644L9.48927 1.21321L10.6935 0L16.5 5.91195L10.6783 11.55L9.50444 10.3067L13.17 6.75673H0V5.03644H13.2443Z" fill="currentColor"></path></svg>';
@@ -359,7 +359,7 @@
       "</div>" +
       '<a data-wf--button--variant="base" href="' +
       href +
-      '" class="button w-inline-block"><span>View Treehouse</span>' +
+      '" class="button w-inline-block"><span>View Property</span>' +
       ARROW_SVG +
       "</a>" +
       "</div>" +
