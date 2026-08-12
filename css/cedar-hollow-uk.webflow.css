@@ -1800,6 +1800,15 @@ img {
   overflow: hidden;
 }
 
+.property-item_img-wrap:before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-color: rgba(59, 65, 38, .12);
+  z-index: 1;
+  pointer-events: none;
+}
+
 .property-item_img-wrap:after {
   content: "";
   position: absolute;
