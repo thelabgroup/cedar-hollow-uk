@@ -753,8 +753,8 @@ animation:marquee-scroll 70s linear infinite;
         .ch-map__pin--dorset{left:45.93%;top:44.99%;}
         .ch-map__canvas{position:absolute;inset:0;z-index:2;}
         .ch-map .leaflet-container{background:transparent;font-family:inherit;}
-        /* Nudge the neutral grey tiles toward the site's warm palette. */
-        .ch-map .leaflet-tile-pane{filter:sepia(.16) saturate(.92);}
+        /* Voyager tiles are already warm; a gentle lift keeps the sea properly blue. */
+        .ch-map .leaflet-tile-pane{filter:saturate(1.15);}
         .ch-map .ch-map__marker{background:none;border:none;}
         .ch-map .leaflet-tooltip.ch-map__label{background:#3b4126;color:#efeed5;border:none;border-radius:20px;padding:4px 14px;font-size:.9375rem;font-weight:500;box-shadow:0 2px 8px rgba(59,65,38,.28);}
         .ch-map .leaflet-tooltip-top.ch-map__label:before{border-top-color:#3b4126;}
@@ -789,7 +789,7 @@ animation:marquee-scroll 70s linear infinite;
               tap: false,
               minZoom: 6, maxZoom: 17
             });
-            L.tileLayer("https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png", {
+            L.tileLayer("https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png", {
               attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="https://carto.com/attributions">CARTO</a>',
               subdomains: "abcd"
             }).addTo(map);
