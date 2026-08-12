@@ -2294,7 +2294,13 @@ img {
 }
 
 .awards-logo_svg {
-  width: 20%;
+  /* A percentage here resolved against the track, whose own width comes from
+     these children -- circular, so the two identical tracks could settle on
+     different widths and the loop was never seamless. A definite width above
+     every max-width below lets each logo be sized by its own cap instead, and
+     flex:none stops a negative-free-space pass from overlapping them. */
+  flex: none;
+  width: 24rem;
   max-width: 15rem;
 }
 
@@ -3082,7 +3088,6 @@ img {
   }
 
   .awards-logo_svg {
-    width: 15%;
     max-width: 15rem;
   }
 
