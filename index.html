@@ -127,6 +127,10 @@ animation:marquee-scroll 70s linear infinite;
                let it wrap naturally on narrow screens instead. */
             @media screen and (max-width:767px){.hero-br{display:none;}}
             .section-hero .heading-style-h1{font-size:min(clamp(2.25rem,5.56vw,5rem),9.88vh);letter-spacing:-.035em;line-height:100%;color:#EFEED5;}
+            /* The clamp's 2.25rem floor pushes "Oxfordshire and Dorset" onto a fourth
+               line on phones. 9vw holds the three-line shape from 479px down to 320px
+               (34px -> 29px), measured rather than guessed. */
+            @media (max-width:479px){.section-hero .heading-style-h1{font-size:9vw;}}
             /* Self-hosted alongside Crimson Pro and Inter. OFL; licence in fonts/. */
             @font-face{font-family:"Hedvig Letters Serif";src:url("fonts/HedvigLettersSerif_18pt-Regular.ttf") format("truetype");font-weight:400;font-style:normal;font-display:swap;}
             .ch-nav__bar{display:flex;align-items:center;justify-content:space-between;gap:1rem;width:100%;padding:20px 32px 20px 24px;position:relative;z-index:30;}
@@ -407,13 +411,12 @@ animation:marquee-scroll 70s linear infinite;
         (function () {
           var v = document.querySelector(".ch-hero-video");
           if (!v) return;
-          // Only fetch the loop where it earns its weight: wide screens, motion allowed,
-          // and not on a metered connection. Everyone else keeps the still.
+          // Fetch the loop on all screen sizes; skip it only where the user has
+          // asked for less motion or is on a metered/slow connection.
           var motionOk = !window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-          var wideEnough = window.matchMedia("(min-width: 768px)").matches;
           var conn = navigator.connection || {};
           var cheapData = !conn.saveData && !/2g/.test(conn.effectiveType || "");
-          if (!motionOk || !wideEnough || !cheapData) return;
+          if (!motionOk || !cheapData) return;
           // Show the video element straight away. Its poster is the loop's own first
           // frame, so the hero starts on the right scene and the footage simply begins
           // moving -- rather than swapping from the old photograph once it buffers.
@@ -429,6 +432,19 @@ animation:marquee-scroll 70s linear infinite;
           document.addEventListener("visibilitychange", function () {
             if (!document.hidden && v.paused) attempt();
           });
+          // iOS Low Power Mode (and some Android battery savers) refuse autoplay
+          // entirely until the user interacts. One retry on the first touch or
+          // scroll covers that without ever fighting a deliberate pause.
+          var kicked = false;
+          function kick() {
+            if (kicked) return;
+            kicked = true;
+            if (v.paused) attempt();
+            window.removeEventListener("touchstart", kick);
+            window.removeEventListener("scroll", kick);
+          }
+          window.addEventListener("touchstart", kick, { passive: true, once: true });
+          window.addEventListener("scroll", kick, { passive: true, once: true });
         })();
       </script>
     </div>
