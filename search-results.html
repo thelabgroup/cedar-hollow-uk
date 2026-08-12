@@ -2,7 +2,7 @@
 <html data-wf-page="6a0c2b9f823ceddfc817c825" data-wf-site="69bd76102e424fd6b90fdfca" lang="en">
 <head>
   <meta charset="utf-8">
-  <title>Find your treehouse — Cedar Hollow</title>
+  <title>Properties — Cedar Hollow</title>
   <meta content="width=device-width, initial-scale=1" name="viewport">
   <meta content="Webflow" name="generator">
   <link href="css/normalize.css" rel="stylesheet" type="text/css">
@@ -124,7 +124,7 @@ animation:marquee-scroll 70s linear infinite;
                   .ch-search__submit{flex-basis:100%;min-height:3rem;}
                 }
               </style>
-              <form class="ch-search__bar" action="search-results.html" method="get" role="search" aria-label="Search treehouses">
+              <form class="ch-search__bar" action="search-results.html" method="get" role="search" aria-label="Search properties">
                 <label class="ch-search__field">
                   <span class="ch-search__label">Destination</span>
                   <input class="ch-search__input" type="search" name="q" id="ch-q" autocomplete="off" placeholder="Where to? Oxford, Dorset…">
@@ -409,7 +409,7 @@ animation:marquee-scroll 70s linear infinite;
                         <a href="https://www.theoaks.uk/story" class="footer_link is-large">Our Story</a>
                       </li>
                       <li>
-                        <a href="search-results.html" class="footer_link is-large">Treehouses</a>
+                        <a href="search-results.html" class="footer_link is-large">Properties</a>
                       </li>
                       <li>
                         <a href="sustainability.html" class="footer_link is-large">Sustainability</a>
@@ -632,7 +632,7 @@ requestAnimationFrame(measureFPS)
         container.innerHTML = results.map(CH.cardHtml).join("");
       } else {
         container.innerHTML =
-          '<div class="text-align-center"><p class="text-size-large">No treehouses match your search.</p>' +
+          '<div class="text-align-center"><p class="text-size-large">No properties match your search.</p>' +
           '<p class="text-size-medium">Try fewer filters or <a href="search-results.html" class="footer_link">view all retreats</a>.</p></div>';
       }
     }
@@ -647,7 +647,7 @@ requestAnimationFrame(measureFPS)
       if (params.q) parts.push('matching “' + params.q + '”');
       var suffix = parts.length ? " " + parts.join(" ") : "";
       count.textContent =
-        n + (n === 1 ? " treehouse" : " treehouses") + suffix;
+        n + (n === 1 ? " property" : " properties") + suffix;
     }
   })();
   </script>
