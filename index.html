@@ -123,9 +123,11 @@ animation:marquee-scroll 70s linear infinite;
             /* 42px suited the 750px search bar; a 208px button groups better with the
                heading at a tighter gap. */
             .section-hero .hero_content .margin-bottom{margin-bottom:min(32px,3.95vh);}
-            /* Figma breaks the heading after "Award-Winning" and "Retreats in";
-               let it wrap naturally on narrow screens instead. */
-            @media screen and (max-width:767px){.hero-br{display:none;}}
+            /* Figma breaks the heading after "Award-Winning" and "Retreats in".
+               These breaks are kept at every width: letting it wrap naturally on
+               phones pulled "Award-Winning" up onto line one and left "Dorset"
+               alone on line three. At 9vw the longest designed line measures
+               284px against a 338px column, so all three fit with room spare. */
             .section-hero .heading-style-h1{font-size:min(clamp(2.25rem,5.56vw,5rem),9.88vh);letter-spacing:-.035em;line-height:100%;color:#EFEED5;}
             /* The clamp's 2.25rem floor pushes "Oxfordshire and Dorset" onto a fourth
                line on phones. 9vw holds the three-line shape from 479px down to 320px

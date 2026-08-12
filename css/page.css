@@ -1,98 +1,65 @@
-/* Shared styles for the interior content pages (Properties, Experiences,
-   Sustainability). Previously each page carried its own duplicated <style>
-   block; this is the single copy. Tokens come from cedar-hollow-uk.webflow.css,
-   which every page already links, so the palette stays in one place. */
+/* Interior content pages (Our Story, Experiences, Sustainability).
+   These pages use the homepage's own section vocabulary -- centred
+   .section-title-block headings, .padding-section-medium rhythm, alternating
+   bg-light / bg-brand-dark bands, pill .button with the arrow icon. Only the
+   few things the homepage has no equivalent for live here. */
 
 * { -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
+body { background: var(--offwhite, #f8f8e8); color: var(--color-text, #5d5c4b); margin: 0; }
 
-.cp {
-  background: var(--offwhite, #f8f8e8);
-  color: var(--color-text, #5d5c4b);
-  font-family: var(--font-family--body, Inter, Arial, sans-serif);
-  margin: 0;
-}
-
-/* ---- Page hero -------------------------------------------------------- */
-/* Dark band carrying the site nav. The nav is cream-on-transparent because it
-   was built to sit over the hero video; over this green it needs no variant. */
-.ch-page-hero {
-  background-color: var(--accent, #3b4126);
-  color: var(--brand, #efeed5);
-  position: relative;
-}
-
-.ch-page-hero__body { padding-bottom: clamp(2.75rem, 6vw, 5rem); padding-top: clamp(1.5rem, 4vw, 3rem); }
-
+/* ---- Page hero: the homepage hero's type, over a green band ------------ */
+.ch-page-hero { background-color: var(--accent, #3b4126); position: relative; }
+.ch-page-hero__body { padding-top: clamp(2rem, 5vw, 4rem); padding-bottom: clamp(3rem, 7vw, 5.5rem); }
 .ch-page-hero__eyebrow {
-  font-size: .72rem; letter-spacing: .14em; text-transform: uppercase;
-  font-weight: 600; margin: 0 0 1rem; color: var(--brand, #efeed5); opacity: .75;
+  color: var(--brand, #efeed5); opacity: .7; margin: 0 0 1.25rem;
+  font-size: .875rem; font-weight: 600; letter-spacing: .01em;
+  line-height: 1.1; text-transform: uppercase;
 }
-
-.ch-page-hero h1 {
-  font-family: var(--font-family--heading, Crimsonpro, serif);
-  font-size: clamp(2.5rem, 6vw, 4.5rem);
-  font-weight: 300; letter-spacing: -.035em; line-height: 1.05;
-  color: var(--brand, #efeed5); margin: 0 0 1.25rem; text-wrap: balance;
-}
-.ch-page-hero h1 em { font-style: italic; font-weight: 400; }
-
+.ch-page-hero .heading-style-h1 { color: var(--brand, #efeed5); margin: 0; }
 .ch-page-hero__lead {
-  font-size: clamp(1.05rem, 2.2vw, 1.3rem); line-height: 1.6;
-  max-width: 46ch; margin: 0; color: var(--brand, #efeed5); opacity: .88;
+  color: var(--brand, #efeed5); opacity: .85; margin: 1.5rem auto 0; max-width: 46ch;
 }
 
-/* ---- Body ------------------------------------------------------------- */
-.cp-body { padding-top: clamp(1rem, 3vw, 2rem); padding-bottom: clamp(3rem, 7vw, 5.5rem); }
-.cp-body section { margin-top: clamp(2.25rem, 5vw, 3.5rem); max-width: 68ch; }
+/* ---- Prose inside a centred section ----------------------------------- */
+/* The homepage sets long-form copy at .heading-style-h3 (see the story
+   section). Body-size runs of text get a readable measure and stay centred. */
+.ch-prose { max-width: 62ch; margin-left: auto; margin-right: auto; }
+.ch-prose p { margin: 0 0 1.15rem; line-height: 1.75; }
+.ch-prose p:last-child { margin-bottom: 0; }
+.ch-prose a { color: inherit; text-decoration: underline; text-underline-offset: .18em; }
+/* .bg-brand-dark in the exported CSS is cream, identical to .bg-light -- the name
+   is misleading. This is a genuinely dark band, echoing the hero. */
+.ch-section--accent { background-color: var(--accent, #3b4126); }
+.ch-section--accent .heading-style-h1,
+.ch-section--accent .heading-style-h3,
+.ch-section--accent .ch-prose { color: var(--brand, #efeed5); }
 
-.cp h2 {
-  font-family: var(--font-family--heading, Crimsonpro, serif);
-  color: var(--accent, #3b4126); font-size: clamp(1.6rem, 3.2vw, 2.25rem);
-  font-weight: 300; letter-spacing: -.035em; margin: 0 0 .85rem; line-height: 1.15;
+/* ---- Card grid: the .cabin-item body, without the image --------------- */
+.ch-cards {
+  display: grid; gap: 1.5rem; grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
+  margin: 0; padding: 0; list-style: none; text-align: center;
 }
-.cp h3 {
-  font-family: var(--font-family--heading, Crimsonpro, serif);
-  color: var(--accent, #3b4126); font-size: 1.2rem; font-weight: 600;
-  margin: 1.5rem 0 .4rem;
-}
-.cp p  { font-size: 1.02rem; line-height: 1.75; margin: 0 0 1rem; }
-.cp ul { padding-left: 1.15rem; margin: 0 0 1rem; }
-.cp li { font-size: 1.02rem; line-height: 1.75; margin-bottom: .5rem; }
-.cp a  { color: var(--accent, #3b4126); }
-
-.cp-figure { margin: clamp(2rem, 5vw, 3rem) 0 0; max-width: none; }
-.cp-figure img { width: 100%; height: auto; display: block; border-radius: var(--radius--16, 1rem); }
-.cp-figure figcaption { font-size: .85rem; margin-top: .6rem; opacity: .8; }
-
-.cp-cards {
-  display: grid; gap: 1rem; grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
-  margin: 1.5rem 0 0; padding: 0; list-style: none; max-width: none;
-}
-.cp-cards li {
+.ch-cards li {
   background: var(--brand-secondary, #f7f5e1);
   border: 1px solid var(--border--accent-20, #3b412633);
-  border-radius: var(--radius--16, 1rem); padding: 1.15rem 1.25rem; margin: 0;
+  border-radius: var(--radius--16, 1rem);
+  padding: 2rem 1.5rem;
 }
-.cp-cards h3 { margin: 0 0 .35rem; font-size: 1.1rem; }
-.cp-cards p  { font-size: .95rem; margin: 0; }
+.ch-section--accent .ch-cards li { background: #434a2c; border-color: #ffffff26; }
+.ch-section--accent .ch-cards li p { color: var(--brand, #efeed5); opacity: .82; }
+.ch-section--accent .ch-cards h3 { color: var(--brand, #efeed5); }
+.ch-cards h3 { margin: 0 0 .6rem; }
+.ch-cards p { margin: 0; line-height: 1.7; }
 
-.cp-award { display: flex; align-items: center; gap: 1.5rem; margin-top: 1.25rem; }
-.cp-award img { width: 92px; height: auto; flex: none; }
-.cp-award p { margin: 0; }
-@media (max-width: 479px) { .cp-award { flex-direction: column; align-items: flex-start; } }
+/* ---- Bulleted lists, centred to match the sections around them -------- */
+.ch-list { list-style: none; padding: 0; margin: 0 auto; max-width: 52ch; }
+.ch-list li { position: relative; padding: .7rem 0; line-height: 1.7; border-bottom: 1px solid var(--border--accent-20, #3b412633); }
+.ch-list li:last-child { border-bottom: 0; }
 
-.cp-cta {
-  margin-top: clamp(2.5rem, 6vw, 4rem); background: var(--accent, #3b4126);
-  border-radius: var(--radius--24, 1.5rem); padding: clamp(1.75rem, 4vw, 2.75rem); max-width: none;
-}
-.cp-cta h2 { color: var(--brand, #efeed5); margin-bottom: .5rem; }
-.cp-cta p  { color: var(--brand, #efeed5); opacity: .85; margin-bottom: 1.25rem; max-width: 52ch; }
-.cp-cta a  {
-  display: inline-flex; align-items: center; gap: .5rem;
-  background: var(--brand, #efeed5); color: var(--accent, #3b4126);
-  text-decoration: none; font-weight: 500; padding: 1rem 2rem; border-radius: 2rem; line-height: 1.6;
-}
-.cp-cta a:hover { opacity: .9; }
+/* ---- Award badge beside a line of copy --------------------------------- */
+.ch-award { display: flex; align-items: center; justify-content: center; gap: 1.75rem; text-align: left; }
+.ch-award img { width: 104px; height: auto; flex: none; }
+.ch-award p { margin: 0; max-width: 40ch; }
+@media (max-width: 479px) { .ch-award { flex-direction: column; text-align: center; } }
 
-.cp a:focus-visible { outline: 2px solid var(--accent, #3b4126); outline-offset: 3px; }
 @media (prefers-reduced-motion: reduce) { * { animation: none !important; transition: none !important; } }
