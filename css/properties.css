@@ -45,6 +45,10 @@
 }
 @media (max-width: 991px) { .pp-frame { border-radius: 16px; } }
 .pp-frame img { width: 100%; height: 100%; object-fit: cover; display: block; }
+/* Gallery shots stack; only the current one shows. A single-photo property has
+   one shot and no arrows, so nothing here changes for it. */
+.pp-frame .pp-shot { position: absolute; inset: 0; opacity: 0; transition: opacity .35s ease; }
+.pp-frame .pp-shot[data-current] { opacity: 1; position: relative; }
 .pp-frame:after {
   content: ""; position: absolute; inset: 0; pointer-events: none;
   background-color: #f5f4e6; mix-blend-mode: color-burn;
@@ -117,12 +121,24 @@
 .pp-price strong { font-size: 24px; font-weight: 500; letter-spacing: -1.2px; }
 .pp-price span { font-size: 18px; font-weight: 500; }
 
-.pp-widget {
-  width: 100%; height: 320px; display: flex; align-items: center; justify-content: center;
+/* Occupies the panel the design reserved for the Checked.in widget, keeping its
+   frame -- #e7e5c7, 1px border, 16px radius -- so the card's balance survives. */
+.pp-book {
+  width: 100%; display: flex; flex-direction: column; gap: 20px;
+  align-items: center; justify-content: center; text-align: center;
   background: #e7e5c7; border: 1px solid rgba(59, 65, 38, .5); border-radius: 16px;
-  font-size: 24px; line-height: 1.6; color: #000; text-align: center;
+  padding: 28px 24px;
 }
-@media (max-width: 991px) { .pp-widget { height: 220px; } }
+.pp-book__facts { display: flex; gap: 40px; margin: 0; flex-wrap: wrap; justify-content: center; }
+.pp-book__facts div { display: flex; flex-direction: column; gap: 2px; }
+.pp-book__facts dt {
+  font-size: .8125rem; font-weight: 600; letter-spacing: .01em; text-transform: uppercase;
+  color: var(--accent, #3b4126); opacity: .65;
+}
+.pp-book__facts dd { margin: 0; font-size: 1rem; line-height: 1.6; color: var(--accent, #3b4126); }
+.pp-book .button { padding: 1rem 2rem; }
+.pp-book__note { margin: 0; font-size: .8125rem; line-height: 1.5; color: var(--accent, #3b4126); opacity: .7; }
+@media (max-width: 991px) { .pp-book__facts { gap: 28px; } }
 
 .pp-notes { width: 762px; max-width: 100%; margin: 0 auto; padding: 0 12px; }
 @media (max-width: 991px) { .pp-notes { width: 100%; padding: 0 28px; } }
