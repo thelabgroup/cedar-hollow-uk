@@ -65,8 +65,8 @@
 @media (max-width: 991px) { .pp-tile-name { font-size: 42px; letter-spacing: -1.47px; } }
 
 /* ---- One property ------------------------------------------------------ */
-.pp-item { display: flex; flex-direction: column; gap: 20px; }
-.pp-item__row { display: flex; gap: 24px; align-items: stretch; justify-content: center; }
+.pp-item { display: flex; flex-direction: column; gap: 20px; align-items: flex-start; }
+.pp-item__row { display: flex; gap: 24px; align-items: stretch; justify-content: center; width: 100%; }
 @media (max-width: 991px) { .pp-item__row { flex-direction: column; gap: 32px; } }
 
 .pp-item__media { position: relative; flex: 0 0 762px; max-width: 762px; }
@@ -140,7 +140,10 @@
 .pp-book__note { margin: 0; font-size: .8125rem; line-height: 1.5; color: var(--accent, #3b4126); opacity: .7; }
 @media (max-width: 991px) { .pp-book__facts { gap: 28px; } }
 
-.pp-notes { width: 762px; max-width: 100%; margin: 0 auto; padding: 0 12px; }
+/* Figma puts this under the image column, left-aligned in an items-start
+   column -- not centred under the whole row, where it detaches from its own
+   property and reads as loose text sitting in the gap before the next one. */
+.pp-notes { width: 762px; max-width: 100%; margin: 0; padding: 0 12px; }
 @media (max-width: 991px) { .pp-notes { width: 100%; padding: 0 28px; } }
 .pp-notes p { margin: 0 0 1em; font-size: 16px; line-height: 1.35; color: var(--accent, #3b4126); }
 .pp-notes p:last-child { margin-bottom: 0; }
