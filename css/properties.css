@@ -65,6 +65,13 @@
 @media (max-width: 991px) { .pp-tile-name { font-size: 42px; letter-spacing: -1.47px; } }
 
 /* ---- One property ------------------------------------------------------ */
+/* The design's Content stack separates properties with a 96px gap (120 on
+   mobile). The items live inside #pp-list, which must carry that gap itself --
+   without it each property's closing description sits flush against the next
+   card and reads as stray text wedged between properties. */
+#pp-list { display: flex; flex-direction: column; gap: 96px; }
+@media (max-width: 991px) { #pp-list { gap: 120px; } }
+
 .pp-item { display: flex; flex-direction: column; gap: 20px; align-items: flex-start; }
 .pp-item__row { display: flex; gap: 24px; align-items: stretch; justify-content: center; width: 100%; }
 @media (max-width: 991px) { .pp-item__row { flex-direction: column; gap: 32px; } }
