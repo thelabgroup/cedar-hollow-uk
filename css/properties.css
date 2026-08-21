@@ -32,7 +32,11 @@
 @media (max-width: 991px) { .pp-title { font-size: 56px; letter-spacing: -1.96px; } }
 
 .pp-tiles { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin: 0; padding: 0; list-style: none; }
-@media (max-width: 991px) { .pp-tiles { grid-template-columns: 1fr; gap: 42px; } }
+/* On mobile the quick-pick tiles are dropped entirely: the property cards
+   start immediately below, so a stacked column of the same six photographs
+   before them was pure repetition. Their lazy images never intersect while
+   hidden, so nothing is downloaded for them either. */
+@media (max-width: 991px) { .pp-tiles { display: none; } }
 .pp-tile { display: flex; flex-direction: column; gap: 24px; align-items: center; text-decoration: none; }
 @media (max-width: 991px) { .pp-tile { gap: 16px; } }
 
