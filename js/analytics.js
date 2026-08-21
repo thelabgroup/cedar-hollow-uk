@@ -1,16 +1,16 @@
 /*
- * Cedar Hollow — analytics loader.
+ * Cedar Hollow analytics loader.
  *
  * DISABLED BY DEFAULT. Nothing is loaded and no cookies are set until you
  * change PROVIDER below, so the Cookies Policy stays accurate as-is.
  *
  * To switch analytics on:
  *
- *   Plausible (cookie-free, no consent banner needed — recommended)
+ *   Plausible (cookie-free, no consent banner needed; recommended)
  *     1. Sign up at plausible.io and add the domain cedarhollow.uk
  *     2. Set PROVIDER = "plausible" and DOMAIN = "cedarhollow.uk"
  *
- *   Google Analytics 4 (sets cookies — you will need a consent banner in the
+ *   Google Analytics 4 (sets cookies; you will need a consent banner in the
  *   UK/EU, and the Cookies Policy must be updated before you enable it)
  *     1. Create a GA4 property and copy the Measurement ID (G-XXXXXXXXXX)
  *     2. Set PROVIDER = "ga4" and MEASUREMENT_ID = "G-XXXXXXXXXX"

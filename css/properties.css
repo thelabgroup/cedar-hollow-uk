@@ -1,4 +1,4 @@
-/* Properties page — implements Figma 289:1205 (desktop) and 351:902 (mobile).
+/* Properties page: implements Figma 289:1205 (desktop) and 351:902 (mobile).
    Values below are the design's, converted to the project's tokens where one
    exists: --moss-green is this project's --accent (#3b4126), --cream is
    #f1ecdb, and the card wash reuses the site's existing colour-burn treatment. */

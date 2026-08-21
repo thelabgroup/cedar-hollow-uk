@@ -1,5 +1,5 @@
 /*
- * Cedar Hollow — form submission handler.
+ * Cedar Hollow form submission handler.
  *
  * The site is a static Webflow export, so Webflow's own form backend no longer
  * receives submissions. This script intercepts every Webflow form (.w-form) and
@@ -22,7 +22,7 @@
       var wrapper = form.closest(".w-form");
       if (!wrapper) return; // only handle Webflow forms
 
-      // Never hijack search forms — those navigate to the results page and are
+      // Never hijack search forms: those navigate to the results page and are
       // handled by the client-side search, not emailed.
       if (
         form.matches('[role="search"], .search-form, .ch-search__bar') ||
