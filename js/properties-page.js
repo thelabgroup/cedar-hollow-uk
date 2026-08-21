@@ -1,5 +1,5 @@
 /*
- * Properties page renderer — Figma 289:1205 (desktop) / 351:902 (mobile).
+ * Properties page renderer: Figma 289:1205 (desktop) / 351:902 (mobile).
  *
  * Reads the same LISTINGS catalogue the homepage and search use, so the page
  * carries all six properties rather than the three the design mocks up, and

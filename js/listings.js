@@ -1,9 +1,9 @@
 /*
- * Cedar Hollow — property catalogue + client-side search.
+ * Cedar Hollow property catalogue + client-side search.
  *
  * This is the single source of truth for the properties shown on the site.
  * It powers the search box on the homepage and the results rendered on
- * search-results.html. No backend required — filtering happens in the browser.
+ * search-results.html. No backend required; filtering happens in the browser.
  *
  * To add or edit a property, change the LISTINGS array below. Every field is
  * plain data; `nameHtml` carries the italic styling used in headings, while
@@ -68,7 +68,7 @@
       description:
         "A Narnia-inspired cave hideaway lit by warm lantern light, with underfloor heating, air conditioning and a full kitchen.",
       longDescription:
-        "One bedroom with en-suite, underfloor heating and air conditioning throughout, and a full kitchen — an enchanting realm tucked into the woodland.",
+        "One bedroom with en-suite, underfloor heating and air conditioning throughout, and a full kitchen: an enchanting realm tucked into the woodland.",
       bookingUrl: "https://www.theoaks.uk/availability"
     },
     {
@@ -154,7 +154,7 @@
       description:
         "A contemporary canopy retreat wearing WW1 ship-inspired dazzle camouflage, adults only, deep in Dorset woodland.",
       longDescription:
-        "RIBA South West award winner, 2023. Ship-themed throughout — gangplank entry, glass spine and yacht-deck floors — with a wood-fired hot tub, pizza oven, ceramic wood-burning stove and a cargo-net day bed suspended above the stream.",
+        "RIBA South West award winner, 2023. Ship-themed throughout, from gangplank entry to glass spine and yacht-deck floors, with a wood-fired hot tub, pizza oven, ceramic wood-burning stove and a cargo-net day bed suspended above the stream.",
       bookingUrl: "https://mallinson.co.uk/availability/"
     },
     {
