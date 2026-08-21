@@ -125,7 +125,7 @@
         "Perched in an ancient oak and reached by rope bridge, with a rotating wood burner, roll-top bath and rooftop sauna.",
       longDescription:
         "RIBA South West award winner, 2016. A circular central room with a rotating wood burner, king bed, full kitchen and roll-top bath; upper deck with sauna and hot tub, plus a wood-fired pizza oven and an outdoor tree shower.",
-      bookingUrl: "https://mallinson.co.uk/the-woodsmans-treehouse/"
+      bookingUrl: "https://mallinson.co.uk/availability/"
     },
     {
       id: "dazzle-treehouse",
@@ -155,7 +155,7 @@
         "A contemporary canopy retreat wearing WW1 ship-inspired dazzle camouflage, adults only, deep in Dorset woodland.",
       longDescription:
         "RIBA South West award winner, 2023. Ship-themed throughout — gangplank entry, glass spine and yacht-deck floors — with a wood-fired hot tub, pizza oven, ceramic wood-burning stove and a cargo-net day bed suspended above the stream.",
-      bookingUrl: "https://mallinson.co.uk/dazzle-treehouse/"
+      bookingUrl: "https://mallinson.co.uk/availability/"
     },
     {
       id: "pinwheel-treehouse",
@@ -184,7 +184,7 @@
         "Inspired by a child’s pinwheel, set in a clearing of mature oaks with a glass-topped living space and one-way windows.",
       longDescription:
         "RIBA South West award-winning architecture by Guy Mallinson and Keith Brownlie. Ceramic wood-burning stove, wood-fired pizza oven, outdoor hot tub and a two-person swing. Featured in The World’s Most Secret Hotels.",
-      bookingUrl: "https://mallinson.co.uk/pinwheel-treehouse/"
+      bookingUrl: "https://mallinson.co.uk/availability/"
     }
   ];
 
