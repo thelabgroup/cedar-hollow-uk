@@ -181,7 +181,7 @@ animation:marquee-scroll 70s linear infinite;
             <a href="search-results.html">Properties</a>
             <a href="sustainability.html">Sustainability</a>
             <a href="experiences.html">Experiences</a>
-            <a href="#contact">Contact</a>
+            <a href="mailto:hello@cedarhollow.uk">Contact</a>
           </div>
           <script>
             (function(){
@@ -929,19 +929,23 @@ animation:marquee-scroll 70s linear infinite;
         </div>
       </div>
     </section>
-    <section id="contact" class="section-contact bg-brand-dark">
+    <section id="subscribe" class="section-contact bg-brand-dark">
       <div class="w-embed">
         <style>
           .section-contact .form_field-wrapper{margin-bottom:1.25rem;}
           .section-contact .form_input{background-color:transparent;}
-          .section-contact .button{margin-top:.5rem;width:100%;}
           .section-contact .form_message-success-wrapper,
           .section-contact .form_message-error-wrapper{margin-top:1.25rem;}
-          .section-contact .form_input.is-select-input:has(option[value=""]:checked){color:#0009;}
+          /* email + button on one line from tablet up */
           @media screen and (min-width:768px){
-            .section-contact .contact_row{display:flex;gap:1.25rem;}
-            .section-contact .contact_row .form_field-wrapper{flex:1 1 0;margin-bottom:1.25rem;}
+            .section-contact .subscribe_row{display:flex;gap:1.25rem;align-items:flex-end;}
+            .section-contact .subscribe_row .form_field-wrapper{flex:1 1 auto;margin-bottom:0;}
+            .section-contact .subscribe_row .button{flex:none;margin:0;width:auto;padding:1rem 2rem;}
           }
+          @media screen and (max-width:767px){
+            .section-contact .button{width:100%;margin-top:.5rem;}
+          }
+          .section-contact .subscribe_note{margin-top:1rem;opacity:.7;font-size:.875rem;text-align:center;}
         </style>
       </div>
       <div class="padding-section-medium">
@@ -950,65 +954,44 @@ animation:marquee-scroll 70s linear infinite;
             <div class="text-align-center section-title-block">
               <div class="max-width-xlarge align-center">
                 <div class="margin-bottom margin-xsmall">
-                  <h2 class="heading-style-h1">Get in <span class="text-style-italic">Touch</span></h2>
+                  <h2 class="heading-style-h1">News from <span class="text-style-italic">the Woods</span></h2>
                 </div>
               </div>
               <div class="margin-bottom margin-xlarge">
                 <div class="max-width-medium align-center">
-                  <p class="text-size-large">Planning a woodland escape or have a question about one of our retreats? Send us a message and we&#x2019;ll be in touch soon.</p>
+                  <p class="text-size-large">Occasional letters from our two woodlands: new retreats, new experiences and seasonal offers. No noise, and easy to leave.</p>
                 </div>
               </div>
             </div>
             <div class="max-width-medium align-center">
               <div class="form_component w-form">
-                <form id="contact-form" name="contact" data-name="Contact Form" method="post" class="form_form">
-                  <div class="contact_row">
+                <form id="subscribe-form" name="newsletter" data-name="Newsletter" method="post" class="form_form">
+                  <div class="subscribe_row">
                     <div class="form_field-wrapper">
-                      <label for="contact-name" class="form_field-label">Full name</label>
-                      <input class="form_input w-input" maxlength="256" name="name" data-name="Name" placeholder="Your name" type="text" id="contact-name" required>
+                      <label for="subscribe-email" class="form_field-label">Email</label>
+                      <input class="form_input w-input" maxlength="256" name="email" data-name="Email" placeholder="you@example.com" type="email" id="subscribe-email" required>
                     </div>
-                    <div class="form_field-wrapper">
-                      <label for="contact-email" class="form_field-label">Email</label>
-                      <input class="form_input w-input" maxlength="256" name="email" data-name="Email" placeholder="you@example.com" type="email" id="contact-email" required>
-                    </div>
-                  </div>
-                  <div class="contact_row">
-                    <div class="form_field-wrapper">
-                      <label for="contact-phone" class="form_field-label">Phone (optional)</label>
-                      <input class="form_input w-input" maxlength="60" name="phone" data-name="Phone" placeholder="Phone number" type="tel" id="contact-phone">
-                    </div>
-                    <div class="form_field-wrapper">
-                      <label for="contact-retreat" class="form_field-label">Which retreat?</label>
-                      <select class="form_input is-select-input w-select" name="retreat" data-name="Retreat" id="contact-retreat">
-                        <option value="">No preference</option>
-                        <option value="Cedar Hollow Oxford">Cedar Hollow Oxford</option>
-                        <option value="Cedar Hollow Dorset">Cedar Hollow Dorset</option>
-                      </select>
-                    </div>
-                  </div>
-                  <div class="form_field-wrapper">
-                    <label for="contact-message" class="form_field-label">Message</label>
-                    <textarea class="form_input is-text-area w-input" maxlength="5000" name="message" data-name="Message" placeholder="How can we help?" id="contact-message" required></textarea>
-                  </div>
-                  <div style="position:absolute;left:-9999px;top:-9999px;overflow:hidden;" aria-hidden="true">
-                    <label for="contact-company">Company</label>
-                    <input class="form_input" name="_gotcha" tabindex="-1" autocomplete="off" type="text" id="contact-company">
-                  </div>
-                  <button type="submit" data-wait="Sending&#x2026;" class="button w-button"><span>Send enquiry</span><svg xmlns="http://www.w3.org/2000/svg" width="100%" viewbox="0 0 17 12" fill="none" class="button_icon">
+                    <button type="submit" data-wait="Subscribing&#x2026;" class="button w-button"><span>Subscribe</span><svg xmlns="http://www.w3.org/2000/svg" width="100%" viewbox="0 0 17 12" fill="none" class="button_icon">
                       <path fill-rule="evenodd" clip-rule="evenodd" d="M13.2443 5.03644L9.48927 1.21321L10.6935 0L16.5 5.91195L10.6783 11.55L9.50444 10.3067L13.17 6.75673H0V5.03644H13.2443Z" fill="currentColor"></path>
                     </svg></button>
+                  </div>
+                  <div style="position:absolute;left:-9999px;top:-9999px;overflow:hidden;" aria-hidden="true">
+                    <label for="subscribe-company">Company</label>
+                    <input class="form_input" name="_gotcha" tabindex="-1" autocomplete="off" type="text" id="subscribe-company">
+                  </div>
                 </form>
                 <div class="form_message-success-wrapper w-form-done">
                   <div class="form_message-success">
-                    <div>Thank you &#x2014; your message has been received. We&#x2019;ll be in touch soon.</div>
+                    <div>You&#x2019;re on the list. See you in the woods.</div>
                   </div>
                 </div>
                 <div class="form_message-error-wrapper w-form-fail">
                   <div class="form_message-error">
-                    <div>Oops! Something went wrong. Please email hello@cedarhollow.uk instead.</div>
+                    <div>Something went wrong. Email hello@cedarhollow.uk and we&#x2019;ll add you ourselves.</div>
                   </div>
                 </div>
               </div>
+              <p class="subscribe_note">Prefer to ask us something directly? Write to <a href="mailto:hello@cedarhollow.uk">hello@cedarhollow.uk</a>.</p>
             </div>
           </div>
         </div>
@@ -1072,7 +1055,7 @@ animation:marquee-scroll 70s linear infinite;
                         <a href="experiences.html" class="footer_link is-large">Experiences</a>
                       </li>
                       <li>
-                        <a href="#contact" class="footer_link is-large">Contact</a>
+                        <a href="mailto:hello@cedarhollow.uk" class="footer_link is-large">Contact</a>
                       </li>
                     </ul>
                   </div>
