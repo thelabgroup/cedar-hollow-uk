@@ -33,15 +33,28 @@
     return (item.photos && item.photos.length) ? item.photos : [item.image];
   }
 
+  // Galleries can run to fifty-plus photos per property, so only the first
+  // shot loads with the page. The rest carry their sources in data attributes
+  // and are promoted to real src by the arrows, one step ahead of the viewer.
   function frame(item, opts) {
     var shots = photosOf(item);
     var imgs = shots.map(function (ph, i) {
-      return '<img src="' + esc(ph.src) + '" ' +
-        (ph.srcset ? 'srcset="' + esc(ph.srcset) + '" ' : "") +
+      var attrs = i === 0
+        ? 'src="' + esc(ph.src) + '" ' + (ph.srcset ? 'srcset="' + esc(ph.srcset) + '" ' : "")
+        : 'data-src="' + esc(ph.src) + '" ' + (ph.srcset ? 'data-srcset="' + esc(ph.srcset) + '" ' : "");
+      return "<img " + attrs +
         'sizes="(max-width: 991px) 100vw, 762px" loading="lazy" alt="' + esc(item.name) +
         '" class="pp-shot"' + (i === 0 ? ' data-current="true"' : "") + ">";
     }).join("");
     return '<div class="pp-frame"' + (opts && opts.gallery ? ' data-gallery="true"' : "") + ">" + imgs + "</div>";
+  }
+
+  function materialise(img) {
+    if (!img || !img.dataset.src) return;
+    img.src = img.dataset.src;
+    if (img.dataset.srcset) img.srcset = img.dataset.srcset;
+    delete img.dataset.src;
+    delete img.dataset.srcset;
   }
 
   function tile(item) {
@@ -125,7 +138,10 @@
       shots.forEach(function (s, n) { if (s.dataset.current) i = n; });
       shots[i].removeAttribute("data-current");
       var next = (i + Number(btn.dataset.step) + shots.length) % shots.length;
+      materialise(shots[next]);
       shots[next].setAttribute("data-current", "true");
+      // stay one step ahead in the direction of travel
+      materialise(shots[(next + Number(btn.dataset.step) + shots.length) % shots.length]);
     });
   });
 })();
