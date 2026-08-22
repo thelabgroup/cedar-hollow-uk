@@ -51,7 +51,7 @@
       bedrooms: 1,
       bathrooms: 1,
       price: 175,
-      featured: 4,
+      featured: 3,
       highlight: "Narnia-inspired cave",
       photos: [
         { src: "images/gallery/fauns-hideaway-1-1060.webp", srcset: "images/gallery/fauns-hideaway-1-530.webp 530w, images/gallery/fauns-hideaway-1-1060.webp 1060w" },
@@ -81,6 +81,7 @@
       bedrooms: 1,
       bathrooms: 0,
       price: 110,
+      featured: 5,
       highlight: "Wood-fired hot tub",
       photos: [
         { src: "images/gallery/beavers-den-1-1060.webp", srcset: "images/gallery/beavers-den-1-530.webp 530w, images/gallery/beavers-den-1-1060.webp 1060w" },
@@ -137,7 +138,7 @@
       bedrooms: 1,
       bathrooms: 1,
       price: 295,
-      featured: 3,
+      featured: 4,
       highlight: "Wood-fired hot tub",
       photos: [
         { src: "images/gallery/dazzle-treehouse-1-1060.webp", srcset: "images/gallery/dazzle-treehouse-1-530.webp 530w, images/gallery/dazzle-treehouse-1-1060.webp 1060w" },
@@ -167,6 +168,7 @@
       bedrooms: 1,
       bathrooms: 1,
       price: 295,
+      featured: 6,
       highlight: "Two-person swing",
       photos: [
         { src: "images/gallery/pinwheel-treehouse-1-1060.webp", srcset: "images/gallery/pinwheel-treehouse-1-530.webp 530w, images/gallery/pinwheel-treehouse-1-1060.webp 1060w" },
