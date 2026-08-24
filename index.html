@@ -1309,7 +1309,21 @@ function initMarquee(marquee) {
       arrows: false,
       drag: true,
       perMove: 1,
+      // One card per swipe: without this a hard flick can carry past
+      // several cards.
+      flickMaxPages: 1,
       gap: '1rem',
+    })
+    // The loop only runs forwards. From the first card a backward swipe
+    // would wrap to the last; the neighbour stays visible on the left as
+    // part of the loop, but the only way to reach it is all the way round.
+    // A backward wrap reports a negative destination, which distinguishes
+    // it from a legitimate jump to the last dot.
+    splide.on('move', function (newIndex, prevIndex, destIndex) {
+      if (prevIndex === 0 && destIndex < 0) {
+        if (splide.Components.Move.cancel) splide.Components.Move.cancel()
+        splide.go(0)
+      }
     })
     splide.mount()
     splideInstances.set(marquee, splide)
