@@ -2402,8 +2402,14 @@ img {
   display: block;
   aspect-ratio: 1;
   background-color: currentColor;
-  -webkit-mask: url("../images/logo-ok-news.png") center / contain no-repeat;
-  mask: url("../images/logo-ok-news.png") center / contain no-repeat;
+  -webkit-mask-image: url("../images/logo-ok-news.png");
+  -webkit-mask-position: center;
+  -webkit-mask-size: contain;
+  -webkit-mask-repeat: no-repeat;
+  mask-image: url("../images/logo-ok-news.png");
+  mask-position: center;
+  mask-size: contain;
+  mask-repeat: no-repeat;
 }
 
 .awards-logo_svg.thetimes {
@@ -2413,8 +2419,14 @@ img {
   display: block;
   aspect-ratio: 908 / 107;
   background-color: currentColor;
-  -webkit-mask: url("../images/logo-the-times.svg") center / contain no-repeat;
-  mask: url("../images/logo-the-times.svg") center / contain no-repeat;
+  -webkit-mask-image: url("../images/logo-the-times.svg");
+  -webkit-mask-position: center;
+  -webkit-mask-size: contain;
+  -webkit-mask-repeat: no-repeat;
+  mask-image: url("../images/logo-the-times.svg");
+  mask-position: center;
+  mask-size: contain;
+  mask-repeat: no-repeat;
 }
 
 .awards-logo_svg.bbc {
@@ -2442,36 +2454,66 @@ img {
 .awards-logo_svg.tv-mafs {
   max-width: 9.5rem;
   aspect-ratio: 600 / 155;
-  -webkit-mask: url("../images/tv-mafs-uk.png") center / contain no-repeat;
-  mask: url("../images/tv-mafs-uk.png") center / contain no-repeat;
+  -webkit-mask-image: url("../images/tv-mafs-uk.png");
+  -webkit-mask-position: center;
+  -webkit-mask-size: contain;
+  -webkit-mask-repeat: no-repeat;
+  mask-image: url("../images/tv-mafs-uk.png");
+  mask-position: center;
+  mask-size: contain;
+  mask-repeat: no-repeat;
 }
 
 .awards-logo_svg.tv-grand-designs {
   max-width: 7rem;
   aspect-ratio: 600 / 225;
-  -webkit-mask: url("../images/tv-grand-designs.png") center / contain no-repeat;
-  mask: url("../images/tv-grand-designs.png") center / contain no-repeat;
+  -webkit-mask-image: url("../images/tv-grand-designs.png");
+  -webkit-mask-position: center;
+  -webkit-mask-size: contain;
+  -webkit-mask-repeat: no-repeat;
+  mask-image: url("../images/tv-grand-designs.png");
+  mask-position: center;
+  mask-size: contain;
+  mask-repeat: no-repeat;
 }
 
 .awards-logo_svg.tv-four-bed {
   max-width: 6.25rem;
   aspect-ratio: 600 / 225;
-  -webkit-mask: url("../images/tv-four-in-a-bed.png") center / contain no-repeat;
-  mask: url("../images/tv-four-in-a-bed.png") center / contain no-repeat;
+  -webkit-mask-image: url("../images/tv-four-in-a-bed.png");
+  -webkit-mask-position: center;
+  -webkit-mask-size: contain;
+  -webkit-mask-repeat: no-repeat;
+  mask-image: url("../images/tv-four-in-a-bed.png");
+  mask-position: center;
+  mask-size: contain;
+  mask-repeat: no-repeat;
 }
 
 .awards-logo_svg.tv-secret-hotels {
   max-width: 10rem;
   aspect-ratio: 600 / 143;
-  -webkit-mask: url("../images/tv-secret-hotels.png") center / contain no-repeat;
-  mask: url("../images/tv-secret-hotels.png") center / contain no-repeat;
+  -webkit-mask-image: url("../images/tv-secret-hotels.png");
+  -webkit-mask-position: center;
+  -webkit-mask-size: contain;
+  -webkit-mask-repeat: no-repeat;
+  mask-image: url("../images/tv-secret-hotels.png");
+  mask-position: center;
+  mask-size: contain;
+  mask-repeat: no-repeat;
 }
 
 .awards-logo_svg.tv-amazing-spaces {
   max-width: 6rem;
   aspect-ratio: 600 / 276;
-  -webkit-mask: url("../images/tv-amazing-spaces.png") center / contain no-repeat;
-  mask: url("../images/tv-amazing-spaces.png") center / contain no-repeat;
+  -webkit-mask-image: url("../images/tv-amazing-spaces.png");
+  -webkit-mask-position: center;
+  -webkit-mask-size: contain;
+  -webkit-mask-repeat: no-repeat;
+  mask-image: url("../images/tv-amazing-spaces.png");
+  mask-position: center;
+  mask-size: contain;
+  mask-repeat: no-repeat;
 }
 
 .awards-logo_svg.tv-channel4 {
