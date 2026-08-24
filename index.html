@@ -1329,25 +1329,6 @@ function initMarquee(marquee) {
       }
     })
     splide.mount()
-    // A real finger-drag moves the track directly (Move.translate), never
-    // passing the controller path the guard above watches, so a swipe back
-    // from the first card could still wrap. When a drag starts on the first
-    // card, its resting position becomes a wall the track cannot pass:
-    // the swipe stops dead instead of revealing the loop. The wall is taken
-    // from wherever the track actually rests, because after a forward wrap
-    // it legitimately sits on a clone a full loop-width away. Internal
-    // repositioning calls pass preventLoop and are left alone.
-    const chMove = splide.Components.Move
-    const chTranslate = chMove.translate
-    let chWall = null
-    splide.on('drag', function () {
-      chWall = splide.index === 0 ? chMove.getPosition() : null
-    })
-    splide.on('dragged', function () { chWall = null })
-    chMove.translate = function (position, preventLoop) {
-      if (!preventLoop && chWall !== null && position > chWall) position = chWall
-      return chTranslate(position, preventLoop)
-    }
     splideInstances.set(marquee, splide)
   } else {
     // ✅ Desktop: auto-scrolling marquee
