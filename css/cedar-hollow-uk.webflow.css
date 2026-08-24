@@ -2425,6 +2425,63 @@ img {
   max-width: 4.5rem;
 }
 
+/* ---- TV logos: Awards & Recognition marquee ----
+   The five show marks are white-on-alpha rasters, so like .okmag they run as
+   masks over a currentColor background and recolour per section. Channel 4
+   and E4 are inline vectors. Widths put each mark on the strip's optical
+   band (28-45px tall) next to its neighbours. */
+.awards-logo_svg.tv-mafs,
+.awards-logo_svg.tv-grand-designs,
+.awards-logo_svg.tv-four-bed,
+.awards-logo_svg.tv-secret-hotels,
+.awards-logo_svg.tv-amazing-spaces {
+  display: block;
+  background-color: currentColor;
+}
+
+.awards-logo_svg.tv-mafs {
+  max-width: 9.5rem;
+  aspect-ratio: 600 / 155;
+  -webkit-mask: url("../images/tv-mafs-uk.png") center / contain no-repeat;
+  mask: url("../images/tv-mafs-uk.png") center / contain no-repeat;
+}
+
+.awards-logo_svg.tv-grand-designs {
+  max-width: 7rem;
+  aspect-ratio: 600 / 225;
+  -webkit-mask: url("../images/tv-grand-designs.png") center / contain no-repeat;
+  mask: url("../images/tv-grand-designs.png") center / contain no-repeat;
+}
+
+.awards-logo_svg.tv-four-bed {
+  max-width: 6.25rem;
+  aspect-ratio: 600 / 225;
+  -webkit-mask: url("../images/tv-four-in-a-bed.png") center / contain no-repeat;
+  mask: url("../images/tv-four-in-a-bed.png") center / contain no-repeat;
+}
+
+.awards-logo_svg.tv-secret-hotels {
+  max-width: 10rem;
+  aspect-ratio: 600 / 143;
+  -webkit-mask: url("../images/tv-secret-hotels.png") center / contain no-repeat;
+  mask: url("../images/tv-secret-hotels.png") center / contain no-repeat;
+}
+
+.awards-logo_svg.tv-amazing-spaces {
+  max-width: 6rem;
+  aspect-ratio: 600 / 276;
+  -webkit-mask: url("../images/tv-amazing-spaces.png") center / contain no-repeat;
+  mask: url("../images/tv-amazing-spaces.png") center / contain no-repeat;
+}
+
+.awards-logo_svg.tv-channel4 {
+  max-width: 2.5rem;
+}
+
+.awards-logo_svg.tv-e4 {
+  max-width: 2.75rem;
+}
+
 .footer_logo_wrap {
   color: var(--brand-4);
   position: absolute;
@@ -3222,6 +3279,34 @@ img {
 
   .awards-logo_svg.timeout {
     max-width: 3.75rem;
+  }
+
+  .awards-logo_svg.tv-mafs {
+    max-width: 8rem;
+  }
+
+  .awards-logo_svg.tv-grand-designs {
+    max-width: 6rem;
+  }
+
+  .awards-logo_svg.tv-four-bed {
+    max-width: 5.25rem;
+  }
+
+  .awards-logo_svg.tv-secret-hotels {
+    max-width: 8.5rem;
+  }
+
+  .awards-logo_svg.tv-amazing-spaces {
+    max-width: 5rem;
+  }
+
+  .awards-logo_svg.tv-channel4 {
+    max-width: 2.125rem;
+  }
+
+  .awards-logo_svg.tv-e4 {
+    max-width: 2.375rem;
   }
 
   .footer_logo_wrap {
