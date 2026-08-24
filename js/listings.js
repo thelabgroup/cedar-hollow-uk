@@ -33,9 +33,9 @@
         { src: "images/gallery/cedar-hollow-treehouse-s05-1060.webp", srcset: "images/gallery/cedar-hollow-treehouse-s05-530.webp 530w, images/gallery/cedar-hollow-treehouse-s05-1060.webp 1060w" }
       ],
       image: {
-        src: "images/property-cedar-hollow-treehouse.jpg",
+        src: "images/property-cedar-hollow-treehouse-1060.webp",
         sizes: "(max-width: 420px) 100vw, 420px",
-        srcset: "images/property-cedar-hollow-treehouse.jpg 840w"
+        srcset: "images/property-cedar-hollow-treehouse-530.webp 530w, images/property-cedar-hollow-treehouse-1060.webp 1060w"
       },
       description:
         "A 750 sq ft luxury treehouse set among the oaks, with underfloor heating, a full kitchen and a gas BBQ on the balcony.",
@@ -83,9 +83,9 @@
         { src: "images/gallery/fauns-hideaway-s25-1060.webp", srcset: "images/gallery/fauns-hideaway-s25-530.webp 530w, images/gallery/fauns-hideaway-s25-1060.webp 1060w" }
       ],
       image: {
-        src: "images/property-fauns-hideaway.jpg",
+        src: "images/property-fauns-hideaway-1060.webp",
         sizes: "(max-width: 420px) 100vw, 420px",
-        srcset: "images/property-fauns-hideaway.jpg 840w"
+        srcset: "images/property-fauns-hideaway-530.webp 530w, images/property-fauns-hideaway-1060.webp 1060w"
       },
       description:
         "A Narnia-inspired cave hideaway lit by warm lantern light, with underfloor heating, air conditioning and a full kitchen.",
@@ -235,9 +235,9 @@
         { src: "images/gallery/dazzle-treehouse-s58-1060.webp", srcset: "images/gallery/dazzle-treehouse-s58-530.webp 530w, images/gallery/dazzle-treehouse-s58-1060.webp 1060w" }
       ],
       image: {
-        src: "images/property-dazzle-treehouse.jpg",
+        src: "images/property-dazzle-treehouse-1060.webp",
         sizes: "(max-width: 420px) 100vw, 420px",
-        srcset: "images/property-dazzle-treehouse.jpg 840w"
+        srcset: "images/property-dazzle-treehouse-530.webp 530w, images/property-dazzle-treehouse-1060.webp 1060w"
       },
       description:
         "A contemporary canopy retreat wearing WW1 ship-inspired dazzle camouflage, adults only, deep in Dorset woodland.",
@@ -315,9 +315,9 @@
         { src: "images/gallery/pinwheel-treehouse-s76-1060.webp", srcset: "images/gallery/pinwheel-treehouse-s76-530.webp 530w, images/gallery/pinwheel-treehouse-s76-1060.webp 1060w" }
       ],
       image: {
-        src: "images/property-pinwheel-treehouse.jpg",
+        src: "images/property-pinwheel-treehouse-1060.webp",
         sizes: "(max-width: 420px) 100vw, 420px",
-        srcset: "images/property-pinwheel-treehouse.jpg 840w"
+        srcset: "images/property-pinwheel-treehouse-530.webp 530w, images/property-pinwheel-treehouse-1060.webp 1060w"
       },
       description:
         "Inspired by a child’s pinwheel, set in a clearing of mature oaks with a glass-topped living space and one-way windows.",
