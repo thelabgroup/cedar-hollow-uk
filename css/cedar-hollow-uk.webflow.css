@@ -1438,7 +1438,10 @@ img {
 }
 
 .text-style-italic {
+  /* Figma pairs the Light 300 headings with Regular 400 for the italic word,
+     every time the style appears. Inheriting 300 left the italics spindly. */
   font-style: italic;
+  font-weight: 400;
 }
 
 .padding-right, .padding-right.padding-xxlarge, .padding-right.padding-xlarge, .padding-right.padding-large, .padding-right.padding-huge, .padding-right.padding-xxsmall, .padding-right.padding-xxhuge, .padding-right.padding-0, .padding-right.padding-medium, .padding-right.padding-custom1, .padding-right.padding-xsmall, .padding-right.padding-tiny, .padding-right.padding-custom2, .padding-right.padding-xhuge, .padding-right.padding-custom3, .padding-right.padding-small {
