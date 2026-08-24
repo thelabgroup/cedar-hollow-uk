@@ -128,20 +128,65 @@
     tiles.innerHTML = items.map(tile).join("");
     list.innerHTML = items.map(property).join("");
 
-    list.addEventListener("click", function (e) {
-      var btn = e.target.closest(".pp-arrow");
-      if (!btn) return;
-      var frameEl = btn.parentElement.querySelector('[data-gallery="true"]');
+    // One path for both inputs: the arrows and a finger both call step().
+    function step(frameEl, dir) {
       var shots = frameEl.querySelectorAll(".pp-shot");
       if (shots.length < 2) return;
       var i = 0;
       shots.forEach(function (s, n) { if (s.dataset.current) i = n; });
       shots[i].removeAttribute("data-current");
-      var next = (i + Number(btn.dataset.step) + shots.length) % shots.length;
+      var next = (i + dir + shots.length) % shots.length;
       materialise(shots[next]);
       shots[next].setAttribute("data-current", "true");
       // stay one step ahead in the direction of travel
-      materialise(shots[(next + Number(btn.dataset.step) + shots.length) % shots.length]);
+      materialise(shots[(next + dir + shots.length) % shots.length]);
+    }
+
+    list.addEventListener("click", function (e) {
+      var btn = e.target.closest(".pp-arrow");
+      if (!btn) return;
+      var frameEl = btn.parentElement.querySelector('[data-gallery="true"]');
+      if (frameEl) step(frameEl, Number(btn.dataset.step));
     });
+
+    // ---- Swipe -----------------------------------------------------------
+    // A gallery is only a few hundred pixels tall inside a very long page, so
+    // the hard part is not detecting a swipe, it is not stealing vertical
+    // scrolling. The gesture stays undecided until the finger has moved far
+    // enough to show intent: past that point it is either a swipe or a scroll
+    // for the rest of the touch, and never both.
+    var TAKE = 12;      // px of travel before a direction is committed
+    var TRIGGER = 45;   // px of horizontal travel that counts as a swipe
+    var touch = null;
+
+    list.addEventListener("touchstart", function (e) {
+      if (e.touches.length !== 1) { touch = null; return; }
+      var frameEl = e.target.closest('[data-gallery="true"]');
+      if (!frameEl || frameEl.querySelectorAll(".pp-shot").length < 2) { touch = null; return; }
+      touch = { frame: frameEl, x: e.touches[0].clientX, y: e.touches[0].clientY, axis: null };
+    }, { passive: true });
+
+    list.addEventListener("touchmove", function (e) {
+      if (!touch || e.touches.length !== 1) return;
+      var dx = e.touches[0].clientX - touch.x;
+      var dy = e.touches[0].clientY - touch.y;
+      if (!touch.axis) {
+        if (Math.abs(dx) < TAKE && Math.abs(dy) < TAKE) return;
+        touch.axis = Math.abs(dx) > Math.abs(dy) ? "x" : "y";
+      }
+      // Horizontal is ours; vertical belongs to the page and we let it go.
+      if (touch.axis === "x" && e.cancelable) e.preventDefault();
+    }, { passive: false });
+
+    list.addEventListener("touchend", function (e) {
+      if (!touch) return;
+      var t = touch; touch = null;
+      if (t.axis !== "x") return;
+      var dx = (e.changedTouches[0] || {}).clientX - t.x;
+      if (Math.abs(dx) < TRIGGER) return;
+      step(t.frame, dx < 0 ? 1 : -1);   // drag left to go forward
+    }, { passive: true });
+
+    list.addEventListener("touchcancel", function () { touch = null; }, { passive: true });
   });
 })();

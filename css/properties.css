@@ -92,10 +92,21 @@
   position: absolute; top: 50%; transform: translateY(-50%); z-index: 2;
   width: 20px; height: 43px; padding: 0; background: none; border: 0; cursor: pointer;
 }
+/* Tell the browser horizontal drags on a gallery belong to us and vertical
+   ones belong to the page, so scrolling never fights the swipe handler. */
+.pp-frame[data-gallery="true"] { touch-action: pan-y; }
+.pp-frame[data-gallery="true"] img { -webkit-user-drag: none; user-select: none; }
 .pp-arrow img { width: 100%; height: 100%; display: block; }
 .pp-arrow--prev { left: 4.2%; }
 .pp-arrow--next { right: 4.2%; }
-@media (max-width: 991px) { .pp-arrow { width: 12px; height: 21px; } .pp-arrow--prev { left: 16px; } .pp-arrow--next { right: 16px; } }
+@media (max-width: 991px) {
+  /* The design draws these at 12x21. Keep the icon that size but pad the
+     button out to a 44px touch target, which is invisible and unmoved. */
+  .pp-arrow { width: 44px; height: 44px; padding: 11px 16px; box-sizing: border-box; }
+  .pp-arrow img { width: 12px; height: 21px; }
+  .pp-arrow--prev { left: 4px; }
+  .pp-arrow--next { right: 4px; }
+}
 
 .pp-info {
   flex: 1 1 0; min-width: 0;
