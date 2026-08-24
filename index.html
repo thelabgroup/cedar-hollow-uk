@@ -1316,6 +1316,9 @@ function initMarquee(marquee) {
       // Figma 55:962 - every card is the same 420px wide, not content-sized.
       fixedWidth: 'min(420px, 82vw)',
       focus: 'center',
+      // Keep the first and last cards centred too; trimming would pin
+      // them to the edges of the track.
+      trimSpace: false,
       pagination: true,
       arrows: false,
       drag: true,
