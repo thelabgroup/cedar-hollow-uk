@@ -107,6 +107,13 @@ animation:marquee-scroll 70s linear infinite;
                box. Tie height to width instead: 56.25vw = 810/1440, floored at the spec's
                720px and capped at 810 to match the content caps above 1440. */
             .section-hero .hero_contents{min-height:100vh;}
+            /* Phones and tablets only. 100vh on mobile Safari and Chrome means the
+               viewport with the address bar hidden, so a 100vh hero is taller than
+               the screen actually showing and its lower content sits under the bar.
+               100dvh tracks the visible viewport instead, so the hero fills exactly
+               what the device is showing. Desktop keeps 100vh, where the two are
+               identical anyway. */
+            @media (max-width:991px){.section-hero .hero_contents{min-height:100dvh;}}
             /* Vertical rhythm measured off the 1440x810 hero export. The hero scales
                with viewport, so these track it: 10vw = 145px and 5vw = 72px at 1440. */
             .section-hero .hero_contents > .padding-global{flex:1 1 auto;min-height:0;display:flex;flex-direction:column;justify-content:center;padding-top:min(110px,13.58vh);padding-bottom:min(50px,6.17vh);}
@@ -129,10 +136,20 @@ animation:marquee-scroll 70s linear infinite;
                alone on line three. At 9vw the longest designed line measures
                284px against a 338px column, so all three fit with room spare. */
             .section-hero .heading-style-h1{font-size:min(clamp(2.25rem,5.56vw,7rem),9.88vh);letter-spacing:-.035em;line-height:100%;color:#EFEED5;}
-            /* The clamp's 2.25rem floor pushes "Oxfordshire and Dorset" onto a fourth
-               line on phones. 9vw holds the three-line shape from 479px down to 320px
-               (34px -> 29px), measured rather than guessed. */
-            @media (max-width:479px){.section-hero .heading-style-h1{font-size:9vw;}}
+            /* Phone sizing. The Figma three-line break caps the heading at about
+               9.85vw on a 320px screen, because "Oxfordshire and Dorset" has to fit
+               one line; that is only a ninth larger than it was. Breaking after
+               "Retreats" and "Oxfordshire" instead shortens the longest line by a
+               fifth and lets the type run to 12vw, a third larger. The 3.25rem cap
+               stops large phones and small tablets overshooting. Desktop keeps the
+               Figma breaks and sizing untouched. */
+            .hero-br--m{display:none;}
+            @media (max-width:767px){
+              .hero-br--d{display:none;}
+              .hero-br--m{display:inline;}
+              .section-hero .heading-style-h1{font-size:min(12vw,3.25rem);}
+              .section-hero .hero_contents > .padding-global{padding-left:16px;padding-right:16px;}
+            }
             /* Above the 1440 design width the heading keeps growing with the
                viewport, so the 820px box it was drawn in has to grow too --
                otherwise the forced line breaks overflow it and the heading
@@ -206,7 +223,7 @@ animation:marquee-scroll 70s linear infinite;
             <div>
               <div class="hero_content">
                 <div class="margin-bottom margin-large">
-                  <h1 class="heading-style-h1"><span class="text-style-italic text-weight-normal">Award-Winning</span><br class="hero-br">Woodland Retreats in<br class="hero-br">Oxfordshire and Dorset</h1>
+                  <h1 class="heading-style-h1"><span class="text-style-italic text-weight-normal">Award-Winning</span><br class="hero-br">Woodland Retreats<br class="hero-br--m"> in<br class="hero-br--d">Oxfordshire<br class="hero-br--m"> and Dorset</h1>
                 </div>
               </div>
               <div class="button-group align-center">
