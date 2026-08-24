@@ -165,6 +165,13 @@ width:100%;
   .cabin-item:hover .cabin-item_img{
     transform: scale(1.035);
   }
+  /* The six cards' inner content differs by a line where the feature row
+     wraps, so which card is active is the only thing that could change a
+     height measurement mid-swipe. Filling the slide makes every card
+     measure identically in every engine. */
+  .section-properties .splide__slide .cabin-item{
+    height: 100%;
+  }
   .button:hover .button_icon{
     transform: translateX(.25rem);
   }
@@ -1316,6 +1323,9 @@ function initMarquee(marquee) {
       // Figma 55:962 - every card is the same 420px wide, not content-sized.
       fixedWidth: 'min(420px, 82vw)',
       focus: 'center',
+      // Keep the first and last cards centred too; trimming would pin
+      // them to the edges of the track.
+      trimSpace: false,
       pagination: true,
       arrows: false,
       drag: true,
