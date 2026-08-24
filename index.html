@@ -172,6 +172,25 @@ width:100%;
   .section-properties .splide__slide .cabin-item{
     height: 100%;
   }
+  /* Decorative copies of the far cards beyond each end of the deck. The
+     list's transform makes it their containing block, so they travel with
+     the track. Sized like a slide; the 1rem offsets mirror the gap. */
+  .section-properties .ch-peek{
+    position: absolute;
+    top: 0;
+    height: 100%;
+    width: min(420px, 82vw);
+    pointer-events: none;
+  }
+  .section-properties .ch-peek--before{
+    left: calc(-1rem - min(420px, 82vw));
+  }
+  .section-properties .ch-peek--after{
+    left: calc(100% + 1rem);
+  }
+  .section-properties .ch-peek .cabin-item{
+    height: 100%;
+  }
   .button:hover .button_icon{
     transform: translateX(.25rem);
   }
@@ -1336,6 +1355,26 @@ function initMarquee(marquee) {
       gap: '1rem',
     })
     splide.mount()
+    // Decorative edge peeks: the deck is finite, but a copy of the sixth
+    // card shows beyond the left edge of the first and a copy of the first
+    // beyond the right edge of the sixth, so the ends look like the loop
+    // used to. They live in the translated list, so they ride with the
+    // track, but they are inert: hidden from assistive tech, unclickable,
+    // and unreachable by swiping.
+    var chList = marquee.querySelector('.splide__list')
+    chList.querySelectorAll('.ch-peek').forEach(function (g) { g.remove() })
+    var chSlides = chList.querySelectorAll('.splide__slide')
+    if (chSlides.length > 1) {
+      ;[[chSlides[chSlides.length - 1], 'ch-peek--before'], [chSlides[0], 'ch-peek--after']].forEach(function (pair) {
+        var g = document.createElement('div')
+        g.className = 'ch-peek ' + pair[1]
+        g.setAttribute('aria-hidden', 'true')
+        g.setAttribute('inert', '')
+        g.innerHTML = pair[0].innerHTML
+        g.querySelectorAll('a').forEach(function (a) { a.removeAttribute('href'); a.removeAttribute('tabindex') })
+        chList.appendChild(g)
+      })
+    }
     splideInstances.set(marquee, splide)
   } else {
     // ✅ Desktop: auto-scrolling marquee
