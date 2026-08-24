@@ -101,6 +101,18 @@ width:100%;
   .section-retreat .property-item_body .heading-style-h3 {
     font-size: 2.25rem;
   }
+  /* Place to Stay cards get the same treatment with swapped titles:
+     Experiences and Sustainability at full size instead of the long
+     names squeezed small. */
+  .section-cta .ch-card-full {
+    display: none;
+  }
+  .section-cta .ch-card-short {
+    display: inline;
+  }
+  .section-cta .property-item_body .heading-style-h3 {
+    font-size: 2.25rem;
+  }
   .section-retreat .property-item_body .text-size-large,
   .section-cta .property-item_body .text-size-large {
     font-size: 1rem;
@@ -234,6 +246,7 @@ animation:marquee-scroll 70s linear infinite;
                stops large phones and small tablets overshooting. Desktop keeps the
                Figma breaks and sizing untouched. */
             .hero-br--m{display:none;}
+            .ch-card-short{display:none;}
             @media (max-width:767px){
               .hero-br--d{display:none;}
               .hero-br--m{display:inline;}
@@ -938,12 +951,12 @@ animation:marquee-scroll 70s linear infinite;
                 <div class="property-item_body">
                   <div class="max-width-xlarge align-center">
                     <div class="margin-bottom margin-xxsmall">
-                      <h3 class="heading-style-h3">Experiential Hospitality</h3>
+                      <h3 class="heading-style-h3"><span class="ch-card-full">Experiential Hospitality</span><span class="ch-card-short">Experiences</span></h3>
                     </div>
                   </div>
                   <div class="property-item_des-wrap">
                     <div class="margin-bottom margin-small">
-                      <p class="text-size-large">Slow days by design. Hot tubs under the canopy, bat walks at dusk, and honey from our own hives.</p>
+                      <p class="text-size-large">Hot tubs under the canopy, bat walks at dusk, honey from our hives.</p>
                     </div>
                   </div>
                   <a data-wf--button--variant="base" href="experiences.html" class="button w-inline-block"><span>Explore Experiences</span><svg xmlns="http://www.w3.org/2000/svg" width="100%" viewbox="0 0 17 12" fill="none" class="button_icon">
@@ -956,12 +969,12 @@ animation:marquee-scroll 70s linear infinite;
                 <div class="property-item_body">
                   <div class="max-width-xlarge align-center">
                     <div class="margin-bottom margin-xxsmall">
-                      <h3 class="heading-style-h3">Sustainable Practices</h3>
+                      <h3 class="heading-style-h3"><span class="ch-card-full">Sustainable Practices</span><span class="ch-card-short">Sustainability</span></h3>
                     </div>
                   </div>
                   <div class="property-item_des-wrap">
                     <div class="margin-bottom margin-small">
-                      <p class="text-size-large">The woodland came first. We keep each retreat small and tucked in, so what lived here before us still does.</p>
+                      <p class="text-size-large">The woodland came first. We keep each retreat small and tucked in.</p>
                     </div>
                   </div>
                   <a data-wf--button--variant="base" href="sustainability.html" class="button w-inline-block"><span>Read our approach</span><svg xmlns="http://www.w3.org/2000/svg" width="100%" viewbox="0 0 17 12" fill="none" class="button_icon">
