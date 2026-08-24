@@ -35,6 +35,88 @@ transition: all .4s ease-in-out;
 left:0;
 width:100%;
 }
+}
+
+/* ---- Phone layout for "Choose your Retreat" and "More Than A Place to Stay" ----
+   Both sections stack the same .property-item card. On a phone each card ran
+   526px tall, so the sections measured 1329px and 1584px against 493-704px for
+   every section around them. Two desktop rules were reaching phones unchanged:
+   .property-item_body .heading-style-h3 held 3.125rem while every other h3
+   drops to 2rem, and .section-cta .padding-section-medium held 100/112px.
+   Turning the card sideways keeps the photo, the description and the link,
+   and brings both sections back in line. Desktop is untouched. */
+@media screen and (max-width: 767px) {
+  .section-cta .padding-section-medium {
+    padding-top: 3rem;
+    padding-bottom: 3rem;
+  }
+  .section-retreat .property-wrapper,
+  .section-cta .property-wrapper {
+    flex-flow: column;
+    align-items: stretch;
+    grid-row-gap: 1.25rem;
+  }
+  .section-retreat .property-item,
+  .section-cta .property-item {
+    flex-flow: row;
+    align-items: stretch;
+    grid-column-gap: 1rem;
+    grid-row-gap: 1rem;
+    max-width: none;
+  }
+  .section-retreat .property-item_img-wrap,
+  .section-cta .property-item_img-wrap {
+    /* A fixed shape instead of stretch: the Place to Stay cards carry longer
+       copy, and stretching pulled their photos past 500px tall. */
+    flex: 0 0 38%;
+    aspect-ratio: 2 / 3;
+    align-self: center;
+  }
+  .section-retreat .property-item_img,
+  .section-cta .property-item_img {
+    aspect-ratio: auto;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  .section-retreat .property-item_body,
+  .section-cta .property-item_body {
+    flex: 1 1 auto;
+    min-width: 0;
+    text-align: left;
+    display: flex;
+    flex-flow: column;
+    justify-content: center;
+  }
+  .section-retreat .property-item_body .heading-style-h3,
+  .section-cta .property-item_body .heading-style-h3 {
+    font-size: 1.5rem;
+    line-height: 1.15;
+  }
+  .section-retreat .property-item_body .text-size-large,
+  .section-cta .property-item_body .text-size-large {
+    font-size: 1rem;
+    line-height: 1.45;
+  }
+  .section-retreat .property-item_des-wrap,
+  .section-cta .property-item_des-wrap {
+    max-width: none;
+    margin-left: 0;
+    margin-right: 0;
+  }
+  .section-retreat .property-item_body .align-center,
+  .section-cta .property-item_body .align-center {
+    margin-left: 0;
+    margin-right: 0;
+  }
+  .section-retreat .property-item_body .button,
+  .section-cta .property-item_body .button {
+    align-self: flex-start;
+    padding: .625rem 1.125rem;
+    font-size: .9375rem;
+    white-space: nowrap;
+  }
+}
 </style>
   <style>
   .splide__pagination{
@@ -223,7 +305,7 @@ animation:marquee-scroll 70s linear infinite;
             <div>
               <div class="hero_content">
                 <div class="margin-bottom margin-large">
-                  <h1 class="heading-style-h1"><span class="text-style-italic text-weight-normal">Award-Winning</span><br class="hero-br">Woodland Retreats<br class="hero-br--m"> in<br class="hero-br--d">Oxfordshire<br class="hero-br--m"> and Dorset</h1>
+                  <h1 class="heading-style-h1"><span class="text-style-italic text-weight-normal">Award-Winning</span><br class="hero-br">Woodland Retreats<br class="hero-br--m"> in <br class="hero-br--d">Oxfordshire<br class="hero-br--m"> and Dorset</h1>
                 </div>
               </div>
               <div class="button-group align-center">
