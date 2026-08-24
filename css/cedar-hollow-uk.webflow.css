@@ -2358,11 +2358,11 @@ img {
 }
 
 .awards-logo_svg.thesun {
-  max-width: 8.5rem;
+  max-width: 5.5rem;
 }
 
 .awards-logo_svg.okmag {
-  max-width: 5.5rem;
+  max-width: 3.75rem;
 }
 
 .awards-logo_svg.bbc {
@@ -2370,7 +2370,7 @@ img {
 }
 
 .awards-logo_svg.timeout {
-  max-width: 7rem;
+  max-width: 4.75rem;
 }
 
 .footer_logo_wrap {
@@ -3153,11 +3153,11 @@ img {
   }
 
   .awards-logo_svg.thesun {
-    max-width: 7rem;
+    max-width: 4.75rem;
   }
 
   .awards-logo_svg.okmag {
-    max-width: 4.5rem;
+    max-width: 3.25rem;
   }
 
   .awards-logo_svg.bbc {
@@ -3165,7 +3165,7 @@ img {
   }
 
   .awards-logo_svg.timeout {
-    max-width: 6rem;
+    max-width: 4rem;
   }
 
   .footer_logo_wrap {
