@@ -2362,7 +2362,26 @@ img {
 }
 
 .awards-logo_svg.okmag {
-  max-width: 3.75rem;
+  /* The supplied artwork is a raster box with the letters knocked out, so it
+     cannot inherit currentColor the way the inline marks do. A mask over a
+     currentColor background recolours it identically per section. */
+  max-width: 2.125rem;
+  display: block;
+  aspect-ratio: 1;
+  background-color: currentColor;
+  -webkit-mask: url("../images/logo-ok-news.png") center / contain no-repeat;
+  mask: url("../images/logo-ok-news.png") center / contain no-repeat;
+}
+
+.awards-logo_svg.thetimes {
+  /* Masked for the same reason as .okmag: the masthead's crest is a 116KB
+     traced path, far too heavy to inline in all four marquee tracks. */
+  max-width: 14rem;
+  display: block;
+  aspect-ratio: 908 / 107;
+  background-color: currentColor;
+  -webkit-mask: url("../images/logo-the-times.svg") center / contain no-repeat;
+  mask: url("../images/logo-the-times.svg") center / contain no-repeat;
 }
 
 .awards-logo_svg.bbc {
@@ -2370,7 +2389,7 @@ img {
 }
 
 .awards-logo_svg.timeout {
-  max-width: 4.75rem;
+  max-width: 4.5rem;
 }
 
 .footer_logo_wrap {
@@ -3157,7 +3176,11 @@ img {
   }
 
   .awards-logo_svg.okmag {
-    max-width: 3.25rem;
+    max-width: 1.875rem;
+  }
+
+  .awards-logo_svg.thetimes {
+    max-width: 12rem;
   }
 
   .awards-logo_svg.bbc {
@@ -3165,7 +3188,7 @@ img {
   }
 
   .awards-logo_svg.timeout {
-    max-width: 4rem;
+    max-width: 3.75rem;
   }
 
   .footer_logo_wrap {
