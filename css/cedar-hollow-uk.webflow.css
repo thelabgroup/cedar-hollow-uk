@@ -2342,6 +2342,13 @@ a.awards-logo_svg {
   text-decoration: none;
 }
 
+a.awards-logo_svg > svg,
+a.awards-logo_svg > img {
+  /* The anchor carries the per-logo width caps; its artwork fills it. */
+  display: block;
+  width: 100%;
+}
+
 .awards-logo_svg {
   /* A percentage here resolved against the track, whose own width comes from
      these children -- circular, so the two identical tracks could settle on
