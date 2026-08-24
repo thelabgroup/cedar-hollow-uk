@@ -181,9 +181,9 @@
         { src: "images/gallery/woodsmans-treehouse-s23-714.webp", srcset: "images/gallery/woodsmans-treehouse-s23-530.webp 530w, images/gallery/woodsmans-treehouse-s23-714.webp 714w" }
       ],
       image: {
-        src: "images/property-woodsmans-treehouse.jpg",
+        src: "images/property-woodsmans-treehouse-999.webp",
         sizes: "(max-width: 420px) 100vw, 420px",
-        srcset: "images/property-woodsmans-treehouse.jpg 840w"
+        srcset: "images/property-woodsmans-treehouse-530.webp 530w, images/property-woodsmans-treehouse-999.webp 999w"
       },
       description:
         "Perched in an ancient oak and reached by rope bridge, with a rotating wood burner, roll-top bath and rooftop sauna.",
@@ -315,9 +315,9 @@
         { src: "images/gallery/pinwheel-treehouse-s76-1060.webp", srcset: "images/gallery/pinwheel-treehouse-s76-530.webp 530w, images/gallery/pinwheel-treehouse-s76-1060.webp 1060w" }
       ],
       image: {
-        src: "images/property-pinwheel-treehouse-1060.webp",
+        src: "images/property-pinwheel-treehouse-b-1060.webp",
         sizes: "(max-width: 420px) 100vw, 420px",
-        srcset: "images/property-pinwheel-treehouse-530.webp 530w, images/property-pinwheel-treehouse-1060.webp 1060w"
+        srcset: "images/property-pinwheel-treehouse-b-530.webp 530w, images/property-pinwheel-treehouse-b-1060.webp 1060w"
       },
       description:
         "Inspired by a child’s pinwheel, set in a clearing of mature oaks with a glass-topped living space and one-way windows.",
