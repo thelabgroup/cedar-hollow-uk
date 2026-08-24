@@ -2335,6 +2335,13 @@ img {
   background-color: var(--offwhite);
 }
 
+a.awards-logo_svg {
+  /* Logo links recolour with the strip; without this, currentColor on an
+     anchor resolves to the browser's default link blue. */
+  color: inherit;
+  text-decoration: none;
+}
+
 .awards-logo_svg {
   /* A percentage here resolved against the track, whose own width comes from
      these children -- circular, so the two identical tracks could settle on
