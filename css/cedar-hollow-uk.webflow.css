@@ -1087,6 +1087,7 @@ img {
 
 .text-size-large {
   font-size: 1.25rem;
+  font-weight: 400;
   line-height: 1.6;
 }
 
@@ -1469,6 +1470,7 @@ img {
 .button {
   grid-column-gap: .75rem;
   grid-row-gap: .75rem;
+  font-size: 1.125rem;
   line-height: 1.6;
   border: 1px solid var(--color-text);
   background-color: var(--accent);
@@ -2047,6 +2049,7 @@ img {
 
 .footer_link.is-large {
   font-size: 1.125rem;
+  font-weight: 500;
   text-decoration: none;
 }
 
@@ -2071,6 +2074,10 @@ img {
 .footer-link-list.is-contact {
   grid-column-gap: 0rem;
   grid-row-gap: 0rem;
+}
+
+.legal-text {
+  font-weight: 400;
 }
 
 .footer_legal {
