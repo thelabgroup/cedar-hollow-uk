@@ -1304,7 +1304,10 @@ function initMarquee(marquee) {
   if (isMobile) {
     // ✅ Mobile: standard snap slider
     const splide = new Splide(marquee, {
-      type: 'loop',
+      // A finite deck: six cards, swipe forward and back, no looping.
+      // The first card starts at the near edge and the last card ends
+      // the deck; there is nothing before or after them.
+      type: 'slide',
       // Figma 55:962 - every card is the same 420px wide, not content-sized.
       fixedWidth: 'min(420px, 82vw)',
       focus: 'center',
@@ -1316,17 +1319,6 @@ function initMarquee(marquee) {
       // several cards.
       flickMaxPages: 1,
       gap: '1rem',
-    })
-    // The loop only runs forwards. From the first card a backward swipe
-    // would wrap to the last; the neighbour stays visible on the left as
-    // part of the loop, but the only way to reach it is all the way round.
-    // A backward wrap reports a negative destination, which distinguishes
-    // it from a legitimate jump to the last dot.
-    splide.on('move', function (newIndex, prevIndex, destIndex) {
-      if (prevIndex === 0 && destIndex < 0) {
-        if (splide.Components.Move.cancel) splide.Components.Move.cancel()
-        splide.go(0)
-      }
     })
     splide.mount()
     splideInstances.set(marquee, splide)
