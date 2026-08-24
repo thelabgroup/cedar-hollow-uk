@@ -519,13 +519,14 @@
       '<div class="cabin-item_feature-wrapper">' +
       '<div class="cabin-item_features">' +
       "<p>" +
-      escapeHtml(item.region) +
+      escapeHtml(item.destination) +
       '</p><span class="seperator-dot">•</span>' +
       "<p>Sleeps " +
       item.sleeps +
       '</p><span class="seperator-dot">•</span>' +
       "<p>" +
-      escapeHtml(item.highlight || "") +
+      item.bedrooms +
+      (item.bedrooms === 1 ? " bedroom" : " bedrooms") +
       "</p>" +
       "</div>" +
       '<div class="cabin-item_cost"><span>From</span><span>£' +
