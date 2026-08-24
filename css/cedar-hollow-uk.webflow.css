@@ -2357,6 +2357,22 @@ img {
   max-width: 19rem;
 }
 
+.awards-logo_svg.thesun {
+  max-width: 8.5rem;
+}
+
+.awards-logo_svg.okmag {
+  max-width: 5.5rem;
+}
+
+.awards-logo_svg.bbc {
+  max-width: 7.5rem;
+}
+
+.awards-logo_svg.timeout {
+  max-width: 7rem;
+}
+
 .footer_logo_wrap {
   color: var(--brand-4);
   position: absolute;
@@ -3134,6 +3150,22 @@ img {
 
   .awards-logo_svg.independent {
     max-width: 18rem;
+  }
+
+  .awards-logo_svg.thesun {
+    max-width: 7rem;
+  }
+
+  .awards-logo_svg.okmag {
+    max-width: 4.5rem;
+  }
+
+  .awards-logo_svg.bbc {
+    max-width: 6.5rem;
+  }
+
+  .awards-logo_svg.timeout {
+    max-width: 6rem;
   }
 
   .footer_logo_wrap {
