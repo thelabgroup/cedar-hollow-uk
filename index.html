@@ -1347,14 +1347,12 @@ function initMarquee(marquee) {
       // Figma 55:962 - every card is the same 420px wide, not content-sized.
       fixedWidth: 'min(420px, 82vw)',
       focus: 'center',
-      // Bounded rather than centred at the ends: the middle cards centre and
-      // show a sliver either side, while the first stops against the left
-      // padding and the last against the right, instead of sitting centred
-      // with dead space beside it.
-      trimSpace: true,
-      // The gutter the end cards stop against, and what leaves the second
-      // card peeking in from the right on first view.
-      padding: { left: '22px', right: '22px' },
+      // Every card centres, the first and last included. Bounding the ends
+      // against the screen edges was tried in #146 and reverted: it left the
+      // first card's text, which is centred on the card, sitting off the
+      // centre of the screen, and Isabella would rather keep the text lined
+      // up than close the gap beside the first card.
+      trimSpace: false,
       pagination: true,
       arrows: false,
       drag: true,
