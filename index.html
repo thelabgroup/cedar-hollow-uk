@@ -1347,9 +1347,14 @@ function initMarquee(marquee) {
       // Figma 55:962 - every card is the same 420px wide, not content-sized.
       fixedWidth: 'min(420px, 82vw)',
       focus: 'center',
-      // Keep the first and last cards centred too; trimming would pin
-      // them to the edges of the track.
-      trimSpace: false,
+      // Bounded rather than centred at the ends: the middle cards centre and
+      // show a sliver either side, while the first stops against the left
+      // padding and the last against the right, instead of sitting centred
+      // with dead space beside it.
+      trimSpace: true,
+      // The gutter the end cards stop against, and what leaves the second
+      // card peeking in from the right on first view.
+      padding: { left: '22px', right: '22px' },
       pagination: true,
       arrows: false,
       drag: true,
