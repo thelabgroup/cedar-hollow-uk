@@ -1200,8 +1200,10 @@ animation:marquee-scroll 70s linear infinite;
       .ch-book__option-name{display:block;font-family:var(--font-family--heading,Crimsonpro),serif;font-size:1.5rem;font-weight:400;letter-spacing:-.035em;line-height:1.2;}
       .ch-book__option-desc{display:block;margin-top:.15rem;font-size:.9375rem;line-height:1.5;color:rgba(59,65,38,.75);}
       .ch-book__option svg{flex:none;width:1.0625rem;height:.75rem;}
-      .ch-book__talk{margin:1.75rem 0 0;font-size:.9375rem;line-height:1.6;color:rgba(59,65,38,.75);}
-      .ch-book__talk a{color:var(--accent,#3b4126);text-decoration:underline;}
+      .ch-book__talk{margin:1.25rem 0 0;font-size:.9375rem;line-height:1.6;color:rgba(59,65,38,.75);}
+      /* Inline-block with vertical padding so the thumb has something to hit:
+         as plain text the number was an 18px-tall target, easy to miss. */
+      .ch-book__talk a{display:inline-block;padding:.5rem 0;color:var(--accent,#3b4126);text-decoration:underline;}
       .ch-book__close{position:absolute;top:1rem;right:1rem;display:flex;align-items:center;justify-content:center;width:2.25rem;height:2.25rem;padding:0;background:none;border:0;border-radius:50%;color:var(--accent,#3b4126);cursor:pointer;}
       .ch-book__close:hover{background-color:rgba(59,65,38,.1);}
       .ch-book__close:focus-visible{outline:2px solid var(--accent,#3b4126);outline-offset:2px;}
@@ -1241,7 +1243,7 @@ animation:marquee-scroll 70s linear infinite;
             </a>
           </li>
         </ul>
-        <p class="ch-book__talk">Or talk to us: <a href="https://wa.me/447488894589" target="_blank" rel="noopener" aria-label="Message us on WhatsApp on 074 88 89 45 89">074 88 89 45 89</a> &middot; <a href="mailto:hello@cedarhollow.uk">hello@cedarhollow.uk</a></p>
+        <p class="ch-book__talk">Or talk to us: <a href="https://wa.me/447488894589" rel="noopener" aria-label="Message us on WhatsApp on 074 88 89 45 89">074 88 89 45 89</a> &middot; <a href="mailto:hello@cedarhollow.uk">hello@cedarhollow.uk</a></p>
       </div>
     </div>
     <script>
