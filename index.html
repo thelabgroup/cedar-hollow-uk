@@ -172,18 +172,23 @@ width:100%;
   .section-properties .splide__slide .cabin-item{
     height: 100%;
   }
-  /* Decorative copies of the far cards beyond each end of the deck. The
-     list's transform makes it their containing block, so they travel with
-     the track. Sized like a slide; the 1rem offsets mirror the gap. */
+  /* Decorative copies of the far cards beyond each end of the deck. Each
+     one hangs off the card it sits beside, so its offsets resolve against
+     that card rather than the list: the list is only as wide as the track,
+     so a percentage measured from it landed the copy on top of the deck.
+     The 1rem offsets mirror the gap. */
+  .section-properties .splide__slide{
+    position: relative;
+  }
   .section-properties .ch-peek{
     position: absolute;
     top: 0;
     height: 100%;
-    width: min(420px, 82vw);
+    width: 100%;
     pointer-events: none;
   }
   .section-properties .ch-peek--before{
-    left: calc(-1rem - min(420px, 82vw));
+    left: calc(-100% - 1rem);
   }
   .section-properties .ch-peek--after{
     left: calc(100% + 1rem);
@@ -1325,6 +1330,10 @@ function initMarquee(marquee) {
     splideInstances.get(marquee).destroy()
     splideInstances.delete(marquee)
   }
+  // Clear any edge peeks left by a previous init before Splide reads the
+  // deck. They hang inside the end cards, so a loop init on a wider screen
+  // would clone them along with the cards.
+  marquee.querySelectorAll('.ch-peek').forEach(function (g) { g.remove() })
   /********* PARAMETERS *********/
   let speed = parseFloat(marquee.getAttribute('fc-marquee-speed'))
   if(isNaN(speed)) speed = 1
@@ -1356,12 +1365,31 @@ function initMarquee(marquee) {
       arrows: false,
       drag: true,
       perMove: 1,
-      // One card per swipe: without this a hard flick can carry past
-      // several cards.
+      // Caps the momentum a flick adds. It does not cap the drag itself,
+      // which is why the clamp below is needed as well.
       flickMaxPages: 1,
       gap: '1rem',
     })
     splide.mount()
+    // One card per swipe, however hard the flick. flickMaxPages only limits
+    // the coast after the finger lifts; a long drag has already carried the
+    // track past several cards by then, and Splide snaps to whichever is
+    // nearest. So remember where the gesture started and refuse to land
+    // more than one card away from it.
+    var chDragFrom = null
+    splide.on('drag', function () { chDragFrom = splide.index })
+    splide.on('move', function (chNext) {
+      if (chDragFrom === null) return
+      var chFrom = chDragFrom
+      // Clear before go(), which re-enters this handler.
+      chDragFrom = null
+      if (Math.abs(chNext - chFrom) > 1) splide.go(chFrom + (chNext > chFrom ? 1 : -1))
+    })
+    // dragged fires just before move, in the same task, so clearing on the
+    // next tick leaves the clamp its value while still dropping a stale one
+    // from a drag too small to move the deck. Otherwise the next tap on a
+    // pagination dot would be clamped as though it were that swipe.
+    splide.on('dragged', function () { setTimeout(function () { chDragFrom = null }, 0) })
     // Decorative edge peeks: the deck is finite, but a copy of the sixth
     // card shows beyond the left edge of the first and a copy of the first
     // beyond the right edge of the sixth, so the ends look like the loop
@@ -1369,17 +1397,24 @@ function initMarquee(marquee) {
     // track, but they are inert: hidden from assistive tech, unclickable,
     // and unreachable by swiping.
     var chList = marquee.querySelector('.splide__list')
-    chList.querySelectorAll('.ch-peek').forEach(function (g) { g.remove() })
     var chSlides = chList.querySelectorAll('.splide__slide')
     if (chSlides.length > 1) {
-      ;[[chSlides[chSlides.length - 1], 'ch-peek--before'], [chSlides[0], 'ch-peek--after']].forEach(function (pair) {
+      var chFirst = chSlides[0]
+      var chLast = chSlides[chSlides.length - 1]
+      // Snapshot both cards before appending anything: a peek lives inside
+      // the card it hangs off, so copying that card afterwards would copy
+      // the peek along with it.
+      var chFirstHtml = chFirst.innerHTML
+      var chLastHtml = chLast.innerHTML
+      // [markup to copy, class, the card it hangs off]
+      ;[[chLastHtml, 'ch-peek--before', chFirst], [chFirstHtml, 'ch-peek--after', chLast]].forEach(function (pair) {
         var g = document.createElement('div')
         g.className = 'ch-peek ' + pair[1]
         g.setAttribute('aria-hidden', 'true')
         g.setAttribute('inert', '')
-        g.innerHTML = pair[0].innerHTML
+        g.innerHTML = pair[0]
         g.querySelectorAll('a').forEach(function (a) { a.removeAttribute('href'); a.removeAttribute('tabindex') })
-        chList.appendChild(g)
+        pair[2].appendChild(g)
       })
     }
     splideInstances.set(marquee, splide)
