@@ -156,6 +156,23 @@ width:100%;
 .splide__arrows{
   display:none;
 }
+/* Splide's live region announces the active card to screen readers. We do not
+   load Splide's own stylesheet, which is where it would normally be hidden, so
+   without this it takes part in the layout: its text appearing on each swipe
+   and clearing afterwards grew the section by 24px and dropped it back. Hidden
+   the standard way, so it still reaches assistive tech. */
+.splide__sr{
+  position:absolute;
+  width:1px;
+  height:1px;
+  margin:-1px;
+  padding:0;
+  border:0;
+  overflow:hidden;
+  clip:rect(0 0 0 0);
+  clip-path:inset(50%);
+  white-space:nowrap;
+}
 </style>
 </head>
 <body>
