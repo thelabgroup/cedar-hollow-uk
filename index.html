@@ -1354,9 +1354,13 @@ function initMarquee(marquee) {
       arrows: false,
       drag: true,
       perMove: 1,
-      // Caps the momentum a flick adds. It does not cap the drag itself,
-      // which is why the clamp below is needed as well.
-      flickMaxPages: 1,
+      // Caps the momentum a flick adds, as a fraction of the track width.
+      // Splide's own cap is one whole track (390px on a phone) while one card
+      // step is 336px, so at the default a flick could ask for the card after
+      // next. Held to 0.4 of a track, the drag cap below plus momentum can
+      // never reach the midpoint between one card and two, while a short
+      // flick still carries far enough to turn the card.
+      flickMaxPages: 0.4,
       gap: '1rem',
     })
     splide.mount()
@@ -1384,18 +1388,25 @@ function initMarquee(marquee) {
       if (chPos < chDragPos - chStep) chMove.translate(chDragPos - chStep)
       else if (chPos > chDragPos + chStep) chMove.translate(chDragPos + chStep)
     })
-    // And a backstop on the landing, for any device where momentum still
-    // carries further. Guarded by elapsed time rather than cleared on
-    // dragged: dragged fires first, and on a slower device move can arrive a
-    // frame or two later, by which point a cleared clamp has nothing to hold.
-    // The window also drops a stale gesture, so a later tap on a pagination
-    // dot is not clamped as though it were that swipe.
+    // The window opens when the finger lifts, not when the drag began. move
+    // fires just after dragged, so measuring from the release is always a
+    // few milliseconds, whereas measuring from the start of a long stroke
+    // could exceed any window: a leisurely drag across the screen took 1758ms
+    // to land, which disarmed the previous version of this backstop on
+    // exactly the gestures that needed it.
+    splide.on('dragged', function () { chDragAt = Date.now() })
     splide.on('move', function (chNext) {
-      if (chDragFrom === null || Date.now() - chDragAt > 1200) { chDragFrom = null; return }
+      if (chDragFrom === null || Date.now() - chDragAt > 1500) { chDragFrom = null; return }
       var chFrom = chDragFrom
       if (Math.abs(chNext - chFrom) > 1) splide.go(chFrom + (chNext > chFrom ? 1 : -1))
     })
     splide.on('moved', function () { chDragFrom = null; chDragPos = null })
+    // A drag too small to move the deck leaves the gesture pending, so drop it
+    // when a pagination dot is tapped. Capture, to land before Splide's own
+    // handler, otherwise that jump would be clamped to a single card.
+    splide.root.addEventListener('click', function (chEvent) {
+      if (chEvent.target.closest('.splide__pagination')) chDragFrom = null
+    }, true)
     splideInstances.set(marquee, splide)
   } else {
     // ✅ Desktop: auto-scrolling marquee
