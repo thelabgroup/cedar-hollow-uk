@@ -864,8 +864,13 @@ animation:marquee-scroll 70s linear infinite;
         /* Chrome on displays with fractional scaling (Windows at 125%/150%)
            places each 256px tile at a fractional offset, leaving hairline
            seams between columns. Oversizing every tile by half a pixel makes
-           neighbours overlap, so the seams have nothing to show through. */
-        .ch-map img.leaflet-tile{width:256.5px !important;height:256.5px !important;}
+           neighbours overlap, so the seams have nothing to show through.
+           Only those displays get it: on whole-number ratios (every phone,
+           and any 1x or 2x desktop) the upscale leaves a white fringe along
+           each tile's top and left edge, which reads as a grid over the map. */
+        @media (min-resolution:1.01dppx) and (max-resolution:1.99dppx){
+          .ch-map img.leaflet-tile{width:256.5px !important;height:256.5px !important;}
+        }
         .ch-map .ch-map__marker{background:none;border:none;}
         .ch-map .leaflet-tooltip.ch-map__label{background:#3b4126;color:#efeed5;border:none;border-radius:20px;padding:4px 14px;font-size:.9375rem;font-weight:500;box-shadow:0 2px 8px rgba(59,65,38,.28);}
         .ch-map .leaflet-tooltip-top.ch-map__label:before{border-top-color:#3b4126;}
