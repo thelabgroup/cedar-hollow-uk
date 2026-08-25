@@ -1377,19 +1377,36 @@ function initMarquee(marquee) {
     // nearest. So remember where the gesture started and refuse to land
     // more than one card away from it.
     var chDragFrom = null
-    splide.on('drag', function () { chDragFrom = splide.index })
+    var chDragAt = 0
+    var chDragPos = null
+    splide.on('drag', function () {
+      chDragFrom = splide.index
+      chDragAt = Date.now()
+      chDragPos = splide.Components.Move.getPosition()
+    })
+    // Hold the track within one card of where the gesture began. Capping the
+    // travel is what actually enforces the rule: whatever Splide then works
+    // out as the nearest card on release cannot be more than one away.
+    splide.on('dragging', function () {
+      if (chDragPos === null) return
+      var chMove = splide.Components.Move
+      var chStep = Math.abs(chMove.toPosition(1) - chMove.toPosition(0))
+      var chPos = chMove.getPosition()
+      if (chPos < chDragPos - chStep) chMove.translate(chDragPos - chStep)
+      else if (chPos > chDragPos + chStep) chMove.translate(chDragPos + chStep)
+    })
+    // And a backstop on the landing, for any device where momentum still
+    // carries further. Guarded by elapsed time rather than cleared on
+    // dragged: dragged fires first, and on a slower device move can arrive a
+    // frame or two later, by which point a cleared clamp has nothing to hold.
+    // The window also drops a stale gesture, so a later tap on a pagination
+    // dot is not clamped as though it were that swipe.
     splide.on('move', function (chNext) {
-      if (chDragFrom === null) return
+      if (chDragFrom === null || Date.now() - chDragAt > 1200) { chDragFrom = null; return }
       var chFrom = chDragFrom
-      // Clear before go(), which re-enters this handler.
-      chDragFrom = null
       if (Math.abs(chNext - chFrom) > 1) splide.go(chFrom + (chNext > chFrom ? 1 : -1))
     })
-    // dragged fires just before move, in the same task, so clearing on the
-    // next tick leaves the clamp its value while still dropping a stale one
-    // from a drag too small to move the deck. Otherwise the next tap on a
-    // pagination dot would be clamped as though it were that swipe.
-    splide.on('dragged', function () { setTimeout(function () { chDragFrom = null }, 0) })
+    splide.on('moved', function () { chDragFrom = null; chDragPos = null })
     // Decorative edge peeks: the deck is finite, but a copy of the sixth
     // card shows beyond the left edge of the first and a copy of the first
     // beyond the right edge of the sixth, so the ends look like the loop
