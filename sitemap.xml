@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- URLs here must match the rel="canonical" in each page's head, or the two
+     signals contradict each other. Both use the apex host and the .html paths
+     the site links internally. -->
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url>
+    <loc>https://cedarhollow.uk/</loc>
+    <lastmod>2026-08-26</lastmod>
+    <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://cedarhollow.uk/search-results.html</loc>
+    <lastmod>2026-08-26</lastmod>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://cedarhollow.uk/experiences.html</loc>
+    <lastmod>2026-08-26</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://cedarhollow.uk/about.html</loc>
+    <lastmod>2026-08-26</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://cedarhollow.uk/sustainability.html</loc>
+    <lastmod>2026-08-26</lastmod>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://cedarhollow.uk/privacy-policy.html</loc>
+    <lastmod>2026-08-26</lastmod>
+    <priority>0.2</priority>
+  </url>
+  <url>
+    <loc>https://cedarhollow.uk/terms-of-service.html</loc>
+    <lastmod>2026-08-26</lastmod>
+    <priority>0.2</priority>
+  </url>
+  <url>
+    <loc>https://cedarhollow.uk/cookies.html</loc>
+    <lastmod>2026-08-26</lastmod>
+    <priority>0.2</priority>
+  </url>
+</urlset>

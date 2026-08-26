@@ -1,0 +1,9 @@
+User-agent: *
+Allow: /
+
+# style-guide.html and detail_properties.html are deliberately not disallowed
+# here: they carry a noindex meta tag, and a crawler has to fetch a page to see
+# that. Blocking them in robots.txt would hide the tag and could leave them
+# indexed on inbound links alone.
+
+Sitemap: https://cedarhollow.uk/sitemap.xml
