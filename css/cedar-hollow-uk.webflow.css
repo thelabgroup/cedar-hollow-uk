@@ -2298,20 +2298,57 @@ img {
   width: 10rem;
 }
 
-/* ---- Awards & Recognition carousel ----
-   Was a flex row of three badges, which wrapped onto a second line on phones.
-   It is now a Splide deck so more awards fit without changing how the section
-   reads: page one is the same three badges in the same order, three are always
-   in view, and nothing moves on its own.
+/* ---- Awards & Recognition ----
+   The row itself is untouched from before this became a carousel: same gap,
+   same per-badge caps, so page one renders exactly as the section always has.
+   What changed is that the row now sits inside a Splide slide, and there are
+   three such rows. One page is one row, so paging never breaks a row up and
+   page one always comes back around intact. */
+.awards-logo-top-1 {
+  max-width: 75px;
+}
 
-   Badges range from 0.70:1 to 2.74:1, so each sits in a fixed box and is
-   contained inside it. Tall badges hit the height limit and keep the 150px
-   they have always had; the widest two hit the width limit instead and come
-   out shorter than a strict height match would give. */
+.awards-logo-top-2 {
+  max-width: 105px;
+}
+
+.awards-logo-top-3 {
+  max-width: 300px;
+}
+
+.awards-top-logos {
+  grid-column-gap: 3.75rem;
+  grid-row-gap: 3.75rem;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  /* Was wrap, which dropped the third badge onto a second line on phones.
+     Nothing wraps now; badges shrink to fit instead, which is what min-width:0
+     on the images below allows. */
+  flex-wrap: nowrap;
+}
+
+/* Badges added after the original three have no width cap of their own, so
+   height is what sizes them, matching the 150px the first three have always
+   rendered at. min-width:0 lets a row shrink to the screen rather than wrap. */
+.awards-top-logos img {
+  max-height: 150px;
+  width: auto;
+  height: auto;
+  flex: 0 1 auto;
+  min-width: 0;
+  object-fit: contain;
+}
+
+/* 2.7:1, so at a shared height it would run half as wide again as the RIBA
+   award and unbalance its row. Capped on width instead. */
+.awards-logo-aim {
+  max-width: 15rem;
+}
+
 .awards-carousel {
   --award-arrow: 2.75rem;
   width: 100%;
-  max-width: calc(846px + 2 * var(--award-arrow));
   margin-left: auto;
   margin-right: auto;
   padding-left: var(--award-arrow);
@@ -2319,60 +2356,38 @@ img {
   position: relative;
 }
 
-/* The project carries only a minimal hand-rolled subset of Splide's core CSS
-   (.splide__list and .splide__slide); the properties deck gets away with that
-   because .section-properties clips the overflow itself. These are the rest of
-   the core rules this deck needs, scoped so the properties deck is untouched.
-   .awards-carousel__splide is deliberately NOT positioned, so the arrows
-   resolve against .awards-carousel and sit out in its gutter. */
+/* The project carries only a hand-rolled subset of Splide's core CSS, enough
+   for the property deck because .section-properties clips its own overflow.
+   These are the rest of the rules this deck needs, scoped so that deck is
+   untouched. .awards-carousel__splide is deliberately not positioned, so the
+   arrows resolve against .awards-carousel and sit out in its gutter. */
 .awards-carousel__splide .splide__track {
   position: relative;
   z-index: 0;
   overflow: hidden;
 }
 
+.awards-carousel__splide .splide__slide {
+  width: 100%;
+}
+
 .awards-carousel .splide__arrow {
   z-index: 2;
   cursor: pointer;
+  background: none;
   border: 0;
+  border-radius: 0;
   justify-content: center;
   align-items: center;
+  width: 1.75rem;
+  height: 1.75rem;
   padding: 0;
   display: flex;
   position: absolute;
   top: 50%;
-  transform: translateY(-50%);
-}
-
-.awards-carousel .splide__arrow:disabled {
-  opacity: .12;
-  cursor: default;
-}
-
-.awards-carousel__splide .splide__slide {
-  height: 150px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.awards-carousel__splide .splide__slide img {
-  max-width: 100%;
-  max-height: 100%;
-  width: auto;
-  height: auto;
-  object-fit: contain;
-}
-
-/* Subtle by request: a thin chevron in the section's own ink, no button
-   chrome, and it only firms up on hover or focus. */
-.awards-carousel .splide__arrow {
-  background: none;
-  border-radius: 0;
-  width: 1.75rem;
-  height: 1.75rem;
   opacity: .32;
   transition: opacity .18s ease;
+  transform: translateY(-50%);
 }
 
 .awards-carousel .splide__arrow svg {
@@ -2381,7 +2396,7 @@ img {
   fill: var(--color-text);
 }
 
-.awards-carousel .splide__arrow:hover:not(:disabled),
+.awards-carousel .splide__arrow:hover,
 .awards-carousel .splide__arrow:focus-visible {
   opacity: .85;
 }
@@ -2400,22 +2415,6 @@ img {
 
 .awards-carousel .splide__arrow--next {
   right: 0;
-}
-
-/* Phones swipe, so the arrows come off and their gutter with them. */
-@media screen and (max-width: 767px) {
-  .awards-carousel {
-    --award-arrow: 0rem;
-    max-width: 100%;
-  }
-
-  .awards-carousel .splide__arrow {
-    display: none;
-  }
-
-  .awards-carousel__splide .splide__slide {
-    height: 7rem;
-  }
 }
 
 .awards_icon {
@@ -3039,6 +3038,33 @@ a.awards-logo_svg > img {
 }
 
 @media screen and (max-width: 767px) {
+  .awards-top-logos {
+    grid-column-gap: 1.5rem;
+    grid-row-gap: 1.5rem;
+    place-items: center;
+  }
+
+  .awards-top-logos img {
+    max-height: 7rem;
+  }
+
+  .awards-logo-top-3 {
+    max-width: 12rem;
+  }
+
+  .awards-logo-aim {
+    max-width: 10rem;
+  }
+
+  /* Phones swipe, so the arrows come off and their gutter with them. */
+  .awards-carousel {
+    --award-arrow: 0rem;
+  }
+
+  .awards-carousel .splide__arrow {
+    display: none;
+  }
+
   .spacer-xxlarge {
     padding-top: 3rem;
   }
@@ -3540,6 +3566,18 @@ a.awards-logo_svg > img {
 }
 
 @media screen and (max-width: 479px) {
+  .awards-logo-top-1 {
+    max-width: 4rem;
+  }
+
+  .awards-logo-top-2 {
+    max-width: 5rem;
+  }
+
+  .awards-logo-top-3 {
+    max-width: 11rem;
+  }
+
   .max-width-full-mobile-portrait {
     width: 100%;
     max-width: none;
