@@ -2353,6 +2353,11 @@ img {
 .awards-carousel {
   --award-arrow: 2.75rem;
   width: 100%;
+  /* 600px is the width of the first page's row, so the track is only ever as
+     wide as the badges themselves and the arrows sit just outside them rather
+     than out at the edges of the page. Every other page is narrower, so none
+     is clipped. */
+  max-width: calc(600px + 2 * var(--award-arrow));
   margin-left: auto;
   margin-right: auto;
   padding-left: var(--award-arrow);
@@ -2394,26 +2399,34 @@ img {
   border-radius: 0;
   justify-content: center;
   align-items: center;
-  width: 1.75rem;
-  height: 1.75rem;
+  width: 1.5rem;
+  height: 1.5rem;
   padding: 0;
   display: flex;
   position: absolute;
   top: 50%;
-  opacity: .32;
-  transition: opacity .18s ease;
+  opacity: .16;
+  transition: opacity .2s ease;
   transform: translateY(-50%);
 }
 
+/* Barely there: a hairline chevron rather than Splide's solid one. Stroked at
+   1.6 in a 40-unit viewBox drawn at 24px, so the line lands under a pixel wide.
+   The path itself is set in the Splide config as arrowPath. */
 .awards-carousel .splide__arrow svg {
-  width: 1.75rem;
-  height: 1.75rem;
-  fill: var(--color-text);
+  width: 1.5rem;
+  height: 1.5rem;
+  fill: none;
+  stroke: var(--color-text);
+  stroke-width: 1.6;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  overflow: visible;
 }
 
 .awards-carousel .splide__arrow:hover,
 .awards-carousel .splide__arrow:focus-visible {
-  opacity: .85;
+  opacity: .55;
 }
 
 .awards-carousel .splide__arrow:focus-visible {
@@ -3071,9 +3084,11 @@ a.awards-logo_svg > img {
     max-width: 10rem;
   }
 
-  /* Phones swipe, so the arrows come off and their gutter with them. */
+  /* Phones swipe, so the arrows come off and their gutter with them, and the
+     row goes back to the full width of the section. */
   .awards-carousel {
     --award-arrow: 0rem;
+    max-width: 100%;
   }
 
   .awards-carousel .splide__arrow {
