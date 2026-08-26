@@ -931,11 +931,17 @@ animation:marquee-scroll 70s linear infinite;
       <div id="ch-map-canvas" class="ch-map__canvas" role="region" aria-label="Interactive map of Cedar Hollow's Oxford and Dorset locations"></div>
       <script>
         (function () {
+          // `directions` are the properties' own Google Maps links. They resolve to
+          // the named place listings -- Cedar Hollow Oxford, The Oaks and
+          // Mallinson's Woodland Retreat -- rather than dropping an unnamed pin at
+          // a coordinate, which is what building the URL from lat/lng used to do.
           var LOCATIONS = [
             { name: "Cedar Hollow Oxford", place: "Headington, Oxfordshire",
-              lat: 51.753457, lng: -1.186921, site: "https://theoaks.uk" },
+              lat: 51.753457, lng: -1.186921, site: "https://theoaks.uk",
+              directions: "https://maps.app.goo.gl/95imeHn77mPDHBsE7" },
             { name: "Cedar Hollow Dorset", place: "Holditch, Dorset",
-              lat: 50.82062, lng: -2.929622, site: "https://mallinson.co.uk" }
+              lat: 50.82062, lng: -2.929622, site: "https://mallinson.co.uk",
+              directions: "https://maps.app.goo.gl/YBHhqEu2greQmPHY7" }
           ];
           var booted = false;
 
@@ -961,7 +967,7 @@ animation:marquee-scroll 70s linear infinite;
 
             var bounds = [];
             LOCATIONS.forEach(function (loc) {
-              var dir = "https://www.google.com/maps/dir/?api=1&destination=" + loc.lat + "," + loc.lng;
+              var dir = loc.directions;
               L.marker([loc.lat, loc.lng], { icon: icon, alt: loc.name })
                 .addTo(map)
                 .bindTooltip(loc.name.replace("Cedar Hollow ", ""), { permanent: true, direction: "top", className: "ch-map__label" })
