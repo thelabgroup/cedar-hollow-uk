@@ -2412,7 +2412,7 @@ a.awards-logo_svg > img {
   /* The supplied artwork is a raster box with the letters knocked out, so it
      cannot inherit currentColor the way the inline marks do. A mask over a
      currentColor background recolours it identically per section. */
-  max-width: 2.125rem;
+  max-width: 2.5rem;
   display: block;
   aspect-ratio: 1;
   background-color: currentColor;
@@ -2443,12 +2443,38 @@ a.awards-logo_svg > img {
   mask-repeat: no-repeat;
 }
 
+.awards-logo_svg.eveningstandard {
+  /* Masked for the same reason as .thetimes: the Eros figure is a heavy traced
+     path, and inlining it in both hero tracks would cost twice over. The mask
+     also flattens the masthead's two brand colours onto currentColor, so it
+     recolours with the strip like every other mark here.
+     8.4:1 is far wider than its neighbours, so the width cap is set from the
+     height instead: 21rem lands it at ~40px tall, on the strip's optical band. */
+  max-width: 21rem;
+  display: block;
+  aspect-ratio: 600 / 71.4;
+  background-color: currentColor;
+  -webkit-mask-image: url("../images/logo-evening-standard.svg");
+  -webkit-mask-position: center;
+  -webkit-mask-size: contain;
+  -webkit-mask-repeat: no-repeat;
+  mask-image: url("../images/logo-evening-standard.svg");
+  mask-position: center;
+  mask-size: contain;
+  mask-repeat: no-repeat;
+}
+
 .awards-logo_svg.bbc {
   max-width: 7.5rem;
 }
 
 .awards-logo_svg.timeout {
-  max-width: 4.5rem;
+  /* The wordmark on its own, no capsule. The capsule version was 1.8:1 with the
+     letters filling barely half its height; standing alone at 2.63:1 the letters
+     are the whole mark, so the cap comes down to keep them on the strip's
+     optical band. The outline letterforms read lighter than the solid marks
+     either side, so it is set a little above METRO's height to compensate. */
+  max-width: 6.25rem;
 }
 
 /* ---- TV logos: Awards & Recognition marquee ----
@@ -3322,11 +3348,15 @@ a.awards-logo_svg > img {
   }
 
   .awards-logo_svg.okmag {
-    max-width: 1.875rem;
+    max-width: 2.25rem;
   }
 
   .awards-logo_svg.thetimes {
     max-width: 12rem;
+  }
+
+  .awards-logo_svg.eveningstandard {
+    max-width: 18rem;
   }
 
   .awards-logo_svg.bbc {
@@ -3334,7 +3364,7 @@ a.awards-logo_svg > img {
   }
 
   .awards-logo_svg.timeout {
-    max-width: 3.75rem;
+    max-width: 5.25rem;
   }
 
   .awards-logo_svg.tv-mafs {
