@@ -2328,16 +2328,20 @@ img {
   flex-wrap: nowrap;
 }
 
-/* Badges added after the original three have no width cap of their own, so
-   height is what sizes them, matching the 150px the first three have always
-   rendered at. min-width:0 lets a row shrink to the screen rather than wrap. */
+/* min-width:0 is what lets a row shrink to the screen rather than wrap. It has
+   to reach the original three as well, so this rule must not carry anything
+   that resizes them -- an earlier max-height here capped badge two at 150px
+   and shrank it from the 105x151 the design has always rendered. */
 .awards-top-logos img {
-  max-height: 150px;
-  width: auto;
-  height: auto;
   flex: 0 1 auto;
   min-width: 0;
-  object-fit: contain;
+}
+
+/* Badges added after the original three carry no width cap of their own, so
+   height is what sizes them, matched to the 150px the first three render at.
+   Scoped to this class so the original three are never touched by it. */
+.awards-logo-top {
+  max-height: 150px;
 }
 
 /* 2.7:1, so at a shared height it would run half as wide again as the RIBA
@@ -2369,6 +2373,17 @@ img {
 
 .awards-carousel__splide .splide__slide {
   width: 100%;
+}
+
+/* .splide__list carries will-change: transform for the property deck, which
+   parks this content on its own compositing layer permanently. The badges are
+   fine line art scaled to half size, and a GPU-resampled layer renders them
+   measurably softer than the main layer does -- enough to show against the
+   design even though the geometry is identical to the pixel. Off for this deck,
+   which is static between clicks anyway; Chrome still promotes it for the
+   duration of a transition. */
+.awards-carousel__splide .splide__list {
+  will-change: auto;
 }
 
 .awards-carousel .splide__arrow {
@@ -3044,7 +3059,7 @@ a.awards-logo_svg > img {
     place-items: center;
   }
 
-  .awards-top-logos img {
+  .awards-logo-top {
     max-height: 7rem;
   }
 
