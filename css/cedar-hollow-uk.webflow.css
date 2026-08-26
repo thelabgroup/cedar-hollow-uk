@@ -2358,7 +2358,7 @@ a.awards-logo_svg > img {
      single-line wordmarks   ~40px   designboom, VOGUE, The Sun, GQ, TATLER,
                                      METRO, Country Living, Telegraph
      stacked lockups         ~48px   The Guardian, ELLE Decoration, Traveler,
-                                     The Standard, Mail on Sunday, Marshwood
+                                     The Standard, Mail on Sunday
 
    Two marks sit off the band on purpose. Time Out is drawn in outline and
    reads lighter than the solid marks around it, so it runs above the
@@ -2410,10 +2410,6 @@ a.awards-logo_svg > img {
   max-width: 23.5rem;
 }
 
-.awards-logo_svg.marshwood {
-  max-width: 19.25rem;
-}
-
 .awards-logo_svg.countryliving {
   max-width: 14.25rem;
 }
@@ -2439,6 +2435,24 @@ a.awards-logo_svg > img {
   -webkit-mask-size: contain;
   -webkit-mask-repeat: no-repeat;
   mask-image: url("../images/logo-ok-news.png");
+  mask-position: center;
+  mask-size: contain;
+  mask-repeat: no-repeat;
+}
+
+.awards-logo_svg.thetab {
+  /* Two-tone block with the type knocked out, so like .okmag it runs as a mask
+     over currentColor rather than an inline vector. Unlike OK! it is 2.8:1 and
+     carries its own width, so it sits on the single-line band with no bump. */
+  max-width: 7rem;
+  display: block;
+  aspect-ratio: 1200 / 426;
+  background-color: currentColor;
+  -webkit-mask-image: url("../images/logo-the-tab.png");
+  -webkit-mask-position: center;
+  -webkit-mask-size: contain;
+  -webkit-mask-repeat: no-repeat;
+  mask-image: url("../images/logo-the-tab.png");
   mask-position: center;
   mask-size: contain;
   mask-repeat: no-repeat;
@@ -3355,10 +3369,6 @@ a.awards-logo_svg > img {
     max-width: 20.5rem;
   }
 
-  .awards-logo_svg.marshwood {
-    max-width: 17rem;
-  }
-
   .awards-logo_svg.countryliving {
     max-width: 12.25rem;
   }
@@ -3373,6 +3383,10 @@ a.awards-logo_svg > img {
 
   .awards-logo_svg.okmag {
     max-width: 2.75rem;
+  }
+
+  .awards-logo_svg.thetab {
+    max-width: 6rem;
   }
 
   .awards-logo_svg.thetimes {
