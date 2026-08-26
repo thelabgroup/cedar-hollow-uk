@@ -1,0 +1,16 @@
+{
+  "name": "Cedar Hollow",
+  "short_name": "Cedar Hollow",
+  "description": "Award-winning woodland retreats in Oxfordshire and Dorset.",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "background_color": "#EFEED5",
+  "theme_color": "#3B4126",
+  "icons": [
+    { "src": "/images/icon-192.png", "sizes": "192x192", "type": "image/png" },
+    { "src": "/images/icon-512.png", "sizes": "512x512", "type": "image/png" },
+    { "src": "/images/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" },
+    { "src": "/images/favicon.svg", "sizes": "any", "type": "image/svg+xml" }
+  ]
+}
