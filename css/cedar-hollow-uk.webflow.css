@@ -2349,6 +2349,24 @@ a.awards-logo_svg > img {
   width: 100%;
 }
 
+/* ---- Press logo sizing ----
+   Every mark is capped by width, but the caps are derived from height so the
+   strip reads as one band. Mastheads differ enormously in proportion -- The
+   Times is 8.5:1, OK! is 1:1 -- so equal widths would look nothing like equal
+   sizes. Two targets, measured on rendered ink height at 1440:
+
+     single-line wordmarks   ~40px   designboom, VOGUE, The Sun, GQ, TATLER,
+                                     METRO, Country Living, Telegraph
+     stacked lockups         ~48px   The Guardian, ELLE Decoration, Traveler,
+                                     The Standard, Mail on Sunday, Marshwood
+
+   Two marks sit off the band on purpose. Time Out is drawn in outline and
+   reads lighter than the solid marks around it, so it runs above the
+   single-line target. OK! is a solid square with no width to carry presence,
+   so it takes the top of the range despite being the smallest footprint.
+   The Times falls under both targets: its masthead is so wide that matching
+   them would run it past the Telegraph's width. */
+
 .awards-logo_svg {
   /* A percentage here resolved against the track, whose own width comes from
      these children -- circular, so the two identical tracks could settle on
@@ -2361,15 +2379,15 @@ a.awards-logo_svg > img {
 }
 
 .awards-logo_svg.vogue {
-  max-width: 9rem;
+  max-width: 9.75rem;
 }
 
 .awards-logo_svg.elle {
-  max-width: 7.3rem;
+  max-width: 6.75rem;
 }
 
 .awards-logo_svg.metro {
-  max-width: 8.5rem;
+  max-width: 9.75rem;
 }
 
 .awards-logo_svg.gq {
@@ -2381,38 +2399,38 @@ a.awards-logo_svg > img {
 }
 
 .awards-logo_svg.guardinan {
-  max-width: 10rem;
+  max-width: 9.25rem;
 }
 
 .awards-logo_svg.tatler {
-  max-width: 9.5rem;
+  max-width: 9rem;
 }
 
 .awards-logo_svg.telegraph {
-  max-width: 23rem;
+  max-width: 23.5rem;
 }
 
 .awards-logo_svg.marshwood {
-  max-width: 17rem;
+  max-width: 19.25rem;
 }
 
 .awards-logo_svg.countryliving {
-  max-width: 15rem;
+  max-width: 14.25rem;
 }
 
 .awards-logo_svg.independent {
-  max-width: 19rem;
+  max-width: 17.5rem;
 }
 
 .awards-logo_svg.thesun {
-  max-width: 5.5rem;
+  max-width: 8rem;
 }
 
 .awards-logo_svg.okmag {
   /* The supplied artwork is a raster box with the letters knocked out, so it
      cannot inherit currentColor the way the inline marks do. A mask over a
      currentColor background recolours it identically per section. */
-  max-width: 2.5rem;
+  max-width: 3rem;
   display: block;
   aspect-ratio: 1;
   background-color: currentColor;
@@ -2429,7 +2447,7 @@ a.awards-logo_svg > img {
 .awards-logo_svg.thetimes {
   /* Masked for the same reason as .okmag: the masthead's crest is a 116KB
      traced path, far too heavy to inline in all four marquee tracks. */
-  max-width: 14rem;
+  max-width: 18.25rem;
   display: block;
   aspect-ratio: 908 / 107;
   background-color: currentColor;
@@ -2449,8 +2467,8 @@ a.awards-logo_svg > img {
      also flattens the masthead's two brand colours onto currentColor, so it
      recolours with the strip like every other mark here.
      8.4:1 is far wider than its neighbours, so the width cap is set from the
-     height instead: 21rem lands it at ~40px tall, on the strip's optical band. */
-  max-width: 21rem;
+     height instead. */
+  max-width: 23rem;
   display: block;
   aspect-ratio: 600 / 71.4;
   background-color: currentColor;
@@ -2469,12 +2487,10 @@ a.awards-logo_svg > img {
 }
 
 .awards-logo_svg.timeout {
-  /* The wordmark on its own, no capsule. The capsule version was 1.8:1 with the
-     letters filling barely half its height; standing alone at 2.63:1 the letters
-     are the whole mark, so the cap comes down to keep them on the strip's
-     optical band. The outline letterforms read lighter than the solid marks
-     either side, so it is set a little above METRO's height to compensate. */
-  max-width: 6.25rem;
+  /* The wordmark on its own, no capsule. Outline letterforms read lighter than
+     the solid marks either side, so this sits above the single-line band
+     rather than on it. */
+  max-width: 7.5rem;
 }
 
 /* ---- TV logos: Awards & Recognition marquee ----
@@ -3304,23 +3320,31 @@ a.awards-logo_svg > img {
   }
 
   .awards-logo_svg {
-    max-width: 15rem;
+    max-width: 13.5rem;
   }
 
-  .awards-logo_svg.vogue, .awards-logo_svg.elle, .awards-logo_svg.metro {
-    max-width: 7rem;
+  .awards-logo_svg.vogue {
+    max-width: 8.5rem;
+  }
+
+  .awards-logo_svg.elle {
+    max-width: 5.75rem;
+  }
+
+  .awards-logo_svg.metro {
+    max-width: 8.5rem;
   }
 
   .awards-logo_svg.gq {
-    max-width: 4rem;
+    max-width: 4.25rem;
   }
 
   .awards-logo_svg.traveler {
-    max-width: 7rem;
+    max-width: 8.25rem;
   }
 
   .awards-logo_svg.guardinan {
-    max-width: 10rem;
+    max-width: 8rem;
   }
 
   .awards-logo_svg.tatler {
@@ -3328,35 +3352,35 @@ a.awards-logo_svg > img {
   }
 
   .awards-logo_svg.telegraph {
-    max-width: 20rem;
+    max-width: 20.5rem;
   }
 
   .awards-logo_svg.marshwood {
-    max-width: 15rem;
+    max-width: 17rem;
   }
 
   .awards-logo_svg.countryliving {
-    max-width: 13rem;
+    max-width: 12.25rem;
   }
 
   .awards-logo_svg.independent {
-    max-width: 18rem;
+    max-width: 15.75rem;
   }
 
   .awards-logo_svg.thesun {
-    max-width: 4.75rem;
+    max-width: 7rem;
   }
 
   .awards-logo_svg.okmag {
-    max-width: 2.25rem;
+    max-width: 2.75rem;
   }
 
   .awards-logo_svg.thetimes {
-    max-width: 12rem;
+    max-width: 15.5rem;
   }
 
   .awards-logo_svg.eveningstandard {
-    max-width: 18rem;
+    max-width: 21.25rem;
   }
 
   .awards-logo_svg.bbc {
@@ -3364,7 +3388,7 @@ a.awards-logo_svg > img {
   }
 
   .awards-logo_svg.timeout {
-    max-width: 5.25rem;
+    max-width: 6.5rem;
   }
 
   .awards-logo_svg.tv-mafs {
@@ -3624,11 +3648,11 @@ a.awards-logo_svg > img {
   }
 
   .awards-logo_svg {
-    max-width: 14rem;
+    max-width: 12.75rem;
   }
 
   .awards-logo_svg.traveler {
-    max-width: 6rem;
+    max-width: 7rem;
   }
 
   .footer_logo_wrap {
