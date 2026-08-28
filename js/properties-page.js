@@ -128,6 +128,55 @@
     tiles.innerHTML = items.map(tile).join("");
     list.innerHTML = items.map(property).join("");
 
+    // A Featured Properties card links here as ?q=<property name>. Both the
+    // tiles and the cards are rendered above, so at the moment the browser
+    // reads the URL there is no #property-... in the document for it to jump
+    // to -- it lands at the top of the page instead. Resolve the match here,
+    // now the list exists, and go to it.
+    (function goToRequestedProperty() {
+      var target = null;
+      var hash = (window.location.hash || "").replace(/^#/, "");
+      if (hash) target = document.getElementById(hash);
+
+      if (!target && window.location.search) {
+        var q = (new URLSearchParams(window.location.search).get("q") || "")
+          .trim().toLowerCase();
+        if (q) {
+          // Exact name first; fall back to a contains match so a partial or
+          // stale query still lands somewhere sensible rather than the top.
+          var hit = null;
+          items.forEach(function (it) {
+            if (!hit && it.name.toLowerCase() === q) hit = it;
+          });
+          items.forEach(function (it) {
+            if (!hit && it.name.toLowerCase().indexOf(q) !== -1) hit = it;
+          });
+          if (hit) target = document.getElementById("property-" + hit.id);
+        }
+      }
+      if (!target) return;
+
+      function go() {
+        target.scrollIntoView({ block: "start" });
+        // The cards above carry lazily loaded images. If one settles at a
+        // different height after the jump the target drifts, so land it again
+        // once everything has loaded.
+        window.setTimeout(function () {
+          target.scrollIntoView({ block: "start" });
+        }, 0);
+      }
+      go();
+      window.addEventListener("load", go);
+
+      // Leave the address bar pointing at the property itself, so a reload or
+      // a shared link is precise. replaceState, so this does not add history
+      // or move the page.
+      if (!hash && window.history && window.history.replaceState) {
+        window.history.replaceState(null, "", window.location.pathname +
+          window.location.search + "#" + target.id);
+      }
+    })();
+
     // One path for both inputs: the arrows and a finger both call step().
     function step(frameEl, dir) {
       var shots = frameEl.querySelectorAll(".pp-shot");
