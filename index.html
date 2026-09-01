@@ -899,7 +899,12 @@ animation:marquee-scroll 70s linear infinite;
         .ch-map__canvas{position:absolute;inset:0;z-index:2;}
         .ch-map .leaflet-container{background:transparent;font-family:inherit;}
         /* Voyager tiles are already warm; a gentle lift keeps the sea properly blue. */
-        .ch-map .leaflet-tile-pane{filter:saturate(1.15);}
+        /* Protomaps' light theme is greener and more saturated than the CARTO
+               raster it replaced. Pulling the saturation down and lifting the
+               brightness lands it back on the pale, muted palette the section was
+               designed around -- the old saturate(1.15) was tuned for CARTO and
+               made this one worse. */
+            .ch-map .leaflet-tile-pane{filter:saturate(.45) brightness(1.06);}
         /* Chrome on displays with fractional scaling (Windows at 125%/150%)
            places each 256px tile at a fractional offset, leaving hairline
            seams between columns. Oversizing every tile by half a pixel makes
@@ -908,7 +913,7 @@ animation:marquee-scroll 70s linear infinite;
            and any 1x or 2x desktop) the upscale leaves a white fringe along
            each tile's top and left edge, which reads as a grid over the map. */
         @media (min-resolution:1.01dppx) and (max-resolution:1.99dppx){
-          .ch-map img.leaflet-tile{width:256.5px !important;height:256.5px !important;}
+          
         }
         .ch-map .ch-map__marker{background:none;border:none;}
         .ch-map .leaflet-tooltip.ch-map__label{background:#3b4126;color:#efeed5;border:none;border-radius:20px;padding:4px 14px;font-size:.9375rem;font-weight:500;box-shadow:0 2px 8px rgba(59,65,38,.28);}
@@ -950,12 +955,29 @@ animation:marquee-scroll 70s linear infinite;
               scrollWheelZoom: false,      /* never hijack page scroll */
               dragging: !L.Browser.mobile, /* one-finger drag must keep scrolling the page */
               tap: false,
-              minZoom: 6, maxZoom: 17
+              minZoom: 6, maxZoom: 13,
+              /* The archive covers southern England only; hold the view inside it
+                 so nobody can pan off the edge of the data. */
+              maxBounds: [[49.9, -7.0], [52.7, 1.6]],
+              maxBoundsViscosity: 1
             });
             map.attributionControl.setPrefix("");
-            L.tileLayer("https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png?key=cb1_2htc_1_c705a445860f0f4208a131e3", {
-              attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="https://carto.com/attributions">CARTO</a>',
-              subdomains: "abcd"
+            /* Self-hosted vector basemap. It replaces CARTO, whose free basemap
+               tier is licensed for non-commercial use only and whose tiles come
+               back as a 200 watermarked "API KEY REQUIRED" -- an unrecoverable
+               failure a tile error handler could not even detect. This archive
+               is ours: no key, no quota, no third party to fail. OpenStreetMap
+               data under ODbL, which the attribution below carries.
+
+               Data stops at z10 to keep the file to 22MB; the renderer overzooms
+               to 13 from there, which vector tiles do cleanly because geometry is
+               scaled rather than pixels. */
+            protomapsL.leafletLayer({
+              url: "map/southern-england.pmtiles",
+              flavor: "light",
+              lang: "en",
+              maxDataZoom: 10,
+              attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="https://protomaps.com">Protomaps</a>'
             }).addTo(map);
 
             var pinSvg =
@@ -998,7 +1020,14 @@ animation:marquee-scroll 70s linear infinite;
             s.src = "https://unpkg.com/leaflet@1.9.4/dist/leaflet.js";
             s.integrity = "sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=";
             s.crossOrigin = "";
-            s.onload = init;
+            /* Vendored rather than pulled from a CDN: the point of moving off
+               CARTO was to stop the map depending on somebody else being up. */
+            s.onload = function () {
+              var pm = document.createElement("script");
+              pm.src = "js/protomaps-leaflet.js?v=20260901a";
+              pm.onload = init;
+              document.head.appendChild(pm);
+            };
             document.head.appendChild(s);
           }
 
