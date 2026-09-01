@@ -7,3 +7,8 @@ npm-debug.log*
 
 # macOS
 .DS_Store
+
+# Source footage for the hero video. Kept locally for re-cutting; far too large
+# to belong in the repo (~105MB), and GitHub rejects single files over 100MB.
+*.mov
+The Oaks Full Movie.MP4
