@@ -992,6 +992,19 @@ animation:marquee-scroll 70s linear infinite;
             var icon = L.divIcon({ className: "ch-map__marker", html: pinSvg,
               iconSize: [38, 50], iconAnchor: [19, 50], popupAnchor: [0, -46], tooltipAnchor: [0, -52] });
 
+            /* The static image and its two pins are the no-JS fallback. CARTO's
+               raster tiles were opaque and hid them; a vector basemap draws to a
+               transparent canvas, so during a redraw the old Google Maps
+               screenshot and its fixed pins showed through the live map -- two
+               maps at once, and the fallback pins do not move when you pan.
+               Retire the fallback now the real map is running. */
+            var frameEl = map.getContainer().closest(".ch-map") || map.getContainer().parentElement;
+            if (frameEl) {
+              frameEl.querySelectorAll(".ch-map__img, .ch-map__pin").forEach(function (el) {
+                el.style.display = "none";
+              });
+            }
+
             var bounds = [];
             LOCATIONS.forEach(function (loc) {
               var dir = loc.directions;
@@ -1029,6 +1042,28 @@ animation:marquee-scroll 70s linear infinite;
               next = Math.max(map.getMinZoom(), Math.min(map.getMaxZoom(), next));
               map.setZoomAround(at, next, { animate: false });
             }, { passive: false });
+
+            /* Safari on macOS does not report a trackpad pinch as ctrl+wheel; it
+               fires its own gesturestart/gesturechange instead, so without this
+               the gesture does nothing there. e.scale is cumulative across the
+               gesture, hence tracking the previous value. */
+            var gestureFrom = null;
+            map.getContainer().addEventListener("gesturestart", function (e) {
+              e.preventDefault();
+              gestureFrom = { zoom: map.getZoom(), scale: e.scale || 1 };
+            });
+            map.getContainer().addEventListener("gesturechange", function (e) {
+              if (!gestureFrom) return;
+              e.preventDefault();
+              var at = map.containerPointToLatLng(map.mouseEventToContainerPoint(e));
+              var next = gestureFrom.zoom + Math.log2((e.scale || 1) / gestureFrom.scale);
+              next = Math.max(map.getMinZoom(), Math.min(map.getMaxZoom(), next));
+              map.setZoomAround(at, next, { animate: false });
+            });
+            map.getContainer().addEventListener("gestureend", function (e) {
+              e.preventDefault();
+              gestureFrom = null;
+            });
 
             var t;
             window.addEventListener("resize", function () {
