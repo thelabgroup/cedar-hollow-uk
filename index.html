@@ -952,7 +952,12 @@ animation:marquee-scroll 70s linear infinite;
 
           function init() {
             var map = L.map("ch-map-canvas", {
-              scrollWheelZoom: false,      /* never hijack page scroll */
+              scrollWheelZoom: false,      /* never hijack page scroll -- see the pinch handler below */
+              /* Fractional zoom, so a trackpad pinch glides instead of jumping a
+                 whole level at a time. fitBounds is rounded back to a whole zoom
+                 below so the resting view is unchanged. */
+              zoomSnap: 0,
+              zoomDelta: 0.5,
               dragging: !L.Browser.mobile, /* one-finger drag must keep scrolling the page */
               tap: false,
               minZoom: 6, maxZoom: 13,
@@ -998,12 +1003,37 @@ animation:marquee-scroll 70s linear infinite;
                   '<a href="' + dir + '" target="_blank" rel="noopener">Directions</a>');
               bounds.push([loc.lat, loc.lng]);
             });
-            map.fitBounds(bounds, { padding: [64, 64] });
+            /* zoomSnap:0 lets fitBounds land on a fractional zoom, which would
+               shift the resting view off the one the section was designed at.
+               Fit, then round down to the whole level it used to choose. */
+            function frame() {
+              map.fitBounds(bounds, { padding: [64, 64] });
+              map.setZoom(Math.floor(map.getZoom()), { animate: false });
+            }
+            frame();
+
+            /* Trackpad zoom. macOS reports a pinch as a wheel event with ctrlKey
+               set; a plain two-finger scroll does not, and must go on scrolling
+               the page rather than zooming the map. Ctrl/cmd + wheel on a mouse
+               arrives the same way, so both gestures work. */
+            map.getContainer().addEventListener("wheel", function (e) {
+              if (!e.ctrlKey && !e.metaKey) return;
+              e.preventDefault();
+              var at = map.containerPointToLatLng(map.mouseEventToContainerPoint(e));
+              /* A pinch arrives as a stream of small deltas, a mouse notch as a
+                 single deltaY of ~120. Clamping per event keeps the pinch smooth
+                 while stopping one notch of a wheel jumping more than half a
+                 zoom level. */
+              var step = Math.max(-40, Math.min(40, e.deltaY));
+              var next = map.getZoom() - step * 0.0125;
+              next = Math.max(map.getMinZoom(), Math.min(map.getMaxZoom(), next));
+              map.setZoomAround(at, next, { animate: false });
+            }, { passive: false });
 
             var t;
             window.addEventListener("resize", function () {
               clearTimeout(t);
-              t = setTimeout(function () { map.invalidateSize(); map.fitBounds(bounds, { padding: [64, 64] }); }, 180);
+              t = setTimeout(function () { map.invalidateSize(); frame(); }, 180);
             });
           }
 
