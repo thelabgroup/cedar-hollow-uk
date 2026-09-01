@@ -1028,41 +1028,70 @@ animation:marquee-scroll 70s linear infinite;
             /* Trackpad zoom. macOS reports a pinch as a wheel event with ctrlKey
                set; a plain two-finger scroll does not, and must go on scrolling
                the page rather than zooming the map. Ctrl/cmd + wheel on a mouse
-               arrives the same way, so both gestures work. */
+               arrives the same way, so both gestures work.
+
+               Zooms are animated, never instant. An instant setZoom resets the
+               view, and protomaps clears every tile canvas and repaints them
+               asynchronously, so the whole map blanked to the section's cream
+               background for a frame or two on every step -- the yellow flash.
+               Leaflet's zoom animation scales the tiles it already has instead.
+
+               A gesture fires far faster than an animation finishes, though, and
+               Leaflet ignores zoom calls made mid-animation. So deltas arriving
+               during one are banked and applied when it ends: responsive, and
+               the map is never torn down. */
+            var bankedZoom = 0;
+            var zoomAnchor = null;
+            var zooming = false;
+
+            function applyZoom() {
+              if (!bankedZoom || zooming || !zoomAnchor) return;
+              var next = map.getZoom() + bankedZoom;
+              bankedZoom = 0;
+              next = Math.max(map.getMinZoom(), Math.min(map.getMaxZoom(), next));
+              if (Math.abs(next - map.getZoom()) < 0.01) return;
+              map.setZoomAround(zoomAnchor, next);
+            }
+
+            function bankZoom(delta, e) {
+              zoomAnchor = map.containerPointToLatLng(map.mouseEventToContainerPoint(e));
+              bankedZoom += delta;
+              applyZoom();
+            }
+
+            map.on("zoomstart", function () { zooming = true; });
+            map.on("zoomend", function () { zooming = false; applyZoom(); });
+
             map.getContainer().addEventListener("wheel", function (e) {
               if (!e.ctrlKey && !e.metaKey) return;
               e.preventDefault();
-              var at = map.containerPointToLatLng(map.mouseEventToContainerPoint(e));
               /* A pinch arrives as a stream of small deltas, a mouse notch as a
                  single deltaY of ~120. Clamping per event keeps the pinch smooth
                  while stopping one notch of a wheel jumping more than half a
                  zoom level. */
               var step = Math.max(-40, Math.min(40, e.deltaY));
-              var next = map.getZoom() - step * 0.0125;
-              next = Math.max(map.getMinZoom(), Math.min(map.getMaxZoom(), next));
-              map.setZoomAround(at, next, { animate: false });
+              bankZoom(-step * 0.0125, e);
             }, { passive: false });
 
             /* Safari on macOS does not report a trackpad pinch as ctrl+wheel; it
                fires its own gesturestart/gesturechange instead, so without this
                the gesture does nothing there. e.scale is cumulative across the
-               gesture, hence tracking the previous value. */
-            var gestureFrom = null;
+               gesture, so bank the change since the previous event. */
+            var gestureScale = null;
             map.getContainer().addEventListener("gesturestart", function (e) {
               e.preventDefault();
-              gestureFrom = { zoom: map.getZoom(), scale: e.scale || 1 };
+              gestureScale = e.scale || 1;
             });
             map.getContainer().addEventListener("gesturechange", function (e) {
-              if (!gestureFrom) return;
+              if (gestureScale === null) return;
               e.preventDefault();
-              var at = map.containerPointToLatLng(map.mouseEventToContainerPoint(e));
-              var next = gestureFrom.zoom + Math.log2((e.scale || 1) / gestureFrom.scale);
-              next = Math.max(map.getMinZoom(), Math.min(map.getMaxZoom(), next));
-              map.setZoomAround(at, next, { animate: false });
+              var scale = e.scale || 1;
+              bankZoom(Math.log2(scale / gestureScale), e);
+              gestureScale = scale;
             });
             map.getContainer().addEventListener("gestureend", function (e) {
               e.preventDefault();
-              gestureFrom = null;
+              gestureScale = null;
             });
 
             var t;
