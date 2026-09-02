@@ -989,7 +989,12 @@ animation:marquee-scroll 70s linear infinite;
                geometry scales rather than pixels. */
             var ATTRIB = '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="https://protomaps.com">Protomaps</a>';
             protomapsL.leafletLayer({
-              url: "map/southern-england.pmtiles",
+              /* The overview tileset is 26.5 MiB, over Cloudflare's 25 MiB
+                 per-asset limit, so it is served from R2 rather than shipped
+                 with the site. map/detail.pmtiles is 6 MiB and still local.
+                 Served over the bucket's own custom domain rather than its
+                 pub-*.r2.dev URL, which Cloudflare rate-limits. */
+              url: "https://tiles.cedarhollow.uk/southern-england.pmtiles",
               flavor: "light",
               lang: "en",
               maxDataZoom: 10,

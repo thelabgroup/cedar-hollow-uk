@@ -1,5 +1,10 @@
 # Custom domain — DNS setup
 
+> **Being superseded.** The site is migrating to Cloudflare Workers; see
+> [`docs/CLOUDFLARE_MIGRATION.md`](docs/CLOUDFLARE_MIGRATION.md). The records
+> below are still correct and are what a rollback restores. Delete this file
+> once Railway is decommissioned.
+
 **Status: live.** Both `https://cedarhollow.uk` and `https://www.cedarhollow.uk`
 serve the site over HTTPS with valid Let's Encrypt certificates.
 

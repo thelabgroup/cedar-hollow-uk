@@ -12,3 +12,6 @@ npm-debug.log*
 # to belong in the repo (~105MB), and GitHub rejects single files over 100MB.
 *.mov
 The Oaks Full Movie.MP4
+
+# Wrangler local state: account cache, build output, dev server data.
+.wrangler/

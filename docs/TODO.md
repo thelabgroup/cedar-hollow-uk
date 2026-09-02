@@ -20,15 +20,19 @@ may shift as files change.
 Current outstanding items. All are waiting on the owner (DNS access, content
 review, or a decision) — none are blocked on further build work.
 
-- [ ] **Connect the custom domain.** `cedarhollow.uk` + `www.cedarhollow.uk` are
-  scaffolded on the Railway static-site service but unverified. Add the CNAME/TXT
-  records in [`DNS_SETUP.md`](../DNS_SETUP.md) once DNS access is available. Then:
-  - [ ] Add the new origins to the form-handler service, or the contact form
-    breaks on CORS:
-    `ALLOWED_ORIGINS=https://cedar-hollow-uk-production.up.railway.app,https://cedarhollow.uk,https://www.cedarhollow.uk`
+- [x] **Custom domain is connected and live.** `cedarhollow.uk` and
+  `www.cedarhollow.uk` both serve the site over HTTPS. `ALLOWED_ORIGINS` is set
+  on the form-handler. Mail for the domain is handled by Google Workspace, so
+  `hello@cedarhollow.uk` has a real mailbox behind it.
+- [ ] **Migrate off Railway to Cloudflare Workers.** Phase 1 is deployed and
+  verified; see [`CLOUDFLARE_MIGRATION.md`](CLOUDFLARE_MIGRATION.md). Remaining
+  work is dashboard-side: turn on email sending, then cut the domain over.
+  Takes the hosting bill to £0 and closes the exposure below.
+  - [ ] **`docs/` and `form-handler/` are publicly served on Railway today.**
+    `https://cedarhollow.uk/docs/TODO.md` returns 200 — this audit, including
+    "the booking path is fake", is readable by anyone. Fixed at cutover.
   - [ ] Pick one canonical host (root or `www`) and redirect the other.
-  - [ ] Confirm `hello@cedarhollow.uk` actually receives mail (add MX records —
-    separate from the domain-verification records).
+    Do it as a Cloudflare Redirect Rule during Phase 3.
 - [ ] **Review the legal copy before relying on it.** `privacy-policy.html`,
   `terms-of-service.html`, `cookies.html` are real drafts, publicly live, dated
   23 Jul 2026. Accurate about how the site behaves, but not a lawyer's review.

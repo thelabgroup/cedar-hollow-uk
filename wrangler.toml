@@ -1,0 +1,46 @@
+# Cedar Hollow — Cloudflare Workers configuration.
+#
+# One Worker serves the static site and the contact-form endpoint. Deploy with:
+#
+#   npx wrangler deploy
+#
+# There is deliberately no package.json: the Worker has no imports at all, so
+# there is nothing to install.
+
+name = "cedar-hollow-uk"
+main = "worker/index.js"
+compatibility_date = "2026-09-02"
+
+# --- Static site -------------------------------------------------------------
+# The site lives at the repo root, so .assetsignore lists what must NOT ship —
+# private files, and anything over Cloudflare's 25 MiB per-asset limit.
+# Requests to these files are served straight from Cloudflare's edge without
+# invoking the Worker, and are free and unmetered.
+
+[assets]
+directory = "./"
+binding = "ASSETS"
+not_found_handling = "404-page"   # serves /404.html once one exists
+
+# --- Contact form ------------------------------------------------------------
+# Mail goes through Resend's HTTP API. Cloudflare's own send_email binding was
+# the original plan, but its free path needs Email Routing to take over the
+# domain's MX records, and those belong to Google Workspace.
+#
+# CONTACT_TO is where the Railway form-handler sends today, kept as-is so the
+# migration does not silently redirect enquiries.
+#
+# CONTACT_FROM must be on the SUBDOMAIN verified in Resend — never the apex.
+# Resend recommends a subdomain for deliverability, and it keeps every DNS
+# record this needs away from cedarhollow.uk's own SPF and MX.
+#
+# The API key is a secret, not a var. Set it once with:
+#
+#   npx wrangler secret put RESEND_API_KEY
+#
+# Never put the key in this file — it is committed to the repo.
+
+[vars]
+CONTACT_TO = "hello@thelabgroup.com"
+CONTACT_FROM = "website@send.cedarhollow.uk"
+CONTACT_FROM_NAME = "Cedar Hollow website"

@@ -3,13 +3,19 @@
  *
  * The site is a static Webflow export, so Webflow's own form backend no longer
  * receives submissions. This script intercepts every Webflow form (.w-form) and
- * POSTs it to the self-hosted form-handler service instead, then shows Webflow's
+ * POSTs it to our own contact endpoint instead, then shows Webflow's
  * existing success (.w-form-done) or error (.w-form-fail) message.
  */
 (function () {
   "use strict";
 
-  var ENDPOINT = "https://form-handler-production-f871.up.railway.app/api/contact";
+  // Same-origin on Cloudflare: the Worker serves /api/contact alongside the
+  // site, so no CORS is involved. The Railway host has no such route, so while
+  // both deployments are live it keeps calling the standalone form-handler.
+  // Delete the conditional once Railway is decommissioned.
+  var ENDPOINT = location.hostname.endsWith("railway.app")
+    ? "https://form-handler-production-f871.up.railway.app/api/contact"
+    : "/api/contact";
 
   // Capture-phase listener on document so this runs before Webflow's jQuery
   // submit handler; stopPropagation then prevents Webflow from also handling it.
