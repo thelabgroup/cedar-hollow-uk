@@ -18,6 +18,7 @@ docs
 form-handler
 README.md
 DNS_SETUP.md
+PAGES_UPLOAD.md
 
 # --- over the 25 MiB asset limit -------------------------------------------
 # Source footage for the hero video, already gitignored as too large to belong
