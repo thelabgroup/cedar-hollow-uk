@@ -131,6 +131,93 @@ afterwards.
 | Form returns 503 | `RESEND_API_KEY` is not set on the Worker |
 | Form returns 502 | Resend rejected it — `npx wrangler tail` shows the reason |
 
+## What to do if someone updates the site but not GitHub
+
+**A deploy replaces the whole site, not just the files that changed.** The asset
+manifest is rebuilt from whatever folder you deploy from, so a file that is not
+in your folder is removed from the live site.
+
+That makes the danger the opposite of what people expect:
+
+> Their page goes live and looks fine. Then **you** deploy from a checkout that
+> does not have it, and it silently disappears. No conflict, no warning, no
+> error. Deploys are last-write-wins across the entire site.
+
+Git would have called that a conflict. A deploy just overwrites.
+
+Note that nobody can add a page through the Cloudflare dashboard — the editor
+there only edits the Worker script, not static files. So "someone changed the
+site directly" always means someone ran `wrangler deploy` from another folder.
+
+### 1. Don't deploy yet
+
+Your deploy is the thing that would destroy their work. Sort out the drift
+first.
+
+### 2. Confirm it happened
+
+```bash
+npx wrangler deployments list
+```
+
+Each entry shows the author, the timestamp, and `Source: Upload`. Anything you
+did not do yourself is worth investigating before you overwrite it.
+
+### 3. Find what differs
+
+Compares every page in the repo against what is actually live:
+
+```bash
+for f in *.html; do
+  url="https://cedarhollow.uk/${f%.html}"
+  [ "$f" = "index.html" ] && url="https://cedarhollow.uk/"
+  if curl -s --max-time 25 "$url" | diff -q --strip-trailing-cr - "$f" >/dev/null 2>&1
+  then echo "same      $f"
+  else echo "DIFFERS   $f"
+  fi
+done
+```
+
+`--strip-trailing-cr` matters: the repo is checked out with CRLF line
+endings on Windows, so without it every page reports as different. This will
+not spot a page that exists live but not in the repo at all — for that, check
+`https://cedarhollow.uk/sitemap.xml` and the deployment they made.
+
+### 4. Harvest it while it is still live
+
+There is no command to download the assets from a deployment, so take them over
+HTTP before anything overwrites them:
+
+```bash
+curl -s https://cedarhollow.uk/thatpage -o thatpage.html
+```
+
+**If it has already been clobbered:** `npx wrangler rollback`, or deploy the
+older version from the Deployments tab, pull the file down, then redeploy the
+current version. That reverts the whole site for a moment, so do it deliberately
+and quickly.
+
+### 5. Put it back in the repo properly
+
+Treat it as a normal change: add the file, add it to `sitemap.xml` with an
+extensionless URL, link it from somewhere real, then:
+
+```bash
+git add -A && git commit -m "..." && git push
+npx wrangler deploy
+```
+
+Deploying from the repo afterwards is what makes `main` and production agree
+again. Until you do, the two are still out of step.
+
+### Avoiding it
+
+- **Deploy from a clean, up-to-date checkout.** `git pull` first, every time.
+  A stale folder is the realistic cause of this, not anybody acting badly — a
+  clone once five weeks behind produced a deploy of a five-week-old site.
+- **Connect Workers Builds** (below). Once Git is the deploy path, a
+  `Source: Upload` deployment becomes a visible anomaly instead of routine.
+
 ## Getting push-to-deploy back
 
 Railway published on every push; Cloudflare does not, and that gap is the main
