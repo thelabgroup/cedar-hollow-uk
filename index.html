@@ -960,7 +960,7 @@ animation:marquee-scroll 70s linear infinite;
               zoomDelta: 0.5,
               dragging: !L.Browser.mobile, /* one-finger drag must keep scrolling the page */
               tap: false,
-              minZoom: 6, maxZoom: 13,
+              minZoom: 6, maxZoom: 18,
               /* The archive covers southern England only; hold the view inside it
                  so nobody can pan off the edge of the data. */
               maxBounds: [[49.9, -7.0], [52.7, 1.6]],
@@ -974,16 +974,47 @@ animation:marquee-scroll 70s linear infinite;
                is ours: no key, no quota, no third party to fail. OpenStreetMap
                data under ODbL, which the attribution below carries.
 
-               Data stops at z10 to keep the file to 22MB; the renderer overzooms
-               to 13 from there, which vector tiles do cleanly because geometry is
-               scaled rather than pixels. */
+               Two archives rather than one. The overview covers southern England
+               but only to z10, because carrying the whole region deeper is
+               enormous -- z12 alone was 118MB. The detail archive carries z11-15
+               over a 10km box around each property, which is the only place
+               anyone needs to be close, and costs 5.9MB.
+
+               The overview sits underneath at every zoom, overzoomed past z10, so
+               anywhere outside those two boxes still has a map rather than a
+               hole. The detail layer draws on top wherever it has tiles.
+
+               z15 is as deep as the Protomaps planet build goes; the renderer
+               overzooms from there to 18, which vector takes cleanly because
+               geometry scales rather than pixels. */
+            var ATTRIB = '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="https://protomaps.com">Protomaps</a>';
             protomapsL.leafletLayer({
               url: "map/southern-england.pmtiles",
               flavor: "light",
               lang: "en",
               maxDataZoom: 10,
-              attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="https://protomaps.com">Protomaps</a>'
+              attribution: ATTRIB
             }).addTo(map);
+            /* One layer per box, each bounded to its own area. A single layer
+               spanning both would paint over the overview in the gap between
+               them, which showed as a grey band beside Oxford at z12. Bounded,
+               Leaflet asks for no tiles outside and the overview shows through. */
+            [
+              { name: "oxford", bounds: [[51.7085, -1.2597], [51.7985, -1.1141]] },
+              { name: "dorset", bounds: [[50.7756, -3.0009], [50.8656, -2.8583]] }
+            ].forEach(function (area) {
+              protomapsL.leafletLayer({
+                url: "map/detail.pmtiles",
+                flavor: "light",
+                lang: "en",
+                minZoom: 11,
+                maxDataZoom: 15,
+                bounds: L.latLngBounds(area.bounds),
+                /* The overview layer already carries the credit; without this
+                   protomaps adds its own and the control reads it twice. */
+                attribution: ""
+              }).addTo(map);
+            });
 
             var pinSvg =
               '<svg xmlns="http://www.w3.org/2000/svg" width="38" height="50" viewBox="0 0 38 50">' +
