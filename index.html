@@ -1076,20 +1076,43 @@ animation:marquee-scroll 70s linear infinite;
             /* Safari on macOS does not report a trackpad pinch as ctrl+wheel; it
                fires its own gesturestart/gesturechange instead, so without this
                the gesture does nothing there. e.scale is cumulative across the
-               gesture, so bank the change since the previous event. */
+               gesture, so bank the change since the previous event.
+
+               These events are WebKit-only, so the one place they collide with
+               Leaflet's own touchZoom is iOS, where a two-finger pinch on the
+               screen fires both. Both systems then drove the same gesture,
+               disagreed, and the map lurched out and back in. Fingers on the
+               glass are what tells the two apart: a trackpad pinch produces no
+               touches, so when any are down this handler stands aside and lets
+               Leaflet do it. Checking touchZoom.enabled() instead does not work
+               -- desktop browsers report touch support with no touchscreen, and
+               it is true on a MacBook too. */
             var gestureScale = null;
+            var fingersDown = 0;
+            map.getContainer().addEventListener("touchstart", function (e) {
+              fingersDown = e.touches.length;
+            }, { passive: true });
+            map.getContainer().addEventListener("touchend", function (e) {
+              fingersDown = e.touches.length;
+            }, { passive: true });
+            map.getContainer().addEventListener("touchcancel", function () {
+              fingersDown = 0;
+            }, { passive: true });
+
             map.getContainer().addEventListener("gesturestart", function (e) {
+              if (fingersDown) return;
               e.preventDefault();
               gestureScale = e.scale || 1;
             });
             map.getContainer().addEventListener("gesturechange", function (e) {
-              if (gestureScale === null) return;
+              if (fingersDown || gestureScale === null) return;
               e.preventDefault();
               var scale = e.scale || 1;
               bankZoom(Math.log2(scale / gestureScale), e);
               gestureScale = scale;
             });
             map.getContainer().addEventListener("gestureend", function (e) {
+              if (fingersDown) return;
               e.preventDefault();
               gestureScale = null;
             });
