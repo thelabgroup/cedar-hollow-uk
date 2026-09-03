@@ -12,13 +12,15 @@ main = "worker/index.js"
 compatibility_date = "2026-09-02"
 
 # --- Static site -------------------------------------------------------------
-# The site lives at the repo root, so .assetsignore lists what must NOT ship —
-# private files, and anything over Cloudflare's 25 MiB per-asset limit.
+# The site lives in public/, which holds the site and nothing else. Anything
+# outside that directory cannot be published by accident, so public/.assetsignore
+# only has to cover the one oversized file.
+#
 # Requests to these files are served straight from Cloudflare's edge without
 # invoking the Worker, and are free and unmetered.
 
 [assets]
-directory = "./"
+directory = "./public"
 binding = "ASSETS"
 not_found_handling = "404-page"   # serves /404.html once one exists
 

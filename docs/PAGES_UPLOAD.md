@@ -2,7 +2,7 @@
 
 How to edit and publish `cedarhollow.uk`. The site runs on a **Cloudflare
 Worker** that serves every static file plus the contact-form endpoint. See
-[`docs/CLOUDFLARE_MIGRATION.md`](docs/CLOUDFLARE_MIGRATION.md) for how it got
+[`docs/CLOUDFLARE_MIGRATION.md`](CLOUDFLARE_MIGRATION.md) for how it got
 there and what to do if it needs rolling back.
 
 ## The loop
@@ -29,6 +29,18 @@ git add -A && git commit -m "..." && git push
 
 Deploys take about 15 seconds. Only changed files upload.
 
+`wrangler dev` watches the assets directory, which is `public/` — the site and
+nothing else. That boundary is why it works: when the assets directory was the
+repo root, wrangler's own scratch files under `.wrangler/` counted as site
+changes and put dev into an endless reload loop.
+
+Two things about dev that look like faults and are not:
+
+- `/health` reports `"mailConfigured":false` locally. Secrets live at Cloudflare,
+  not on your machine. Use `npx wrangler dev --remote` to test an actual send.
+- For plain HTML or CSS edits you do not need dev at all — open the file, or run
+  any static server inside `public/`. Dev is for exercising `/api/contact`.
+
 ## If something goes wrong
 
 ```bash
@@ -51,11 +63,13 @@ npx wrangler tail
 | Situation | What happens | What to do |
 | - | - | - |
 | A file over **25 MiB** | The entire deploy fails, not just that file | Put it in R2, as `map/southern-england.pmtiles` is. Ask before adding large media |
-| A file that should stay private | **It gets published.** `docs/TODO.md` was publicly readable on Railway for months | Add it to [`.assetsignore`](.assetsignore) |
-| A new page | Nothing links to it and nothing indexes it | Link it from the nav/footer, and add it to [`sitemap.xml`](sitemap.xml) using the extensionless URL |
+| A file that should stay private | **It gets published** — if it is inside `public/`. `docs/TODO.md` was publicly readable on Railway for months | Keep it outside `public/` |
+| A new page | Nothing links to it and nothing indexes it | Link it from the nav/footer, and add it to [`public/sitemap.xml`](../public/sitemap.xml) using the extensionless URL |
 
-Everything at the repo root is published unless `.assetsignore` says otherwise.
-That includes any notes file you drop in — this one is excluded, deliberately.
+Everything inside `public/` is published; everything outside it is not. That
+directory boundary is the whole protection — `public/.assetsignore` now only has
+to exclude the one oversized map tileset, rather than guarding a list of private
+files by name.
 
 ## Common tasks
 
@@ -68,7 +82,7 @@ check it, deploy, commit.
 **Add an image.** Drop it in `images/`, reference it with a relative path.
 Prefer `.webp` and keep it well under 25 MiB.
 
-**Change where enquiries go.** Edit `CONTACT_TO` in [`wrangler.toml`](wrangler.toml)
+**Change where enquiries go.** Edit `CONTACT_TO` in [`wrangler.toml`](../wrangler.toml)
 and deploy. The address does not need verifying anywhere — Resend sends to
 whatever you set.
 
@@ -112,11 +126,11 @@ afterwards.
 
 | | |
 | - | - |
-| Site pages, `css/`, `js/`, `images/`, `fonts/`, `map/` | this repo, published as static assets |
-| Contact endpoint | [`worker/index.js`](worker/index.js) → `POST /api/contact` |
-| Worker config, contact addresses | [`wrangler.toml`](wrangler.toml) |
-| What must never be published | [`.assetsignore`](.assetsignore) |
-| Security headers (CSP etc.) | [`_headers`](_headers) — not in the HTML |
+| Site pages, `css/`, `js/`, `images/`, `fonts/`, `map/` | **`public/`** — everything in there is published, nothing outside it is |
+| Contact endpoint | [`worker/index.js`](../worker/index.js) → `POST /api/contact` |
+| Worker config, contact addresses | [`wrangler.toml`](../wrangler.toml) |
+| What must never be published | [`public/.assetsignore`](../public/.assetsignore) |
+| Security headers (CSP etc.) | [`public/_headers`](../public/_headers) — not in the HTML |
 | Map overview tileset, 26.5 MiB | R2 bucket `cedar-hollow-map`, served at `tiles.cedarhollow.uk` |
 | Outbound mail | Resend, from `website@send.cedarhollow.uk` |
 | Inbound mail for `@cedarhollow.uk` | **Google Workspace — do not touch the apex MX records** |
@@ -168,6 +182,7 @@ did not do yourself is worth investigating before you overwrite it.
 Compares every page in the repo against what is actually live:
 
 ```bash
+cd public
 for f in *.html; do
   url="https://cedarhollow.uk/${f%.html}"
   [ "$f" = "index.html" ] && url="https://cedarhollow.uk/"

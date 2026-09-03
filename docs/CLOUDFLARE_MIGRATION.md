@@ -56,15 +56,15 @@ Three consequences worth reading twice:
   service, including the honeypot and the `_`-prefixed field convention.
   Sends through Resend's HTTP API. Covered by a 24-case test run: routing,
   submissions, request shape, failure handling, header injection.
-- [`.assetsignore`](../.assetsignore) — keeps private files private, and keeps
+- [`.assetsignore`](../public/.assetsignore) — keeps private files private, and keeps
   files over Cloudflare's 25 MiB per-asset limit out of the deploy. One
   oversized file fails the entire upload.
-- [`_headers`](../_headers) — reproduces the security headers Railway sets.
-- [`js/form-submit.js`](../js/form-submit.js) — calls `/api/contact`
+- [`_headers`](../public/_headers) — reproduces the security headers Railway sets.
+- [`js/form-submit.js`](../public/js/form-submit.js) — calls `/api/contact`
   same-origin, except on `*.railway.app` where it still calls the old service.
   That is what lets both deployments run side by side during the cutover.
-- [`index.html`](../index.html) — the map's overview layer now loads from R2.
-- [`sitemap.xml`](../sitemap.xml) — `.html` URLs rewritten to their canonical
+- [`index.html`](../public/index.html) — the map's overview layer now loads from R2.
+- [`sitemap.xml`](../public/sitemap.xml) — `.html` URLs rewritten to their canonical
   extensionless form, since Cloudflare redirects to those. Both forms work on
   Railway too, so this is safe either way.
 - `.gitignore` — gained `.wrangler/`.
@@ -213,9 +213,9 @@ Rules** → redirect `www.cedarhollow.uk/*` to `https://cedarhollow.uk/$1`, 301.
 ## Phase 4 — Analytics, optional
 
 **Web Analytics** → add `cedarhollow.uk`. It is cookieless, so
-[`cookies.html`](../cookies.html) stays accurate and no consent banner is needed
+[`cookies.html`](../public/cookies.html) stays accurate and no consent banner is needed
 — the same reasoning that made Plausible the recommendation in
-[`js/analytics.js`](../js/analytics.js), without the subscription. Leave
+[`js/analytics.js`](../public/js/analytics.js), without the subscription. Leave
 `PROVIDER = "none"` in that file; Cloudflare's beacon is separate from it.
 
 ## Phase 5 — Decommission Railway
@@ -229,8 +229,8 @@ have arrived through the new endpoint.
       `hello@thelabgroup.com`. It sits in plain text in the Railway service
       variables and nothing needs it any more.
 - [ ] Delete `form-handler/` from the repo.
-- [ ] Remove the `railway.app` branch in [`js/form-submit.js`](../js/form-submit.js).
-- [ ] Delete [`DNS_SETUP.md`](../DNS_SETUP.md) — it documents a Railway setup
+- [ ] Remove the `railway.app` branch in [`js/form-submit.js`](../public/js/form-submit.js).
+- [ ] Delete [`DNS_SETUP.md`](DNS_SETUP.md) — it documents a Railway setup
       that no longer exists.
 
 Optional tidy-up afterwards: move the site files into a `public/` directory and

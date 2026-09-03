@@ -1,0 +1,14 @@
+# Files inside public/ that must NOT be published.
+#
+# This is now almost empty, and that is the point: public/ contains the site and
+# nothing else, so private files are excluded by living outside this directory
+# rather than by being listed here.
+
+# The map's overview tileset, 26.5 MiB — over Cloudflare's 25 MiB per-asset
+# limit, so it is served from R2 at tiles.cedarhollow.uk instead. An oversized
+# file fails the whole deploy, so this line matters.
+/map/southern-england.pmtiles
+
+# Uncomment to stop shipping the Webflow style-guide artifact to production
+# (nothing links to it; see the open item in docs/TODO.md):
+# style-guide.html
