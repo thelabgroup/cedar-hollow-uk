@@ -5295,3 +5295,154 @@ a.awards-logo_svg > img {
   font-weight: 400;
   line-height: 1.6;
 }
+
+/* ==== Footer =============================================================
+   Figma 351:1201 (desktop, 1440x351) and 351:1203 (mobile, 420x443). The
+   Webflow export shipped this close to the design but not on it; every
+   number below is measured off those two frames. The markup is unchanged
+   apart from the watermark's viewBox, which was cropping the owl at source.
+   ------------------------------------------------------------------------ */
+
+/* The design sets the whole footer in moss green, not the body's warmer
+   --color-text. */
+.section-footer {
+  color: var(--accent);
+}
+
+.section-footer .footer_link,
+.section-footer .social-link-item {
+  color: var(--accent);
+}
+
+.section-footer .footer_link:after {
+  background: var(--accent);
+}
+
+/* Contact block: 4px under the heading, 32px down to the social row. Both
+   utilities are used all over the site, so this is scoped to the footer. */
+.section-footer .footer_contents .margin-bottom.margin-xxsmall {
+  margin-bottom: .25rem;
+}
+
+.section-footer .footer_contents .margin-bottom.margin-large {
+  margin-bottom: 2rem;
+}
+
+/* Social marks are 24px square in the design; the export drew them at 20. */
+.section-footer .social-link_icon,
+.section-footer .social-link_icon.is-large {
+  width: 1.5rem;
+  max-width: 1.5rem;
+}
+
+/* Link columns: a 400px block against the container's right edge holding two
+   equal lists 32px apart. Each link carries 8px above and below rather than
+   the export's 12px gap, which is what makes the 44.8px row the design draws.
+   :not(.is-bottom) keeps the legal row, which shares the class, out of it. */
+.footer_content-right:not(.is-bottom) {
+  width: 100%;
+  max-width: 25rem;
+  grid-column-gap: 2rem;
+  column-gap: 2rem;
+}
+
+.footer_link-col {
+  flex: 1 1 0;
+  min-width: 0;
+}
+
+.footer_link-col .footer-link-list {
+  grid-row-gap: 0;
+  row-gap: 0;
+}
+
+.footer_link-col .footer-link-list li {
+  padding-top: .5rem;
+  padding-bottom: .5rem;
+}
+
+/* The watermark's viewBox used to stop at 161, so the owl was cropped before
+   any CSS saw it. With the full 297 in the markup the crop happens here
+   instead: the top 161px sits flush with the footer's bottom edge, which is
+   where the design puts it. */
+.footer_logo_wrap {
+  bottom: -136px;
+}
+
+@media screen and (max-width: 767px) {
+  /* The mobile frame is 420 wide on 24px of padding. */
+  .section-footer .padding-global {
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+  }
+
+  .section-footer .padding-section-small {
+    padding-top: 1.5rem;
+    padding-bottom: 1.5rem;
+  }
+
+  /* Nav links stay 18px and unlined on phones; the export shrank and
+     underlined them, which the mobile frame does not do. */
+  .footer_link.is-large {
+    font-size: 1.125rem;
+    text-decoration: none;
+  }
+
+  /* Contact block, then the social row, then the two link lists side by
+     side -- not stacked into one column as the export had them. */
+  .footer_contents {
+    grid-row-gap: 2rem;
+    row-gap: 2rem;
+    flex-flow: column;
+  }
+
+  .footer_content-right:not(.is-bottom) {
+    flex-flow: row;
+    width: 100%;
+  }
+
+  .section-footer .social-list {
+    grid-column-gap: .75rem;
+    column-gap: .75rem;
+  }
+
+  /* Credits centre, copyright above the links rather than below, and the
+     three legal links on one row at 15px. */
+  .footer_legal {
+    grid-row-gap: .5rem;
+    row-gap: .5rem;
+    flex-flow: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .footer_content-right.is-bottom {
+    order: 0;
+    justify-content: center;
+    width: 100%;
+  }
+
+  .footer-link-list.is-legal {
+    grid-column-gap: .5rem;
+    column-gap: .5rem;
+    flex-flow: row;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .footer-link-list.is-legal .footer_link {
+    font-size: .9375rem;
+  }
+
+  /* Rotated into the top right corner, per the mobile frame. */
+  .footer_logo_wrap {
+    position: absolute;
+    inset: 5% 0 auto auto;
+    display: block;
+    transform: translateX(38%) rotate(-60deg);
+  }
+
+  .footer_logo_svg {
+    max-width: 8.5rem;
+  }
+}
