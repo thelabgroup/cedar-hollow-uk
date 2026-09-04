@@ -456,9 +456,14 @@ animation:marquee-scroll 70s linear infinite;
            tracks the viewport at 8.61vw. Floored for phones, and held under the
            hero's own height so the search bar never falls off a short window. */
         .section-hero .heading-style-h1{font-size:min(clamp(2.5rem,8.61vw,7.75rem),14vh);}
-        /* Figma paints the hero photograph with 40% black. The homepage uses
-           .55 because its video is far brighter than this still. */
-        .section-hero .overlay{background-color:rgba(0,0,0,.4);}
+        /* Figma paints the hero photograph with 40% black. Measured against the
+           real photograph that is not enough: the fairy lights and the lamp put
+           the cream heading at 2.43:1 against the brightest patch behind it and
+           the rating line at 3.72:1, under the 3:1 and 4.5:1 they need. 50%
+           clears the heading; the gradient carries the rating strip at the foot
+           of the frame rather than darkening the whole picture for one line of
+           18px type. The homepage hero sits at .55 for the same reason. */
+        .section-hero .overlay{background-color:rgba(0,0,0,.5);background-image:linear-gradient(to top,rgba(0,0,0,.16) 0%,rgba(0,0,0,0) 20%);}
         /* No press marquee under the hero on this page: the logos live in the
            Awards section, where the design puts them. */
         .section-hero .hero_logos-wrapper{padding-bottom:min(36px,4.44vh);}
