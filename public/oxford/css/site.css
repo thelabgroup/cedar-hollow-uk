@@ -241,6 +241,19 @@ a.awards-logo_svg>svg,a.awards-logo_svg>img{display:block;width:100%;height:auto
 .ch-section--accent .ch-cards ul li{color:var(--brand);opacity:.86}
 .ch-section--accent .ch-cards ul li::before{background:var(--brand)}
 
+/* ---- Eateries / where to eat ---- */
+.ch-eateries{display:grid;grid-template-columns:repeat(2,1fr);gap:2.25rem 1.5rem;margin:0;padding:0;list-style:none;justify-items:center;text-align:center}
+.ch-eateries li{max-width:14rem;width:100%}
+.ch-eateries .ch-frame{display:block;aspect-ratio:3/2;width:100%;border-radius:var(--radius--16)}
+.ch-eateries h3{font-family:var(--font-family--heading);font-size:1.15rem;font-weight:500;letter-spacing:-.02em;line-height:1.25;margin:.85rem 0 .1rem}
+.ch-eateries h3 a{text-decoration:none}
+.ch-eateries h3 a:hover{text-decoration:underline;text-underline-offset:.2em}
+.ch-eateries p{margin:0;font-size:.85rem;line-height:1.55;color:var(--color-text);font-weight:400}
+.ch-eateries p+p{margin-top:.25rem}
+.ch-eateries__note{font-size:.8rem;font-weight:600;letter-spacing:.01em;color:var(--accent)}
+@media (min-width:48rem){.ch-eateries{grid-template-columns:repeat(4,1fr)}}
+@media (max-width:30rem){.ch-eateries{gap:1.75rem 1rem}.ch-eateries li{max-width:11rem}}
+
 /* ---- Photo rows / frames ---- */
 .ch-photos{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin:0;padding:0;list-style:none}
 .ch-photos.is-two{grid-template-columns:repeat(2,1fr)}
