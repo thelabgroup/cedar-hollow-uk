@@ -31,6 +31,14 @@
 .pp-title em { font-style: italic; font-weight: 400; }
 @media (max-width: 991px) { .pp-title { font-size: 56px; letter-spacing: -1.96px; } }
 
+/* Shown only when the URL narrowed the list (see properties-page.js), so the
+   page never silently drops properties. */
+.pp-filter {
+  margin: -24px 0 0; text-align: center;
+  font-size: 18px; line-height: 1.6; color: var(--accent, #3b4126);
+}
+.pp-filter a { color: inherit; text-decoration: underline; margin-left: .5em; }
+
 .pp-tiles { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin: 0; padding: 0; list-style: none; }
 /* On mobile the quick-pick tiles are dropped entirely: the property cards
    start immediately below, so a stacked column of the same six photographs

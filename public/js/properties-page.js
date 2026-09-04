@@ -124,9 +124,40 @@
     var tiles = document.getElementById("pp-tiles");
     var list = document.getElementById("pp-list");
     if (!tiles || !list) return;
+    // The Oxford page's hero search sends people here as
+    // ?destination=Oxford&guests=N. With no such parameters the page is
+    // unchanged: all six properties, in catalogue order.
+    var params = new URLSearchParams(window.location.search);
+    var wantPlace = (params.get("destination") || "").trim().toLowerCase();
+    var wantGuests = parseInt(params.get("guests"), 10);
+    if (isNaN(wantGuests)) wantGuests = 0;
+
     var items = CH.listings;
+    var narrowed = items.filter(function (it) {
+      if (wantPlace && it.destination.toLowerCase() !== wantPlace) return false;
+      if (wantGuests && it.sleeps < wantGuests) return false;
+      return true;
+    });
+    // An over-tight search must never leave an empty page; fall back to the
+    // whole catalogue and say nothing was narrowed.
+    var filtered = (wantPlace || wantGuests) && narrowed.length && narrowed.length < items.length;
+    if (filtered) items = narrowed;
+
     tiles.innerHTML = items.map(tile).join("");
     list.innerHTML = items.map(property).join("");
+
+    // Tell people what they are looking at, and give them the way out. Without
+    // this a narrowed list is indistinguishable from a shorter catalogue.
+    if (filtered) {
+      var said = [];
+      if (wantPlace) said.push("Cedar Hollow " + items[0].destination);
+      if (wantGuests) said.push(wantGuests + (wantGuests === 1 ? " guest" : " guests"));
+      var note = document.createElement("p");
+      note.className = "pp-filter";
+      note.innerHTML = "Showing " + esc(said.join(" \u00b7 ")) +
+        ' <a href="search-results.html">Show all retreats</a>';
+      tiles.parentNode.insertBefore(note, tiles);
+    }
 
     // A Featured Properties card links here as ?q=<property name>. Both the
     // tiles and the cards are rendered above, so at the moment the browser
