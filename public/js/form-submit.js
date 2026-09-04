@@ -9,13 +9,13 @@
 (function () {
   "use strict";
 
-  // Same-origin on Cloudflare: the Worker serves /api/contact alongside the
-  // site, so no CORS is involved. The Railway host has no such route, so while
-  // both deployments are live it keeps calling the standalone form-handler.
-  // Delete the conditional once Railway is decommissioned.
-  var ENDPOINT = location.hostname.endsWith("railway.app")
-    ? "https://form-handler-production-f871.up.railway.app/api/contact"
-    : "/api/contact";
+  // The site is served from Railway, so submissions go cross-origin to the
+  // standalone form-handler service. ALLOWED_ORIGINS on that service must list
+  // every hostname the site is served from, or the browser blocks the POST.
+  //
+  // The Cloudflare Worker also answers /api/contact same-origin, so if the site
+  // moves back there, this becomes: var ENDPOINT = "/api/contact";
+  var ENDPOINT = "https://form-handler-production-f871.up.railway.app/api/contact";
 
   // Capture-phase listener on document so this runs before Webflow's jQuery
   // submit handler; stopPropagation then prevents Webflow from also handling it.
