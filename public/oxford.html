@@ -527,6 +527,12 @@ animation:marquee-scroll 70s linear infinite;
           .press-row{grid-column-gap:1.75rem;column-gap:1.75rem;grid-row-gap:1.25rem;row-gap:1.25rem;}
         }
 
+        /* The Oaks' remaining four sit on their own line under the design's row.
+           .awards-top-logos is nowrap, so on a phone four badges in one line
+           would shrink past legibility; this line wraps instead. */
+        .awards-top-logos--more{flex-wrap:wrap;margin-top:2.5rem;}
+        @media screen and (max-width:991px){.awards-top-logos--more{margin-top:1.5rem;}}
+
         /* Figma 357:1029. Masked like .okmag and .thetimes: the artwork is a
            raster wordmark, so a mask over a currentColor background is what
            lets it take the section's colour. Page-scoped, since Oxfordshire
@@ -643,10 +649,13 @@ animation:marquee-scroll 70s linear infinite;
                 </div>
               </div>
               <div class="margin-bottom margin-xlarge">
-                <!-- Figma 357:719. Four badges, all this site's own, so there is
-                     nothing to page through and no carousel. Height alone caps them;
-                     each one's own aspect ratio then lands it on the design's width. -->
+                <!-- Figma 357:719 on the first line, intact: height alone caps each
+                     badge, and its own aspect ratio then lands it on the design's
+                     width. The Oaks' other four follow on a second line rather than
+                     being squeezed into the first, which would shrink the design's
+                     row to fit. Nothing pages, so there is no carousel. -->
                 <div class="awards-top-logos"><img src="images/award-green-tourism-gold.png" loading="eager" alt="Green Tourism Gold" class="awards-logo-top"><img src="images/award-visitengland-5star-glamping.png" loading="eager" alt="VisitEngland 5 Star Glamping" class="awards-logo-top"><img src="images/image-7.png" loading="eager" alt="VisitEngland Gold Award" class="awards-logo-top"><img src="images/award-visitengland-finalist-2026.png" loading="eager" alt="Finalist, VisitEngland Awards for Excellence 2026" class="awards-logo-top"></div>
+                <div class="awards-top-logos awards-top-logos--more"><img src="images/award-bbka.png" loading="lazy" alt="British Beekeepers Association" class="awards-logo-top"><img src="images/award-aim.png" loading="lazy" alt="Association of Independent Museums" class="awards-logo-top awards-logo-aim"><img src="images/award-magic-circle.png" loading="lazy" alt="Member of The Magic Circle" class="awards-logo-top"><img src="images/award-beautiful-south-silver.png" loading="lazy" alt="Beautiful South Awards for Excellence 2025-26, Silver" class="awards-logo-top"></div>
               </div>
             </div>
           </div>
