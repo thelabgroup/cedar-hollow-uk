@@ -15,3 +15,6 @@ The Oaks Full Movie.MP4
 
 # Wrangler local state: account cache, build output, dev server data.
 .wrangler/
+
+# Playwright MCP scratch output: screenshots, snapshots and console logs.
+.playwright-mcp/
