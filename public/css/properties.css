@@ -40,13 +40,35 @@
 .pp-filter a { color: inherit; text-decoration: underline; margin-left: .5em; }
 
 .pp-tiles { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin: 0; padding: 0; list-style: none; }
-/* On mobile the quick-pick tiles are dropped entirely: the property cards
-   start immediately below, so a stacked column of the same six photographs
-   before them was pure repetition. Their lazy images never intersect while
-   hidden, so nothing is downloaded for them either. */
-@media (max-width: 991px) { .pp-tiles { display: none; } }
+/* Six full-width tiles stacked down a phone was the same six photographs the
+   cards below already show, at the same size, so it read as the page starting
+   twice. They run as a scrolling strip instead: small enough to be a jump-to
+   bar rather than a second gallery, bleeding past the header's padding so the
+   row visibly continues off both edges. */
+@media (max-width: 991px) {
+  .pp-tiles {
+    display: flex; grid-template-columns: none; gap: 12px;
+    /* Tops aligned, so a two-line name never shortens its neighbour's photo. */
+    align-items: flex-start;
+    margin: 0 -20px; padding: 0 20px 4px;
+    overflow-x: auto; overscroll-behavior-x: contain;
+    scroll-snap-type: x proximity; -webkit-overflow-scrolling: touch;
+    /* Snap to the content edge, not the padding box, or the first tile
+       parks itself against the screen edge instead of lining up with
+       the heading above it. */
+    scroll-padding: 0 20px;
+    scrollbar-width: none;
+  }
+  .pp-tiles::-webkit-scrollbar { display: none; }
+  /* The flex items are the list items; .pp-tile is the anchor inside one. */
+  .pp-tiles > li { flex: 0 0 132px; scroll-snap-align: start; }
+}
 .pp-tile { display: flex; flex-direction: column; gap: 24px; align-items: center; text-decoration: none; }
-@media (max-width: 991px) { .pp-tile { gap: 16px; } }
+@media (max-width: 991px) {
+  .pp-tile { width: 100%; gap: 8px; }
+  /* Without this the frame gives up height to the name and loses its ratio. */
+  .pp-tile .pp-frame { flex: none; border-radius: 10px; }
+}
 
 /* 4:3 frame from the design (390x294), with the site's colour-burn wash. */
 .pp-frame {
@@ -74,7 +96,11 @@
   color: var(--accent, #3b4126);
 }
 .pp-tile-name em { font-style: italic; font-weight: 400; }
-@media (max-width: 991px) { .pp-tile-name { font-size: 42px; letter-spacing: -1.47px; } }
+/* 42px was drawn for a full-width tile. In a 132px strip the name is a label,
+   so it drops to something that fits two lines under the picture. */
+@media (max-width: 991px) {
+  .pp-tile-name { font-size: 15px; line-height: 1.2; letter-spacing: -.01em; font-weight: 400; }
+}
 
 /* ---- One property ------------------------------------------------------ */
 /* The design's Content stack separates properties with a 96px gap (120 on

@@ -38,12 +38,16 @@
   // and are promoted to real src by the arrows, one step ahead of the viewer.
   function frame(item, opts) {
     var shots = photosOf(item);
+    // A quick-pick tile is a cover shot, not a gallery: rendering all of a
+    // property's photos there would put fifty-odd empty <img> in the strip.
+    if (opts && opts.single) shots = shots.slice(0, 1);
+    var sizes = (opts && opts.sizes) || "(max-width: 991px) 100vw, 762px";
     var imgs = shots.map(function (ph, i) {
       var attrs = i === 0
         ? 'src="' + esc(ph.src) + '" ' + (ph.srcset ? 'srcset="' + esc(ph.srcset) + '" ' : "")
         : 'data-src="' + esc(ph.src) + '" ' + (ph.srcset ? 'data-srcset="' + esc(ph.srcset) + '" ' : "");
       return "<img " + attrs +
-        'sizes="(max-width: 991px) 100vw, 762px" loading="lazy" alt="' + esc(item.name) +
+        'sizes="' + esc(sizes) + '" loading="lazy" alt="' + esc(item.name) +
         '" class="pp-shot"' + (i === 0 ? ' data-current="true"' : "") + ">";
     }).join("");
     return '<div class="pp-frame"' + (opts && opts.gallery ? ' data-gallery="true"' : "") + ">" + imgs + "</div>";
@@ -60,7 +64,7 @@
   function tile(item) {
     var n = splitName(item.name);
     return '<li><a class="pp-tile" href="#property-' + esc(item.id) + '">' +
-      frame(item, {}) +
+      frame(item, { single: true, sizes: "(max-width: 991px) 132px, 33vw" }) +
       '<p class="pp-tile-name">' + esc(n.first) + ' <em>' + esc(n.rest) + '</em></p>' +
       "</a></li>";
   }
