@@ -79,7 +79,7 @@
   function arrows(item) {
     if (photosOf(item).length < 2) return "";
     return '<button class="pp-arrow pp-arrow--prev" type="button" data-step="-1" aria-label="Previous photo of ' +
-      esc(item.name) + '"><img src="images/icons/arrow-prev.svg" alt="" aria-hidden="true"></button>' +
+      esc(item.name) + '"><img src="images/icons/arrow-prev.svg?v=20260906a" alt="" aria-hidden="true"></button>' +
       '<button class="pp-arrow pp-arrow--next" type="button" data-step="1" aria-label="Next photo of ' +
       esc(item.name) + '"><img src="images/icons/arrow-next.svg" alt="" aria-hidden="true"></button>';
   }
