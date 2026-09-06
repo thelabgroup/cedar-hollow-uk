@@ -147,6 +147,10 @@
 .pp-desc p { margin: 0; text-align: center; font-size: 16px; line-height: 1.6; color: var(--accent, #3b4126); padding: 0 12px; }
 @media (max-width: 991px) { .pp-desc p { font-size: 15px; padding: 0; } }
 
+.pp-price { white-space: nowrap; font-size: 18px; line-height: 1.6; color: var(--accent, #3b4126); }
+.pp-price strong { font-size: 24px; font-weight: 500; letter-spacing: -1.2px; }
+.pp-price span { font-size: 18px; font-weight: 500; }
+
 /* Occupies the panel the design reserved for the Checked.in widget, keeping its
    frame -- #e7e5c7, 1px border, 16px radius -- so the card's balance survives. */
 .pp-book {
