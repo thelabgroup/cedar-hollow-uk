@@ -85,15 +85,15 @@
   }
 
   // The design reserves a panel here for a Checked.in booking widget we do not
-  // have. Rather than leave the space empty, it now carries the three things a
-  // reader wants at this point -- which site it is on, what it is known for,
-  // and how to book -- all from the catalogue, so nothing is hand-maintained.
+  // have. Rather than leave the space empty, it carries which site the property
+  // is on and how to book it, both from the catalogue so nothing is
+  // hand-maintained. A second fact sat beside the location until 2026-09-06;
+  // what replaces it is still to be decided, hence the single-item list.
   function bookingPanel(item) {
     var site = item.region === "Dorset" ? "Cedar Hollow Dorset" : "Cedar Hollow Oxford";
     return '<div class="pp-book">' +
       '<dl class="pp-book__facts">' +
         "<div><dt>Location</dt><dd>" + esc(site) + "</dd></div>" +
-        "<div><dt>Known for</dt><dd>" + esc(item.highlight || "Woodland seclusion") + "</dd></div>" +
       "</dl>" +
       '<a class="button w-inline-block" href="' + esc(item.bookingUrl) +
         '" target="_blank" rel="noopener"><span>Check availability</span>' + ARROW + "</a>" +
