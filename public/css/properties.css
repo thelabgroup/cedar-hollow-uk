@@ -17,11 +17,12 @@
 /* ---- Page rhythm: 64px pad, 96px between blocks (desktop) -------------- */
 .pp-content { display: flex; flex-direction: column; gap: 96px; padding: 64px; }
 /* 120px was the design's gap under a 1093px stack of full-width tiles. The
-   strip that replaced it is 148px tall, so the same gap left the header
-   floating; 64px sits it in the page's own vertical rhythm. This is the
-   header-to-first-card gap only -- #pp-list keeps its 120px between one
-   property and the next. */
-@media (max-width: 991px) { .pp-content { gap: 64px; padding: 64px 0; } }
+   strip that replaced it is 148px tall, so that gap left the header floating
+   clear of the page. 40px is measured from the bottom of the tile captions,
+   which puts the pictures about 90px clear of the first card -- still read as
+   separate, without the band of empty cream. This is the header-to-first-card
+   gap only: #pp-list keeps its 120px between one property and the next. */
+@media (max-width: 991px) { .pp-content { gap: 40px; padding: 64px 0; } }
 
 /* ---- Search header + quick-pick tiles ---------------------------------- */
 .pp-header { display: flex; flex-direction: column; gap: 46px; padding: 24px 0 48px; }
