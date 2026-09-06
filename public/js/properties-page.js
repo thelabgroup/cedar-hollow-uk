@@ -87,13 +87,19 @@
   // The design reserves a panel here for a Checked.in booking widget we do not
   // have. Rather than leave the space empty, it carries which site the property
   // is on and how to book it, both from the catalogue so nothing is
-  // hand-maintained. A second fact sat beside the location until 2026-09-06;
-  // what replaces it is still to be decided, hence the single-item list.
+  // hand-maintained, plus the minimum stay where the booking site publishes one.
+  // Mallinson's FAQ gives one policy for all three Dorset treehouses; the Oaks
+  // gives none, so Oxford shows the location alone rather than a guess.
   function bookingPanel(item) {
     var site = item.region === "Dorset" ? "Cedar Hollow Dorset" : "Cedar Hollow Oxford";
     return '<div class="pp-book">' +
       '<dl class="pp-book__facts">' +
         "<div><dt>Location</dt><dd>" + esc(site) + "</dd></div>" +
+        // The Oaks publishes no minimum, so the Oxford three carry none and the
+        // row simply does not render for them.
+        (item.minimumStay
+          ? "<div><dt>Minimum stay</dt><dd>" + esc(item.minimumStay) + "</dd></div>"
+          : "") +
       "</dl>" +
       '<a class="button w-inline-block" href="' + esc(item.bookingUrl) +
         '" target="_blank" rel="noopener"><span>Check availability</span>' + ARROW + "</a>" +

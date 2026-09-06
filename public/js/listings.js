@@ -25,6 +25,7 @@
       price: 350,
       featured: 1,
       highlight: "Underfloor heating",
+      minimumStay: "",
       photos: [
         { src: "images/gallery/cedar-hollow-treehouse-s01-1060.webp", srcset: "images/gallery/cedar-hollow-treehouse-s01-530.webp 530w, images/gallery/cedar-hollow-treehouse-s01-1060.webp 1060w" },
         { src: "images/gallery/cedar-hollow-treehouse-s02-1060.webp", srcset: "images/gallery/cedar-hollow-treehouse-s02-530.webp 530w, images/gallery/cedar-hollow-treehouse-s02-1060.webp 1060w" },
@@ -55,6 +56,7 @@
       price: 175,
       featured: 3,
       highlight: "Narnia-inspired cave",
+      minimumStay: "",
       photos: [
         { src: "images/gallery/fauns-hideaway-s01-1060.webp", srcset: "images/gallery/fauns-hideaway-s01-530.webp 530w, images/gallery/fauns-hideaway-s01-1060.webp 1060w" },
         { src: "images/gallery/fauns-hideaway-s02-1060.webp", srcset: "images/gallery/fauns-hideaway-s02-530.webp 530w, images/gallery/fauns-hideaway-s02-1060.webp 1060w" },
@@ -105,6 +107,7 @@
       price: 110,
       featured: 5,
       highlight: "Wood-fired hot tub",
+      minimumStay: "",
       photos: [
         { src: "images/gallery/beavers-den-s01-1060.webp", srcset: "images/gallery/beavers-den-s01-530.webp 530w, images/gallery/beavers-den-s01-1060.webp 1060w" },
         { src: "images/gallery/beavers-den-s02-1060.webp", srcset: "images/gallery/beavers-den-s02-530.webp 530w, images/gallery/beavers-den-s02-1060.webp 1060w" },
@@ -155,6 +158,7 @@
       price: 495,
       featured: 2,
       highlight: "Rooftop sauna",
+      minimumStay: "2 nights midweek, 3 at weekends",
       photos: [
         { src: "images/gallery/woodsmans-treehouse-s01-1000.webp", srcset: "images/gallery/woodsmans-treehouse-s01-530.webp 530w, images/gallery/woodsmans-treehouse-s01-1000.webp 1000w" },
         { src: "images/gallery/woodsmans-treehouse-s02-1060.webp", srcset: "images/gallery/woodsmans-treehouse-s02-530.webp 530w, images/gallery/woodsmans-treehouse-s02-1060.webp 1060w" },
@@ -203,6 +207,7 @@
       price: 295,
       featured: 4,
       highlight: "Wood-fired hot tub",
+      minimumStay: "2 nights midweek, 3 at weekends",
       photos: [
         { src: "images/gallery/dazzle-treehouse-s01-1060.webp", srcset: "images/gallery/dazzle-treehouse-s01-530.webp 530w, images/gallery/dazzle-treehouse-s01-1060.webp 1060w" },
         { src: "images/gallery/dazzle-treehouse-s02-1000.webp", srcset: "images/gallery/dazzle-treehouse-s02-530.webp 530w, images/gallery/dazzle-treehouse-s02-1000.webp 1000w" },
@@ -257,6 +262,7 @@
       price: 295,
       featured: 6,
       highlight: "Two-person swing",
+      minimumStay: "2 nights midweek, 3 at weekends",
       photos: [
         { src: "images/gallery/pinwheel-treehouse-s01-1060.webp", srcset: "images/gallery/pinwheel-treehouse-s01-530.webp 530w, images/gallery/pinwheel-treehouse-s01-1060.webp 1060w" },
         { src: "images/gallery/pinwheel-treehouse-s02-854.webp", srcset: "images/gallery/pinwheel-treehouse-s02-530.webp 530w, images/gallery/pinwheel-treehouse-s02-854.webp 854w" },
