@@ -85,15 +85,17 @@
   }
 
   // The design reserves a panel here for a Checked.in booking widget we do not
-  // have. Rather than leave the space empty, it now carries the three things a
-  // reader wants at this point -- which site it is on, what it is known for,
-  // and how to book -- all from the catalogue, so nothing is hand-maintained.
+  // have. Rather than leave the space empty, it carries what a reader wants at
+  // the point of booking -- which site it is on, what it costs, and how to book
+  // -- all from the catalogue, so nothing is hand-maintained. The price lives
+  // here rather than up in the description, so it sits with the button that
+  // acts on it and is not printed twice in the same card.
   function bookingPanel(item) {
     var site = item.region === "Dorset" ? "Cedar Hollow Dorset" : "Cedar Hollow Oxford";
     return '<div class="pp-book">' +
       '<dl class="pp-book__facts">' +
         "<div><dt>Location</dt><dd>" + esc(site) + "</dd></div>" +
-        "<div><dt>Known for</dt><dd>" + esc(item.highlight || "Woodland seclusion") + "</dd></div>" +
+        "<div><dt>From</dt><dd>&pound;" + item.price + " per night</dd></div>" +
       "</dl>" +
       '<a class="button w-inline-block" href="' + esc(item.bookingUrl) +
         '" target="_blank" rel="noopener"><span>Check availability</span>' + ARROW + "</a>" +
@@ -111,7 +113,6 @@
           '<h2 class="pp-name"><em>' + esc(n.first) + '</em> <span class="pp-name__light">' + esc(n.rest) + "</span></h2>" +
           '<div class="pp-desc">' + meta(item) +
             "<p>" + esc(item.description) + "</p>" +
-            '<p class="pp-price">From <strong>&pound;' + item.price + '</strong><span>pn</span></p>' +
           "</div>" +
           bookingPanel(item) +
         "</div>" +
