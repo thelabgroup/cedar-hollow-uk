@@ -226,15 +226,34 @@ animation:marquee-scroll 70s linear infinite;
 .marquee-component:hover .marquee__content{
   animation-play-state: paused;
 }
+/* One timeline for both copies. Animating each copy separately gave them two
+   independent animations, and if either was restarted or throttled on its own
+   the second copy slid over the first -- logos from opposite ends of the row
+   drawing on top of each other. A single track cannot drift against itself. */
+.logo-marquee__track{
+  flex: none;
+  grid-column-gap: 2.5rem;
+  column-gap: 2.5rem;
+  /* Replaces the min-width:100% each copy carried, which kept the row filled on
+     a viewport wider than the logos. One level up both copies grow by the same
+     amount, so they stay identical widths and the loop point stays seamless. */
+  min-width: calc(200% + 2.5rem);
+  display: flex;
+  will-change: transform;
+}
+.logo-marquee__track > .logo-marquee__content{
+  min-width: 0;
+  flex: 1 0 auto;
+}
 @keyframes marquee-scroll{
   from {
     transform: translateX(0);
   }
-  /* Must travel exactly one copy plus the 2.5rem gap .logo-marquee puts between
-     the two copies. At 2.3rem it fell 3.2px short each cycle, and that shortfall
-     showed as a gap at the loop point. */
+  /* Half the track is one copy plus half the 2.5rem gap between them, so the
+     loop distance -- one whole copy plus one whole gap -- is that plus the
+     other half. Exact at any copy width, so the loop point stays seamless. */
   to {
-    transform: translateX(calc(-100% - 2.5rem));
+    transform: translateX(calc(-50% - 1.25rem));
   }
 }
 .marquee-component{
