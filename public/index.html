@@ -579,10 +579,10 @@ animation:marquee-scroll 70s linear infinite;
         </div>
       </div>
       <div class="hero_bg-wrapper"><picture>
-          <source media="(max-aspect-ratio: 4/3)" srcset="images/hero-poster-mobile.jpg?v=20260907g">
-          <img src="images/hero-poster.jpg?v=20260907g" loading="eager" fetchpriority="high" data-w-id="9ab977c5-77cc-4d93-1e83-6c0b7e58a0bc" alt="" class="section-bg-cover">
+          <source media="(max-aspect-ratio: 4/3)" srcset="images/hero-poster-mobile.jpg?v=20260907h">
+          <img src="images/hero-poster.jpg?v=20260907h" loading="eager" fetchpriority="high" data-w-id="9ab977c5-77cc-4d93-1e83-6c0b7e58a0bc" alt="" class="section-bg-cover">
         </picture>
-        <video class="section-bg-cover ch-hero-video" data-src="images/hero-loop.mp4?v=20260907g" data-src-portrait="images/hero-loop-mobile.mp4?v=20260907g" poster="images/hero-poster.jpg?v=20260907g" muted loop playsinline preload="none" aria-hidden="true" tabindex="-1"></video>
+        <video class="section-bg-cover ch-hero-video" data-src="images/hero-loop.mp4?v=20260907h" data-src-portrait="images/hero-loop-mobile.mp4?v=20260907h" poster="images/hero-poster.jpg?v=20260907h" muted loop playsinline preload="none" aria-hidden="true" tabindex="-1"></video>
         <div class="overlay"></div>
       </div>
     </section>
@@ -619,7 +619,7 @@ animation:marquee-scroll 70s linear infinite;
           // landscape phone wants the wide cut and a portrait tablet does not.
           var portrait = window.matchMedia("(max-aspect-ratio: 4/3)").matches;
           var alt = v.getAttribute("data-src-portrait");
-          if (portrait && alt) v.poster = "images/hero-poster-mobile.jpg?v=20260907g";
+          if (portrait && alt) v.poster = "images/hero-poster-mobile.jpg?v=20260907h";
           v.src = (portrait && alt) ? alt : v.getAttribute("data-src");
           function attempt() {
             var p = v.play();
