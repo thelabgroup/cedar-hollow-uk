@@ -578,8 +578,11 @@ animation:marquee-scroll 70s linear infinite;
             </svg><a href="https://www.thetimes.co.uk/article/wrap-your-home-in-wood-inside-and-out-7nc6gqtw5" target="_blank" rel="noopener" class="awards-logo_svg thetimes" aria-label="Read The Times feature"></a><a href="https://www.ok.co.uk/lifestyle/amber-davies-boyfriend-holiday-nick-23167635" target="_blank" rel="noopener" class="awards-logo_svg okmag" aria-label="Read the OK! Magazine feature"></a></div>
         </div>
       </div>
-      <div class="hero_bg-wrapper"><img src="images/hero-poster.jpg?v=20260907g" loading="eager" fetchpriority="high" data-w-id="9ab977c5-77cc-4d93-1e83-6c0b7e58a0bc" alt="" class="section-bg-cover">
-        <video class="section-bg-cover ch-hero-video" data-src="images/hero-loop.mp4?v=20260907g" poster="images/hero-poster.jpg?v=20260907g" muted loop playsinline preload="none" aria-hidden="true" tabindex="-1"></video>
+      <div class="hero_bg-wrapper"><picture>
+          <source media="(max-aspect-ratio: 4/3)" srcset="images/hero-poster-mobile.jpg?v=20260907g">
+          <img src="images/hero-poster.jpg?v=20260907g" loading="eager" fetchpriority="high" data-w-id="9ab977c5-77cc-4d93-1e83-6c0b7e58a0bc" alt="" class="section-bg-cover">
+        </picture>
+        <video class="section-bg-cover ch-hero-video" data-src="images/hero-loop.mp4?v=20260907g" data-src-portrait="images/hero-loop-mobile.mp4?v=20260907g" poster="images/hero-poster.jpg?v=20260907g" muted loop playsinline preload="none" aria-hidden="true" tabindex="-1"></video>
         <div class="overlay"></div>
       </div>
     </section>
@@ -609,7 +612,15 @@ animation:marquee-scroll 70s linear infinite;
           // moving -- rather than swapping from the old photograph once it buffers.
           v.setAttribute("data-active", "true");
           // Setting src is enough; calling load() here aborts the play() promise.
-          v.src = v.getAttribute("data-src");
+          // A portrait screen crops a landscape loop to a quarter of its width,
+          // which loses the subject of half the shots -- the owl is not even in
+          // frame. The portrait edit is the same thirteen clips, each windowed
+          // to keep what matters. 4/3 rather than a width query, because a
+          // landscape phone wants the wide cut and a portrait tablet does not.
+          var portrait = window.matchMedia("(max-aspect-ratio: 4/3)").matches;
+          var alt = v.getAttribute("data-src-portrait");
+          if (portrait && alt) v.poster = "images/hero-poster-mobile.jpg?v=20260907g";
+          v.src = (portrait && alt) ? alt : v.getAttribute("data-src");
           function attempt() {
             var p = v.play();
             if (p && p.catch) p.catch(function () { /* refused or deferred - the still stays */ });
